@@ -9,20 +9,7 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  axios({
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
-    headers: {
-      Authorization: token
-    }
-  })
-    .then(result => {
-      res.end(result.data[0]);
-    })
-    .catch(err => {
-      console.log(err);
-      res.end();
-    });
+  res.end();
 });
 
 app.get('/products', (req, res) => {
