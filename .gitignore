@@ -1,6 +1,11 @@
+.gitignore
 node_modules
 
 config.js
 
 bundle.js
+<<<<<<< HEAD
 node_modules
+=======
+bundle.js.LICENSE.txt
+>>>>>>> 871b33c6de1664f55708fbd6c2dea0d04f8af365
