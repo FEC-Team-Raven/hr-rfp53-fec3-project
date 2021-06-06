@@ -5,7 +5,7 @@ const Image = () => {
     <div>
       <b>Image Component</b>
       <div>PREVIEW IMAGE</div>
-      <div>ACTION BUTTON</div>
+      <button>ACTION BUTTON</button>
     </div>
   );
 };

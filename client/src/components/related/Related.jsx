@@ -8,7 +8,7 @@ const Related = ({productId}) => {
     <div>
       <h1>RELATED PRODUCTS</h1>
       <RelatedProducts />
-      <h1> YOUR OUTFIT</h1>
+      <h1>YOUR OUTFIT</h1>
       <YourOutfit />
     </div>
   );
