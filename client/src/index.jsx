@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
-import Overview from './components/overview/Overview';
-import Related from './components/related/Related';
-import Questions from './components/questions/Questions';
-import Reviews from './components/reviews/Reviews';
+import Overview from './components/overview/Overview.jsx';
+import Related from './components/related/Related.jsx';
+import Questions from './components/questions/Questions.jsx';
+import Reviews from './components/reviews/Reviews.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -25,10 +25,13 @@ const App = () => {
 
   return (
     <div>
+      <Related />
+      {/* <Related productId={productId}/> */}
+
+      {/*
       <Overview productId={productId}/>
-      <Related productId={productId}/>
-      <Questions productId={productId}/>
-      <Reviews productId={productId}/>
+      <Questions productId={productId}/> */}
+      {/* <Reviews productId={productId}/> */}
     </div>
   );
 };

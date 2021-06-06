@@ -6,11 +6,10 @@ export const ReviewContext = React.createContext([]);
 
 // axios('http://localhost:3000/reviews')
 //   .then((reviews) => {
-//     console.log(reviews);
+//     console.log(reviews);q
 //   });
 
 const Reviews = (props) => {
-  console.log(props);
   const [reviews, setReviews] = useState(['one', 'two']);
 
   return (
