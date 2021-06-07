@@ -5,6 +5,7 @@ body {
 .question {
   display: flex;
   justify-content: space-between;
+  border: solid 1px;
 
 }
 
@@ -16,4 +17,26 @@ body {
 #helpful {
   margin-right: 10px;
   border-right: 1px;
+}
+
+.answer {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px;
+}
+.answer-extra {
+  display: flex;
+}
+
+#ans-user {
+  padding-right: 10px;
+  border-right: solid 1px;
+}
+#ans-help {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: solid 1px;
+}
+#ans-report {
+  padding-left: 10px;
 }

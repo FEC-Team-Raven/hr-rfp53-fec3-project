@@ -7,14 +7,14 @@ const QuestionItem = (props) => {
     <div>
       <div className="question">
         {/* question, helpful, add ans */}
-        <div >Q: {props.value.question_body}</div>
+        <div >Q:{props.value.question_body}</div>
         <div className='question-extra'>
           <div id="helpful">Helpful? Yes ({props.value.question_helpfulness})</div>
           <div id="addAns">add ans</div>
         </div>
       </div>
       <div>
-        <AnswerList />
+        <AnswerList value={props.value.answers}/>
       </div>
     </div>
   );

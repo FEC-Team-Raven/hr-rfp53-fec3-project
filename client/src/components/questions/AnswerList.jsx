@@ -1,10 +1,17 @@
 import React from 'react';
+import AnswerItem from './AnswerItem.jsx';
 
 const AnswerList = (props) => {
-  console.log(props);
-  return (
-    <div>
+  let answers = Object.entries(props.value);
 
+  return (
+    <div className="answer">
+      <div>A: </div>
+      <div>
+        {answers.map((item) =>
+          <AnswerItem value={item}/>
+        )}
+      </div>
     </div>
   );
 };
