@@ -14,6 +14,7 @@ const App = () => {
       setLoading(false);
       axios('http://localhost:3000/products')
         .then(products => {
+          // Sets id as the first product object in the array of products
           setProductId(products.data[0].id);
         })
         .catch(err => {
@@ -25,7 +26,9 @@ const App = () => {
 
   return (
     <div>
-      <Related productId={productId}/>
+      {productId !== 0 &&
+        <Related productId={productId}/>
+      }
 
       {/* <Overview productId={productId}/>
       <Questions productId={productId}/>
