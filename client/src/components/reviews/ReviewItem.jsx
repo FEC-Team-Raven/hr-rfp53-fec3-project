@@ -8,20 +8,37 @@ var renderDate = (date) => {
 
 var renderRecommend = recommend => {
   if (recommend) {
-    return 'I recommend this product';
+    return <div>'I recommend this product'</div>;
   }
 };
 
-const ReviewItem = (props) => (
-  <div>
+var renderResponse = response => {
+  if (response) {
+    return (
+      <div className="response">
+        Response: <br/>
+        {response}
+      </div>
+    );
+  }
+};
+
+const ReviewTile = (props) => (
+  <div className="reviewTile">
     {console.log(props.review)}
-    <div className="reviewRow">
+    <div className="reviewRow between">
       <div>Stars: {props.review.rating}</div>
       <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
     </div>
     <div>{props.review.body}</div>
-    <div>{renderRecommend(props.review.recommend)}</div>
+    {renderRecommend(props.review.recommend)}
+    {renderResponse(props.review.response)}
+    <div className="reviewRow">
+      Helpful?
+      <button>Yes ({props.review.helpfulness})</button>
+      <button>No</button>
+    </div>
   </div>
 );
 
-export default ReviewItem;
+export default ReviewTile;

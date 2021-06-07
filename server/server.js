@@ -36,8 +36,8 @@ app.get('/reviews', (req, res) => {
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
     params: {
-      page: 8,
-      count: 5,
+      page: 1,
+      count: 50,
       sort: 'newest',
       // eslint-disable-next-line camelcase
       product_id: productId
