@@ -26,10 +26,10 @@ const App = () => {
 
   return (
     <div>
-      <Overview productId={productId}/>
-      <Related productId={productId}/>
+      {/* <Overview productId={productId}/> */}
+      {/* <Related productId={productId}/> */}
       <Questions productId={productId}/>
-      <Reviews productId={productId}/>
+      {/* <Reviews productId={productId}/> */}
     </div>
   );
 };

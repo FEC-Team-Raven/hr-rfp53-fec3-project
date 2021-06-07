@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(241, 246, 246);
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.question-extra {
+  display: flex;
+  justify-content: space-around;
+}
+
+#helpful {
+  margin-right: 10px;
+  border-right: 1px;
+}
