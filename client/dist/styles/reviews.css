@@ -1,0 +1,17 @@
+.reviewRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.reviewTile {
+  border-bottom: solid gray 1px;
+  padding-top: 20px;
+}
+
+.reviewTile > * {
+  padding-bottom: 20px;
+}
