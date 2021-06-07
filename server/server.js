@@ -1,34 +1,37 @@
 const express = require('express');
+const path = require('path');
 const axios = require('axios');
-const tok = require('./config');
-
+const token = require('./config.js');
 
 const app = express();
 const port = 3000;
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.get('/', (req, res) => {
+  res.end();
+});
 
-app.get('/question', (req, res) => {
-  //get produce from the api
+app.get('/products', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
-    method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
     headers: {
-      'Authorization': tok
+      Authorization: token
     }
   })
-    .then((product) => {
-      console.log(product.data[0]);
-      res.send(product.data[0]);
+    .then(result => {
+      res.end(JSON.stringify(result.data));
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
+      res.end();
     });
+});
 
 
+app.get('/reviews', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
 
 });
 
