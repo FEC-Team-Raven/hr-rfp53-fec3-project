@@ -1,4 +1,5 @@
 import React from 'react';
+import Stars from '../Stars.jsx';
 
 var renderDate = (date) => {
   var date = new Date(date);
@@ -27,7 +28,7 @@ const ReviewTile = (props) => (
   <div className="reviewTile">
     {console.log(props.review)}
     <div className="reviewRow between">
-      <div>Stars: {props.review.rating}</div>
+      <Stars rating={2.99} />
       <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
     </div>
     <div>{props.review.body}</div>

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 
 import {ReviewContext} from './Reviews.jsx';
-import ReviewItem from './ReviewItem.jsx';
+import ReviewTile from './ReviewTile.jsx';
 
 const ReviewList = () => {
   const reviews = useContext(ReviewContext);
@@ -14,7 +14,7 @@ const ReviewList = () => {
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
       </select> <br />
-      {reviews.map((review) => <ReviewItem review={review} />)}
+      {reviews.map((review) => <ReviewTile review={review} />)}
       <button>More Reviews</button>
       <button>Add a Review +</button>
     </div>
