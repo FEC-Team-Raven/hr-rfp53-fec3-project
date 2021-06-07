@@ -1,0 +1,18 @@
+.star-rating {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.star-rating span{
+  font-size:20px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(105, 105, 105);
+}
+
+.star-rating span:before {
+  content:"\2606\2606\2606\2606\2606";
+  position: absolute;
+  color: #bdbdbd;
+  z-index: -1;
+}

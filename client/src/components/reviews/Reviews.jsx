@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReviewList from './ReviewList.jsx';
 import axios from 'axios';
 
 export const ReviewContext = React.createContext([]);
 
-// axios('http://localhost:3000/reviews')
-//   .then((reviews) => {
-//     console.log(reviews);
-//   });
-
 const Reviews = (props) => {
-  console.log(props);
-  const [reviews, setReviews] = useState(['one', 'two']);
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    if (props.productId !== 0) {
+      axios('http://localhost:3000/reviews', {params: {productId: props.productId}})
+        .then(reviews => {
+          setReviews(reviews.data.results);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [props]);
 
   return (
     <ReviewContext.Provider value={reviews}>
