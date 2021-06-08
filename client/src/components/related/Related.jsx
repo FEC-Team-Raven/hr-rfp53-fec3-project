@@ -30,7 +30,7 @@ const Related = ({productId}) => {
                 })
             );
           }
-          Promise.all(promises).then(() => console.log(relatedProducts));
+          Promise.all(promises).then(() => console.log('relatedProducts:', relatedProducts));
         })
 
         .catch(err => {
