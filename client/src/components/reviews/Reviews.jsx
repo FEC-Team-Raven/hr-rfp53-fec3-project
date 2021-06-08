@@ -6,17 +6,27 @@ export const ReviewContext = React.createContext([]);
 
 const Reviews = (props) => {
   const [reviews, setReviews] = useState([]);
+  const [reviewPage, setReviewPage] = useState(1);
+  const [sort, setSort] = useState('relevant');
+
   useEffect(() => {
     if (props.productId !== 0) {
-      axios('http://localhost:3000/reviews', {params: {productId: props.productId}})
+      axios('http://localhost:3000/reviews', {
+        params: {
+          productId: props.productId,
+          page: reviewPage,
+          sort: sort
+        }
+      })
         .then(reviews => {
           setReviews(reviews.data.results);
+          setReviewPage(reviewPage + 1);
         })
         .catch(err => {
           console.log(err);
         });
     }
-  }, [props]);
+  }, [props, sort]);
 
   return (
     <ReviewContext.Provider value={reviews}>

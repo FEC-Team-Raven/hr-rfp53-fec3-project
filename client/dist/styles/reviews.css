@@ -9,9 +9,24 @@
 
 .reviewTile {
   border-bottom: solid gray 1px;
-  padding-top: 20px;
+  margin-bottom: 20px;
+  width: 500px;
 }
 
 .reviewTile > * {
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.response {
+  width: auto;
+  background-color: rgb(228, 228, 228);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.reviewImage {
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
 }

@@ -15,6 +15,16 @@
   "keywords": [],
   "author": "Team Raven",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs",
+      "@babel/plugin-transform-react-jsx"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/FEC-Team-Raven/hr-rfp53-fec3-project/issues"
   },
@@ -22,7 +32,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "jest": "^27.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -30,6 +39,7 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
+    "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
     "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -37,6 +47,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.0.4",
+    "react-test-renderer": "^17.0.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"
   }

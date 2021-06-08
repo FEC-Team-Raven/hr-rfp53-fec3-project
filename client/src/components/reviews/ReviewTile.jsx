@@ -7,9 +7,10 @@ var renderDate = (date) => {
   return date.toLocaleDateString('en-US', options);
 };
 
+//Add check icon
 var renderRecommend = recommend => {
   if (recommend) {
-    return <div>'I recommend this product'</div>;
+    return <div>I recommend this product</div>;
   }
 };
 
@@ -28,12 +29,15 @@ const ReviewTile = (props) => (
   <div className="reviewTile">
     {console.log(props.review)}
     <div className="reviewRow between">
-      <Stars rating={2.99} />
+      <Stars rating={props.review.rating} />
       <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
     </div>
     <div>{props.review.body}</div>
     {renderRecommend(props.review.recommend)}
-    {renderResponse(props.review.response)}
+    {renderResponse('TEST RESPONSE')}
+    {props.review.photos.map(photo => {
+      return <img className="reviewImage" src={photo.url}></img>;
+    })}
     <div className="reviewRow">
       Helpful?
       <button>Yes ({props.review.helpfulness})</button>
