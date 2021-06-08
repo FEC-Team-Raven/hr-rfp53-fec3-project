@@ -2,8 +2,8 @@ import React from 'react';
 
 const AnswerItem = (props) => {
   let ref = props.value[1];
-  console.log(ref);
-  let date = ref.date;
+  let date = convertDate(ref.date);
+  console.log(date);
   let answer = ref.body;
   let help = ref.helpfulness;
   let user = ref.answerer_name;
@@ -18,6 +18,15 @@ const AnswerItem = (props) => {
     </div>
   );
 };
-//answer
-//
+
+const convertDate = (iso8601String) => {
+  let month, day, year;
+  let date = new Date(iso8601String);
+  date = date.toString().split(' ');
+  month = date[1];
+  day = date[2];
+  year = date[3];
+  return `${month} ${day}, ${year}`;
+};
+
 export default AnswerItem;
