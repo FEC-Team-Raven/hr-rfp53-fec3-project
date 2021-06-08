@@ -39,6 +39,16 @@ const ReviewList = (props) => {
     }
   };
 
+  var renderList = () => {
+    if (reviews.length > 0) {
+      return (
+        <div className="scrollable">
+          {reviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="reviewList">
       {reviews.length} reviews, sorted by
@@ -47,9 +57,7 @@ const ReviewList = (props) => {
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
       </select> <br />
-      <div className="scrollable">
-        {reviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
-      </div>
+      {renderList()}
       {renderMoreReviews()}
       <button>Add a Review +</button>
     </div>

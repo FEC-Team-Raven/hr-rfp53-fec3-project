@@ -40,4 +40,9 @@
   overflow: scroll;
   height: 500px;
   width: auto;
+  margin-bottom: 10px
+}
+
+.showMore {
+  text-decoration: underline;
 }
