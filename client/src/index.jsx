@@ -11,11 +11,11 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
-      setLoading(false);
-      axios('http://localhost:3000/products')
+      axios('http://localhost:3000/products_list')
         .then(products => {
           // Sets id as the first product object in the array of products
           setProductId(products.data[0].id);
+          setLoading(false);
         })
         .catch(err => {
           console.log(err);
@@ -26,9 +26,10 @@ const App = () => {
 
   return (
     <div>
-      {productId !== 0 &&
+      {!loading &&
         <Related productId={productId}/>
       }
+
 
       {/* <Overview productId={productId}/>
       <Questions productId={productId}/>

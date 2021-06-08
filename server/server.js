@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Retrieves the list of products
-app.get('/products', (req, res) => {
+app.get('/products_list', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
@@ -33,8 +33,8 @@ app.get('/products', (req, res) => {
     });
 });
 
-// Retrieves related product lists
-app.get('/products/related', (req, res) => {
+// Retrieves IDs of related product lists
+app.get('/products/relatedIds', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   let productId = req.headers.productid;
   axios({
@@ -44,7 +44,26 @@ app.get('/products/related', (req, res) => {
     }
   })
     .then(result => {
-      // console.log('RESULT:', result);
+      res.end(JSON.stringify(result.data));
+    })
+    .catch(err => {
+      console.log(err);
+      res.end();
+    });
+});
+
+// Retrieves information about a SPECIFIC product
+app.get('/product', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  let productId = req.headers.productid;
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`,
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(result => {
+      // console.log('RESULT:', result.data);
       res.end(JSON.stringify(result.data));
     })
     .catch(err => {

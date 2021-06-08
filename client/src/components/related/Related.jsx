@@ -6,17 +6,35 @@ import axios from 'axios';
 
 const Related = ({productId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
       setLoading(false);
-      axios('http://localhost:3000/products/related', {headers: {'productId': productId}})
-        .then(relatedIds => {
-          setRelatedIds(relatedIds.data);
-
+      // Retrieves an ARRAY of related IDs of a specific product
+      axios('http://localhost:3000/products/relatedIds', {headers: {'productId': productId}})
+        .then(response => {
+          setRelatedIds(response.data);
+          return response.data;
         })
+
+        // Retrieves data of SPECIFIC product
+        .then(response => {
+          let related = response;
+          let promises = [];
+          for (var i = 0; i < related.length; i++) {
+            promises.push(
+              axios('http://localhost:3000/product', {headers: {'productId': related[i]}})
+                .then(response => {
+                  setRelatedProducts(relatedProducts.push(response.data));
+                })
+            );
+          }
+          Promise.all(promises).then(() => console.log(relatedProducts));
+        })
+
         .catch(err => {
-          console.log(err);
+          console.error(err);
           setLoading(true);
         });
     }
@@ -24,7 +42,6 @@ const Related = ({productId}) => {
 
   return (
     <div>
-      {console.log(relatedIds)}
       <h1>RELATED PRODUCTS</h1>
       <RelatedProducts />
       <h1>YOUR OUTFIT</h1>
@@ -32,6 +49,5 @@ const Related = ({productId}) => {
     </div>
   );
 };
-
 
 export default Related;
