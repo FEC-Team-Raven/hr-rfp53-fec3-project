@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
+import Stars from '../../components/Stars.jsx';
 
 const Category = () => {
   return (
@@ -6,7 +7,7 @@ const Category = () => {
       <b>Category Component</b>
       <div>Product Name</div>
       <div>Product Price</div>
-      <div>Product Rating Component</div>
+      <Stars />
     </div>
   );
 };
