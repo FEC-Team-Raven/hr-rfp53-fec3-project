@@ -5,6 +5,7 @@
 .reviewRow {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5px;
 }
 
 .between {

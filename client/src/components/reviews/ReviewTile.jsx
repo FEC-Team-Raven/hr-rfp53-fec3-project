@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Stars from '../Stars.jsx';
 import axios from 'axios';
 
@@ -9,6 +9,10 @@ const ReviewTile = (props) => {
   const [expandBody, setExpandBody] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
   const [modalImage, setModalImage] = useState('');
+
+  useEffect(() => {
+    setHelpfullness(props.review.helpfulness);
+  }, [props]);
 
   var renderDate = (date) => {
     var date = new Date(date);
