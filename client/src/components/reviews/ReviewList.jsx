@@ -24,20 +24,33 @@ const ReviewList = (props) => {
     }
   }, [props, sort]);
 
+
   var handleChange = event => {
     setSort(event.target.value);
   };
 
+  var handleClick = () => {
+    setDisplayCount(displayCount + 2);
+  };
+
+  var renderMoreReviews = () => {
+    if (displayCount < reviews.length) {
+      return <button onClick={handleClick}>More Reviews</button>;
+    }
+  };
+
   return (
-    <div>
+    <div className="reviewList">
       {reviews.length} reviews, sorted by
       <select onChange={handleChange}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
       </select> <br />
-      {reviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
-      <button>More Reviews</button>
+      <div className="scrollable">
+        {reviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
+      </div>
+      {renderMoreReviews()}
       <button>Add a Review +</button>
     </div>
   );
