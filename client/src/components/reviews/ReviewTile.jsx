@@ -4,6 +4,8 @@ import Stars from '../Stars.jsx';
 
 const ReviewTile = (props) => {
   const [expandBody, setExpandBody] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
+  const [modalImage, setModalImage] = useState('');
 
   var renderDate = (date) => {
     var date = new Date(date);
@@ -14,7 +16,10 @@ const ReviewTile = (props) => {
   //Add check icon
   var renderRecommend = recommend => {
     if (recommend) {
-      return <div>I recommend this product</div>;
+      return <div>
+        <i class="fas fa-check"></i>
+        I recommend this product
+      </div>;
     }
   };
 
@@ -42,6 +47,21 @@ const ReviewTile = (props) => {
     return <div>{body}</div>;
   };
 
+  var renderImageModal = () => {
+    if (displayModal) {
+      return (
+        <div className="imageModal">
+          <span className="close" onClick={() => setDisplayModal(false)}>X</span>
+          <img className="modal-content" src={modalImage}></img>
+        </div>
+      );
+    }
+  };
+
+  var updateModal = url => {
+    setModalImage(url);
+    setDisplayModal(true);
+  };
 
   return (
     <div className="reviewTile">
@@ -53,8 +73,9 @@ const ReviewTile = (props) => {
       {renderRecommend(props.review.recommend)}
       {renderResponse('TEST RESPONSE')}
       {props.review.photos.map(photo => {
-        return <img className="reviewImage" src={photo.url}></img>;
+        return <img className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
       })}
+      {renderImageModal()}
       <div className="reviewRow">
         Helpful?
         <button>Yes ({props.review.helpfulness})</button>
