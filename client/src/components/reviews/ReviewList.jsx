@@ -9,21 +9,24 @@ const ReviewList = (props) => {
 
   useEffect(() => {
     if (props.productId !== 0) {
-      axios('http://localhost:3000/reviews', {
-        params: {
-          productId: props.productId,
-          sort: sort
-        }
-      })
-        .then(reviews => {
-          setReviews(reviews.data.results);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      getReviews();
     }
   }, [props, sort]);
 
+  var getReviews = () => {
+    axios('http://localhost:3000/reviews', {
+      params: {
+        productId: props.productId,
+        sort: sort
+      }
+    })
+      .then(reviews => {
+        setReviews(reviews.data.results);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   var handleChange = event => {
     setSort(event.target.value);

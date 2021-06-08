@@ -12,7 +12,7 @@ const ReviewTile = (props) => {
 
   useEffect(() => {
     setHelpfullness(props.review.helpfulness);
-  }, [props]);
+  }, [props.review]);
 
   var renderDate = (date) => {
     var date = new Date(date);
