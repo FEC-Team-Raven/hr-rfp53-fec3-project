@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import Stars from '../Stars.jsx';
+import axios from 'axios';
 
 
 const ReviewTile = (props) => {
+  const [helpfulness, setHelpfullness] = useState(props.review.helpfulness);
+  const [voted, setVoted] = useState(false);
   const [expandBody, setExpandBody] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
   const [modalImage, setModalImage] = useState('');
@@ -13,11 +16,10 @@ const ReviewTile = (props) => {
     return date.toLocaleDateString('en-US', options);
   };
 
-  //Add check icon
   var renderRecommend = recommend => {
     if (recommend) {
       return <div>
-        <i class="fas fa-check"></i>
+        <i className="fas fa-check" style={{'margin-right': '5px'}}></i>
         I recommend this product
       </div>;
     }
@@ -63,6 +65,27 @@ const ReviewTile = (props) => {
     setDisplayModal(true);
   };
 
+  var postHelpfulness = () => {
+    console.log('HELLO');
+    if (!voted) {
+      console.log('HELLO');
+      setVoted(true);
+      axios({
+        url: 'http://localhost:3000/reviews/helpful',
+        method: 'PUT',
+        params: {
+          reviewId: props.review.review_id,
+        }
+      })
+        .then(() => {
+          setHelpfullness(helpfulness + 1);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <div className="reviewTile">
       <div className="reviewRow between">
@@ -78,8 +101,7 @@ const ReviewTile = (props) => {
       {renderImageModal()}
       <div className="reviewRow">
         Helpful?
-        <button>Yes ({props.review.helpfulness})</button>
-        <button>No</button>
+        <button onClick={() => postHelpfulness()} style={{'margin-left': '5px'}}>Yes ({helpfulness})</button>
       </div>
     </div>
   );
