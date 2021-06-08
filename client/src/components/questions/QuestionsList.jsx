@@ -5,6 +5,7 @@ import QuestionItem from './QuestionItem.jsx';
 
 const QuestionsList = (props) => {
   const question = useContext(QuestionContext);
+  console.log(question);
 
   return (
     <div>

@@ -3,7 +3,6 @@ import React from 'react';
 const AnswerItem = (props) => {
   let ref = props.value[1];
   let date = convertDate(ref.date);
-  console.log(date);
   let answer = ref.body;
   let help = ref.helpfulness;
   let user = ref.answerer_name;
@@ -12,8 +11,8 @@ const AnswerItem = (props) => {
       <div id="answer-text">{answer}</div>
       <div className="answer-extra">
         <div id="ans-user">by {user}, {date}</div>
-        <div id="ans-help">Helpful? Yes ({help})</div>
-        <div id="ans-report">Report</div>
+        <div id="ans-help">Helpful? <button>Yes</button> ({help})</div>
+        <div id="ans-report"><button>Report</button></div>
       </div>
     </div>
   );

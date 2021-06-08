@@ -9,8 +9,13 @@ const QuestionItem = (props) => {
         {/* question, helpful, add ans */}
         <div id="q-text"> <h5 id="q-head">Q: </h5>{props.value.question_body}</div>
         <div className='question-extra'>
-          <div id="helpful">Helpful? Yes ({props.value.question_helpfulness})</div>
-          <div id="addAns">add ans</div>
+          <div id="helpful">Helpful?
+            <button> Yes </button>
+            ({props.value.question_helpfulness})
+          </div>
+          <div id="addAns">
+            <button>Add Answer</button>
+          </div>
         </div>
       </div>
       <div>
