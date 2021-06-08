@@ -7,7 +7,7 @@ const QuestionItem = (props) => {
     <div>
       <div className="question">
         {/* question, helpful, add ans */}
-        <div >Q:{props.value.question_body}</div>
+        <div id="q-text"> <h5 id="q-head">Q: </h5>{props.value.question_body}</div>
         <div className='question-extra'>
           <div id="helpful">Helpful? Yes ({props.value.question_helpfulness})</div>
           <div id="addAns">add ans</div>

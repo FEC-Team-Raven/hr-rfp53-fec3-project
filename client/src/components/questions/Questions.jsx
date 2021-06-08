@@ -21,6 +21,7 @@ const Questions = (props) => {
 
   return (
     <div>
+      <div>QUESTIONS AND ANSWERS</div>
       <input type="text" name="search"></input>
       <QuestionContext.Provider value={questions}>
         <QuestionsList />

@@ -7,7 +7,7 @@ const QuestionsList = (props) => {
   const question = useContext(QuestionContext);
 
   return (
-    <div>QUESTION LIST
+    <div>
       {/* map questions */}
       {question.map((item) =>
         <QuestionItem value={item}/>
