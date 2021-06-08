@@ -31,7 +31,28 @@ app.get('/products', (req, res) => {
 
 app.get('/reviews', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
+  var searchParams = new URLSearchParams(req.url.replace('/reviews', ''));
+  var productId = searchParams.get('productId');
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+    params: {
+      page: 1,
+      count: 50,
+      sort: 'newest',
+      // eslint-disable-next-line camelcase
+      product_id: productId
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(reviews => {
+      res.end(JSON.stringify(reviews.data));
+    })
+    .catch(err => {
+      console.log(err);
 
+    });
 });
 
 // app.get('/questions', (req, res) => {
