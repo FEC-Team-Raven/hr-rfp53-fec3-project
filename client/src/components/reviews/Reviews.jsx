@@ -3,16 +3,23 @@ import ReviewList from './ReviewList.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import axios from 'axios';
 
-export const ReviewContext = React.createContext([]);
+export const FilterContext = React.createContext({});
 
-const Reviews = (props) => (
-  <div>
-    RATINGS & REVIEWS
-    <div className="ratingsReviewsContainer">
-      <ProductBreakdown productId={props.productId}/>
-      <ReviewList productId={props.productId} />
+const Reviews = (props) => {
+  const [starFilter, setStarFilter] = useState([]);
+
+  return (
+    <div>
+      {console.log(starFilter)}
+      RATINGS & REVIEWS
+      <div className="ratingsReviewsContainer">
+        <FilterContext.Provider value={{starFilter, setStarFilter}}>
+          <ProductBreakdown productId={props.productId} />
+          <ReviewList productId={props.productId} />
+        </FilterContext.Provider>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Reviews;

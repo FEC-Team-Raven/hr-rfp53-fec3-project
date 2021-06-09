@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import Stars from '../Stars.jsx';
 import RatingBar from './RatingBar.jsx';
@@ -7,6 +7,8 @@ import CharacteristicBreakdown from './CharacteristicBreakdown.jsx';
 const ProductBreakdown = props => {
   var [metaData, setMetaData] = useState({});
   var [loading, setLoading] = useState(true);
+
+
 
   useEffect(() => {
     if (props.productId !== 0) {
@@ -73,7 +75,11 @@ const ProductBreakdown = props => {
       }
       stars = stars.reverse();
       return stars.map(star => {
-        return <RatingBar stars={star} distribution={Math.floor((metaData.ratings[star] / total) * 100)} count={metaData.ratings[star]}/>;
+        return <RatingBar
+          stars={star}
+          distribution={Math.floor((metaData.ratings[star] / total) * 100)}
+          count={metaData.ratings[star]}
+        />;
       });
     }
   };
@@ -81,7 +87,9 @@ const ProductBreakdown = props => {
   var renderCharacteristics = () => {
     if (metaData.characteristics) {
       return Object.keys(metaData.characteristics).map(characteristic => {
-        return <CharacteristicBreakdown characteristic={characteristic} rating={metaData.characteristics[characteristic].value}/>;
+        return <CharacteristicBreakdown
+          characteristic={characteristic}
+          rating={metaData.characteristics[characteristic].value}/>;
       });
     }
   };

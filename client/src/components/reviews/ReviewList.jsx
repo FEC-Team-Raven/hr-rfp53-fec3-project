@@ -1,17 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
+import {FilterContext} from './Reviews.jsx';
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
+  const [renderedReviews, setRenderedReviews] = useState(reviews);
   const [sort, setSort] = useState('relevant');
   const [displayCount, setDisplayCount] = useState(2);
+  var {starFilter} = useContext(FilterContext);
 
   useEffect(() => {
     if (props.productId !== 0) {
       getReviews();
     }
-  }, [props, sort]);
+  }, [props.productId, sort]);
+
+
+  useEffect(() => {
+    filterStars(reviews);
+  }, [starFilter]);
+
+  var filterStars = reviews => {
+    if (starFilter.length === 0) {
+      setRenderedReviews(reviews);
+    } else {
+      setRenderedReviews(reviews.filter(review => {
+        return starFilter.includes(review.rating);
+      }));
+    }
+  };
 
   var getReviews = () => {
     axios('http://localhost:3000/reviews', {
@@ -22,6 +40,7 @@ const ReviewList = (props) => {
     })
       .then(reviews => {
         setReviews(reviews.data.results);
+        filterStars(reviews.data.results);
       })
       .catch(err => {
         console.log(err);
@@ -46,7 +65,7 @@ const ReviewList = (props) => {
     if (reviews.length > 0) {
       return (
         <div className="scrollable">
-          {reviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
+          {renderedReviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
         </div>
       );
     }
