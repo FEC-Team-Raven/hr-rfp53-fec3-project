@@ -9,7 +9,6 @@ export const RelatedContext = React.createContext([]);
 const Related = ({productId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  // const [styles, setStyles] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
@@ -50,8 +49,8 @@ const Related = ({productId}) => {
         <h1>RELATED PRODUCTS</h1>
         <RelatedProducts />
       </RelatedContext.Provider>
-      <h1>YOUR OUTFIT</h1>
-      <YourOutfit />
+      {/* <h1>YOUR OUTFIT</h1>
+      <YourOutfit /> */}
     </div>
   );
 };

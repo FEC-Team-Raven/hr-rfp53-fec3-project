@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
-const ProductCard = (props) => {
+const ProductCard = ({product}) => {
   return (
     <div>
       <div>
@@ -9,8 +9,8 @@ const ProductCard = (props) => {
       </div>
       <div>
         <div>Category</div>
-        <div>Product Name</div>
-        <div>Product Price</div>
+        <div>{product.name}</div>
+        <div>{product.price}</div>
       </div>
     </div>
   );
