@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import ReviewList from './ReviewList.jsx';
-import ProductBreakdown from './ProductBreakdown.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx';
 import axios from 'axios';
 
 export const FilterContext = React.createContext({});

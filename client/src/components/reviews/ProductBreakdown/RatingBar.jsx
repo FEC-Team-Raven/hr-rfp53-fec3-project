@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {FilterContext} from './Reviews.jsx';
+import {FilterContext} from '../Reviews.jsx';
 
 const style = {
   'margin-right': '10px',
