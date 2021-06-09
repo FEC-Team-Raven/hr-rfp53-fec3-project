@@ -1,22 +1,5 @@
 import React from 'react';
-
-const AnswerItem = (props) => {
-  let ref = props.value[1];
-  let date = convertDate(ref.date);
-  let answer = ref.body;
-  let help = ref.helpfulness;
-  let user = ref.answerer_name;
-  return (
-    <div>
-      <div id="answer-text">{answer}</div>
-      <div className="answer-extra">
-        <div id="ans-user">by {user}, {date}</div>
-        <div id="ans-help">Helpful? <button>Yes</button> ({help})</div>
-        <div id="ans-report"><button>Report</button></div>
-      </div>
-    </div>
-  );
-};
+import axios from 'axios';
 
 const convertDate = (iso8601String) => {
   let month, day, year;
@@ -27,5 +10,50 @@ const convertDate = (iso8601String) => {
   year = date[3];
   return `${month} ${day}, ${year}`;
 };
+
+const AnswerItem = (props) => {
+  let ref = props.value[1];
+  let date = convertDate(ref.date);
+  let answer = ref.body;
+  let help = ref.helpfulness;
+  let user = ref.answerer_name;
+  //asnwer id --> ref.id
+  const handleClick = (e) => {
+    console.log(ref.id);
+    console.log(e.target.innerHTML);
+    if (e.target.innerHTML === 'Report') {
+      axios({
+        url: '/report/answer',
+        method: 'post',
+        data: {id: ref.id}
+      })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (e.target.innerHTML === 'Yes') {
+      axios({
+        url: '/helpful/answer',
+        method: 'post',
+        data: {id: ref.id}
+      }).then((data) => { console.log(data); }).catch((err) => { throw err; });
+    }
+
+  };
+
+  return (
+    <div>
+      <div id="answer-text">{answer}</div>
+      <div className="answer-extra">
+        <div id="ans-user">by {user}, {date}</div>
+        <div id="ans-help">Helpful? <button onClick={handleClick}>Yes</button> ({help})</div>
+        <div id="ans-report"><button onClick={handleClick}>Report</button></div>
+      </div>
+    </div>
+  );
+};
+
 
 export default AnswerItem;

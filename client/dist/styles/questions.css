@@ -39,6 +39,11 @@ button:hover {
   border-right: 1px;
 }
 
+#addAns {
+  margin-right: 10px;
+
+}
+
 /* ANSWERS */
 .answer {
   display: flex;
@@ -70,7 +75,7 @@ button:hover {
 
 /* ADD ANSWER MODAL */
 .modal {
-  position: fixed;
+  /* position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -79,7 +84,7 @@ button:hover {
   max-height: 100%;
   width: 400px;
   max-width: 100%;
-  background-color: gainsboro;
+  background-color: gainsboro; */
 }
 
 

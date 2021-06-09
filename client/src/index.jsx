@@ -26,19 +26,10 @@ const App = () => {
 
   return (
     <div>
-<<<<<<< HEAD
       {/* <Overview productId={productId}/> */}
       {/* <Related productId={productId}/> */}
       <Questions productId={productId}/>
       {/* <Reviews productId={productId}/> */}
-=======
-      {/*
-      <Overview productId={productId}/>
-      <Related productId={productId}/>
-      <Questions productId={productId}/>
-      */}
-      <Reviews productId={productId}/>
->>>>>>> 21010d67ccdd3d3f60242eb3d14762aa5d729a8f
     </div>
   );
 };

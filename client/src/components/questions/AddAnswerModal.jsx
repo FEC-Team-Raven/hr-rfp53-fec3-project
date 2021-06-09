@@ -3,14 +3,14 @@ import axios from 'axios';
 import { QuestionContext, ModalContext, ProductContext } from './Questions.jsx';
 
 
-const AddQuestionModal = (props) => {
-  const productId = useContext(ProductContext);
+const AddAnswerModal = (props) => {
   const questions = useContext(QuestionContext);
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
-
+  const questionId = props.value;
+  const productId = props.productId;
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -32,27 +32,27 @@ const AddQuestionModal = (props) => {
       name: name,
       email: email,
       // eslint-disable-next-line camelcase
-      product_id: productId
+      product_id: productId,
+      questionId: questionId
     };
-    axios.post('/questions/add', data)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch ((err) => {
-        throw err;
-      });
+
+    axios({
+      url: '/answers/add',
+      method: 'post',
+      data: data
+    });
   };
 
 
   return (
     <div className="modal">
-      ADD QUESTION MODAL
+      ADD ANSWER FORM
       <form onSubmit={handleSubmit}>
         <label>Name</label>
         <input type="text" name="Name" onChange={handleChange}></input>
         <label>Email</label>
         <input type="text" name="Email" onChange={handleChange}></input>
-        <label>Question</label>
+        <label>Answer</label>
         <input type="text" name="Body" onChange={handleChange}></input>
         <button>Submit</button>
       </form>
@@ -60,4 +60,4 @@ const AddQuestionModal = (props) => {
   );
 };
 
-export default AddQuestionModal;
+export default AddAnswerModal;
