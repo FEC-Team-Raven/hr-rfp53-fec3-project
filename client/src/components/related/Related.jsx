@@ -1,14 +1,16 @@
 import React, {useState, useEffect, useContext} from 'react';
 import RelatedProducts from './RelatedProducts.jsx';
-import YourOutfit from './YourOutfit.jsx';
+import Outfit from './Outfit.jsx';
 
 import axios from 'axios';
 
 export const RelatedContext = React.createContext([]);
+export const OutfitContext = React.createContext([]);
 
 const Related = ({productId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfits, setOutfits] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
@@ -46,14 +48,17 @@ const Related = ({productId}) => {
   return (
     <div>
       <h1>RELATED PRODUCTS</h1>
-      <div className="related-products">
+      <div className="grid-container">
         <RelatedContext.Provider value={relatedProducts}>
           <RelatedProducts />
         </RelatedContext.Provider>
-        {/* <h1>YOUR OUTFIT</h1>
-        <YourOutfit /> */}
       </div>
-
+      <h1>YOUR OUTFITS</h1>
+      <div className="grid-container">
+        <OutfitContext.Provider value={outfits}>
+          <Outfit />
+        </OutfitContext.Provider>
+      </div>
     </div>
   );
 };

@@ -29,8 +29,6 @@ const App = () => {
       {!loading &&
         <Related productId={productId}/>
       }
-
-
       {/* <Overview productId={productId}/>
       <Questions productId={productId}/> */}
       {/* <Reviews productId={productId}/> */}
