@@ -45,12 +45,15 @@ const Related = ({productId}) => {
 
   return (
     <div>
-      <RelatedContext.Provider value={relatedProducts}>
-        <h1>RELATED PRODUCTS</h1>
-        <RelatedProducts />
-      </RelatedContext.Provider>
-      {/* <h1>YOUR OUTFIT</h1>
-      <YourOutfit /> */}
+      <h1>RELATED PRODUCTS</h1>
+      <div className="related-products">
+        <RelatedContext.Provider value={relatedProducts}>
+          <RelatedProducts />
+        </RelatedContext.Provider>
+        {/* <h1>YOUR OUTFIT</h1>
+        <YourOutfit /> */}
+      </div>
+
     </div>
   );
 };
