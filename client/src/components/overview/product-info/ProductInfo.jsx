@@ -9,19 +9,14 @@ const ProductInfo = props => {
   }, [props.product]);
 
   return (
-    <div className="product-info">
-      <h2>
-        {props.product.name}
-      </h2>
-      <Stars rating={Math.random() * 5}/>
-      <p>
-        {props.product.category}
-      </p>
-      <p>
-        {props.product.description}
-      </p>
+    <div id="product-info">
+      <div id="product-rating">
+        <Stars rating={Math.random() * 5}/><a href="/">Read all reviews</a>
+      </div>
+      <p id="product-category">{props.product.category}</p>
+      <p id="product-name">{props.product.name}</p>
+      <Price price={props.product.default_price}/>
       <SocialMedia />
-      <Price />
     </div>
   );
 };

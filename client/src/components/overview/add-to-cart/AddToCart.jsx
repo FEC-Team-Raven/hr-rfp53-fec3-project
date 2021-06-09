@@ -5,11 +5,16 @@ import AddToCartButton from './AddToCartButton.jsx';
 
 const AddToCart = props => {
   return (
-    <div className="purchase-customize">
-      <SizeSelect />
-      <QuantitySelect />
-      <AddToCartButton />
-    </div>
+    <form id="purchase-form">
+      <div id="purchase-select">
+        <SizeSelect />
+        <QuantitySelect />
+      </div>
+      <div id="purchase-submit">
+        <AddToCartButton />
+        <button id="favorite-button">&#x2605;</button>
+      </div>
+    </form>
   );
 };
 

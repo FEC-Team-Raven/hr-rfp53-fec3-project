@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Price = () => (
-  <div className="price">
-    Price
+const Price = props => (
+  <div id="price">
+    ${props.price}
   </div>
 );
 

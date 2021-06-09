@@ -3,7 +3,9 @@ import React from 'react';
 const SocialMedia = () => {
   return (
     <div className="social-media">
-      SocialMedia
+      <button>Twitter</button>
+      <button>Facebook</button>
+      <button>Pinterest</button>
     </div>
   );
 };

@@ -2,9 +2,11 @@ import React from 'react';
 
 const SizeSelect = props => {
   return (
-    <div id="size-select">
-      Size Select
-    </div>
+    <select id="size-select">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
   );
 };
 

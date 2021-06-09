@@ -2,7 +2,7 @@ import React from 'react';
 
 const StyleSelect = props => {
   return (
-    <div className="style-select">
+    <div id="style-select">
       Style Select
     </div>
   );
