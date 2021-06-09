@@ -25,7 +25,7 @@ const CharacteristicBreakdown = props => {
   return (
     <div className="characteristicContainer">
       <div>{props.characteristic}</div>
-      <div style={{'display': 'flex'}}>
+      <div>
         <div className="characteristicBar"></div>
       </div>
       <div className="pointer" style={{'left': `${left}px`}}>

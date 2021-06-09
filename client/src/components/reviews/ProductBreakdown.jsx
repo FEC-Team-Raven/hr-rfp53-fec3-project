@@ -49,7 +49,7 @@ const ProductBreakdown = props => {
     average = Math.floor(average / 0.25) * 0.25;
     return (
       <div className="reviewRow">
-        <div style={{'margin-right': '5px'}}>{average}</div>
+        <div className="productRating">{average}</div>
         <Stars rating={average} />
       </div>
     );
@@ -88,7 +88,6 @@ const ProductBreakdown = props => {
 
   return (
     <div className="productBreakdown">
-      {console.log(metaData)}
       {renderRating()}
       {renderRecommended()}
       {renderStarDistribution()}

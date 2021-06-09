@@ -78,6 +78,13 @@
   margin-bottom: 10px;
 }
 
+.productRating {
+  font-size: 80px;
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+  margin-right: 10px;
+};
+
 .table {
   display: table-cell;
   vertical-align: middle;
@@ -94,7 +101,7 @@
 
 .bar{
   height: 10px;
-  background-color: rgb(105, 105, 105);
+  background-color: rgb(65, 65, 65);
 }
 
 .sortReviews {
@@ -121,7 +128,5 @@
 }
 
 .pointer {
-  position: fixed;
-  left: 270px;
-  height: 10px;
+  position: absolute;
 }
