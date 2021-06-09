@@ -91,7 +91,11 @@
   font-weight: bold;
   color: rgb(65, 65, 65);
   margin-right: 10px;
-};
+}
+
+.recommendedRating {
+  margin-bottom: 10px;
+}
 
 .table {
   display: table-cell;
