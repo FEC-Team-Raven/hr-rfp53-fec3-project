@@ -72,7 +72,7 @@ const ProductBreakdown = props => {
       }
       stars = stars.reverse();
       return stars.map(star => {
-        return <RatingBar stars={star} distribution={Math.floor((metaData.ratings[star] / total) * 100)} />;
+        return <RatingBar stars={star} distribution={Math.floor((metaData.ratings[star] / total) * 100)} count={metaData.ratings[star]}/>;
       });
     }
   };

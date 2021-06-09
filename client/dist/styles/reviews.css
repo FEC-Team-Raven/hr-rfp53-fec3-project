@@ -77,7 +77,15 @@
   flex-direction: column;
   margin-bottom: 10px;
 }
+
+.table {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
 .barContainer {
+  display: inline-block;
   width: 200px;
   height: 10px;
   position: relative;
