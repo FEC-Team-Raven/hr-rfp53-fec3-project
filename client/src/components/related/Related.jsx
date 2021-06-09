@@ -4,9 +4,12 @@ import YourOutfit from './YourOutfit.jsx';
 
 import axios from 'axios';
 
+export const RelatedContext = React.createContext([]);
+
 const Related = ({productId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  // const [styles, setStyles] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
@@ -18,19 +21,20 @@ const Related = ({productId}) => {
           return response.data;
         })
 
-        // Retrieves data of SPECIFIC product
-        .then(response => {
-          let related = response;
+        // Retrieves data and styles of SPECIFIC product
+        .then(related => {
           let promises = [];
           for (var i = 0; i < related.length; i++) {
             promises.push(
               axios('http://localhost:3000/product', {headers: {'productId': related[i]}})
                 .then(response => {
-                  setRelatedProducts(relatedProducts.push(response.data));
+                  return response.data;
                 })
             );
           }
-          Promise.all(promises).then(() => console.log('relatedProducts:', relatedProducts));
+          Promise.all(promises).then((related) => {
+            setRelatedProducts(related);
+          });
         })
 
         .catch(err => {
@@ -42,8 +46,10 @@ const Related = ({productId}) => {
 
   return (
     <div>
-      <h1>RELATED PRODUCTS</h1>
-      <RelatedProducts />
+      <RelatedContext.Provider value={relatedProducts}>
+        <h1>RELATED PRODUCTS</h1>
+        <RelatedProducts />
+      </RelatedContext.Provider>
       <h1>YOUR OUTFIT</h1>
       <YourOutfit />
     </div>

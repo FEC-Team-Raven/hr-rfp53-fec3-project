@@ -32,8 +32,8 @@ const App = () => {
 
 
       {/* <Overview productId={productId}/>
-      <Questions productId={productId}/>
-      <Reviews productId={productId}/> */}
+      <Questions productId={productId}/> */}
+      {/* <Reviews productId={productId}/> */}
     </div>
   );
 };

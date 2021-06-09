@@ -1,13 +1,17 @@
-import React, {useState, useEffect, useContext} from 'react';
-import Image from './Image.jsx';
-import Category from './Category.jsx';
+import React from 'react';
 
-const ProductCard = () => {
+const ProductCard = (props) => {
   return (
     <div>
-      <h3>Product Card</h3>
-      <Image /><br/>
-      <Category />
+      <div>
+        <div>Preview Image</div>
+        <button>Action Button</button>
+      </div>
+      <div>
+        <div>Category</div>
+        <div>Product Name</div>
+        <div>Product Price</div>
+      </div>
     </div>
   );
 };

@@ -52,7 +52,7 @@ app.get('/products/relatedIds', (req, res) => {
     });
 });
 
-// Retrieves information about a SPECIFIC product
+// Retrieves produdct level info about a SPECIFIC product id
 app.get('/product', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   let productId = req.headers.productid;
@@ -71,6 +71,24 @@ app.get('/product', (req, res) => {
     });
 });
 
+// Retrieves ALL STYLES for a given product
+// app.get('/product/styles', (req, res) => {
+//   console.log(`SERVING GET REQUEST AT ${req.url}`);
+//   let productId = req.headers.productid;
+//   axios({
+//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`,
+//     headers: {
+//       Authorization: token
+//     }
+//   })
+//     .then(result => {
+//       res.end(JSON.stringify(result.data));
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.end();
+//     });
+// });
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
