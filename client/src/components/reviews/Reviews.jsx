@@ -7,8 +7,11 @@ export const ReviewContext = React.createContext([]);
 
 const Reviews = (props) => (
   <div>
-    <ProductBreakdown productId={props.productId}/>
-    <ReviewList productId={props.productId} />
+    RATINGS & REVIEWS
+    <div className="ratingsReviewsContainer">
+      <ProductBreakdown productId={props.productId}/>
+      <ReviewList productId={props.productId} />
+    </div>
   </div>
 );
 

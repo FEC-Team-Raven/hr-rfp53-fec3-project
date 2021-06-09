@@ -1,3 +1,11 @@
+.ratingsReviewsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 925px;
+  margin-top: 15px;
+}
+
 .reviewList {
   width: 600px;
 }
