@@ -70,9 +70,7 @@ const ReviewTile = (props) => {
   };
 
   var postHelpfulness = () => {
-    console.log('HELLO');
     if (!voted) {
-      console.log('HELLO');
       setVoted(true);
       axios({
         url: 'http://localhost:3000/reviews/helpful',

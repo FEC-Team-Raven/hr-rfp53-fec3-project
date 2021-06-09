@@ -70,3 +70,22 @@
   font-weight: bold;
   transition: 0.3s;
 }
+
+.productBreakdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.barContainer {
+  width: 200px;
+  height: 10px;
+  position: relative;
+  background-color: rgb(228, 228, 228);
+}
+
+.bar{
+  width: 100px;
+  height: 10px;
+  background-color: rgb(105, 105, 105);
+}
