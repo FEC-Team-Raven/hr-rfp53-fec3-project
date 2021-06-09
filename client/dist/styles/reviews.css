@@ -93,7 +93,35 @@
 }
 
 .bar{
-  width: 100px;
   height: 10px;
   background-color: rgb(105, 105, 105);
+}
+
+.sortReviews {
+  border: 0px;
+  outline: 0px;
+  text-decoration: underline;
+}
+
+.characteristicContainer {
+  position: relative;
+  margin-top: 10px;
+}
+
+.characteristicBar {
+  width: 272px;
+  height: 10px;
+  background-color: rgb(228, 228, 228);
+}
+
+.characteristic {
+  width: 272px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.pointer {
+  position: fixed;
+  left: 270px;
+  height: 10px;
 }

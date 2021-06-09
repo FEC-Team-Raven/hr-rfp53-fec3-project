@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Stars from '../Stars.jsx';
 import RatingBar from './RatingBar.jsx';
+import CharacteristicBreakdown from './CharacteristicBreakdown.jsx';
 
 const ProductBreakdown = props => {
   var [metaData, setMetaData] = useState({});
@@ -77,12 +78,21 @@ const ProductBreakdown = props => {
     }
   };
 
+  var renderCharacteristics = () => {
+    if (metaData.characteristics) {
+      return Object.keys(metaData.characteristics).map(characteristic => {
+        return <CharacteristicBreakdown characteristic={characteristic} rating={metaData.characteristics[characteristic].value}/>;
+      });
+    }
+  };
+
   return (
     <div className="productBreakdown">
       {console.log(metaData)}
       {renderRating()}
       {renderRecommended()}
       {renderStarDistribution()}
+      {renderCharacteristics()}
     </div>
   );
 };

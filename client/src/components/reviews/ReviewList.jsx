@@ -55,7 +55,7 @@ const ReviewList = (props) => {
   return (
     <div className="reviewList">
       {reviews.length} reviews, sorted by
-      <select onChange={handleChange}>
+      <select className="sortReviews" onChange={handleChange}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
