@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ReviewTile correctly 1`] = `
+<div
+  className="reviewTile"
+>
+  <div
+    className="reviewRow between"
+  >
+    <span>
+      <div
+        className="star-rating"
+        style={
+          Object {
+            "width": "60%",
+          }
+        }
+      >
+        <span>
+          ★★★★★
+        </span>
+      </div>
+    </span>
+    <div>
+      JoeCool
+      , 
+      April 19, 2021
+    </div>
+  </div>
+  <div>
+    I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
+     
+    <br />
+    <a
+      className="showMore"
+      onClick={[Function]}
+    >
+      Show More
+    </a>
+  </div>
+  <div>
+    <i
+      className="fas fa-check"
+      style={
+        Object {
+          "margin-right": "5px",
+        }
+      }
+    />
+    I recommend this product
+  </div>
+  <div
+    className="reviewRow"
+  >
+    Helpful?
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin-left": "5px",
+        }
+      }
+    >
+      Yes (
+      8
+      )
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders ReviewTile response if there is a response correctly 1`] = `
+<div
+  className="reviewTile"
+>
+  <div
+    className="reviewRow between"
+  >
+    <span>
+      <div
+        className="star-rating"
+        style={
+          Object {
+            "width": "60%",
+          }
+        }
+      >
+        <span>
+          ★★★★★
+        </span>
+      </div>
+    </span>
+    <div>
+      JoeCool
+      , 
+      April 19, 2021
+    </div>
+  </div>
+  <div>
+    I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
+     
+    <br />
+    <a
+      className="showMore"
+      onClick={[Function]}
+    >
+      Show More
+    </a>
+  </div>
+  <div>
+    <i
+      className="fas fa-check"
+      style={
+        Object {
+          "margin-right": "5px",
+        }
+      }
+    />
+    I recommend this product
+  </div>
+  <div
+    className="response"
+  >
+    Response: 
+    <br />
+    TEST RESPONSE
+  </div>
+  <div
+    className="reviewRow"
+  >
+    Helpful?
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin-left": "5px",
+        }
+      }
+    >
+      Yes (
+      8
+      )
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders Reviews correctly 1`] = `
+<div>
+  <div>
+    RATINGS & REVIEWS
+    <div
+      className="ratingsReviewsContainer"
+    >
+      <div
+        className="productBreakdown"
+      >
+        <div
+          className="reviewRow"
+        >
+          <div
+            className="productRating"
+          >
+            NaN
+          </div>
+          <span>
+            <div
+              className="star-rating"
+              style={
+                Object {
+                  "width": "NaN%",
+                }
+              }
+            >
+              <span>
+                ★★★★★
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+      <div
+        className="reviewList"
+      >
+        0
+         reviews, sorted by
+        <select
+          className="sortReviews"
+          onChange={[Function]}
+        >
+          <option
+            value="relevance"
+          >
+            relevance
+          </option>
+          <option
+            value="helpful"
+          >
+            helpful
+          </option>
+          <option
+            value="newest"
+          >
+            newest
+          </option>
+        </select>
+         
+        <br />
+        <button>
+          Add a Review +
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

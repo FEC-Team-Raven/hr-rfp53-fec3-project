@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
+import ReviewForm from './ReviewForm.jsx';
 import {FilterContext} from '../Reviews.jsx';
 
 const ReviewList = (props) => {
@@ -8,6 +9,7 @@ const ReviewList = (props) => {
   const [renderedReviews, setRenderedReviews] = useState(reviews);
   const [sort, setSort] = useState('relevant');
   const [displayCount, setDisplayCount] = useState(2);
+  const [displayFormModal, setDisplayFormModal] = useState(false);
   var {starFilter} = useContext(FilterContext);
 
   useEffect(() => {
@@ -71,6 +73,12 @@ const ReviewList = (props) => {
     }
   };
 
+  var renderReviewFormModal = () => {
+    if (displayFormModal) {
+      return <ReviewForm productId={props.productId} setDisplayFormModal={setDisplayFormModal}/>;
+    }
+  };
+
   return (
     <div className="reviewList">
       {reviews.length} reviews, sorted by
@@ -81,7 +89,8 @@ const ReviewList = (props) => {
       </select> <br />
       {renderList()}
       {renderMoreReviews()}
-      <button>Add a Review +</button>
+      <button onClick={() => setDisplayFormModal(true)}>Add a Review +</button>
+      {renderReviewFormModal()}
     </div>
   );
 };

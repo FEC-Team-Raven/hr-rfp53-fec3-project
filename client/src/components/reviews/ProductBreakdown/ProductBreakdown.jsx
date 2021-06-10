@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import Stars from '../Stars.jsx';
+import Stars from '../../Stars.jsx';
 import RatingBar from './RatingBar.jsx';
 import CharacteristicBreakdown from './CharacteristicBreakdown.jsx';
 

@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import Stars from '../Stars.jsx';
+import Stars from '../../Stars.jsx';
 import axios from 'axios';
 
 
 const ReviewTile = (props) => {
+  console.log(props.review);
   const [helpfulness, setHelpfullness] = useState(props.review.helpfulness);
   const [voted, setVoted] = useState(false);
   const [expandBody, setExpandBody] = useState(false);
-  const [displayModal, setDisplayModal] = useState(false);
+  const [displayImgModal, setDisplayImgModal] = useState(false);
   const [modalImage, setModalImage] = useState('');
 
   useEffect(() => {
@@ -54,10 +55,10 @@ const ReviewTile = (props) => {
   };
 
   var renderImageModal = () => {
-    if (displayModal) {
+    if (displayImgModal) {
       return (
         <div className="imageModal">
-          <span className="close" onClick={() => setDisplayModal(false)}>X</span>
+          <span className="close" onClick={() => setDisplayImgModal(false)}>X</span>
           <img className="modal-content" src={modalImage}></img>
         </div>
       );
@@ -66,7 +67,7 @@ const ReviewTile = (props) => {
 
   var updateModal = url => {
     setModalImage(url);
-    setDisplayModal(true);
+    setDisplayImgModal(true);
   };
 
   var postHelpfulness = () => {
@@ -96,7 +97,7 @@ const ReviewTile = (props) => {
       </div>
       {renderBody(props.review.body)}
       {renderRecommend(props.review.recommend)}
-      {renderResponse('TEST RESPONSE')}
+      {renderResponse(props.review.response)}
       {props.review.photos.map(photo => {
         return <img className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
       })}
