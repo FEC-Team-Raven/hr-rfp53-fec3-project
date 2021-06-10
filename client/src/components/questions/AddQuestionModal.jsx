@@ -4,8 +4,8 @@ import { QuestionContext, ModalContext, ProductContext } from './Questions.jsx';
 
 
 const AddQuestionModal = (props) => {
-  const productId = useContext(ProductContext);
-  const questions = useContext(QuestionContext);
+  const productId = props.productId;
+  const questions = props.questions;
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -37,6 +37,7 @@ const AddQuestionModal = (props) => {
     axios.post('/questions/add', data)
       .then((data) => {
         console.log(data);
+        props.getQ(productId);
       })
       .catch ((err) => {
         throw err;

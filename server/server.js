@@ -80,6 +80,26 @@ app.get('/questions', (req, res) => {
     });
 });
 
+//get all answers
+app.get('/answers', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  var searchParams = new URLSearchParams(req.url.replace('/answers', ''));
+  var questionId = searchParams.get('id');
+
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
+    headers: { Authorization: token }
+  })
+    .then((result) => {
+      res.end(JSON.stringify(result.data));
+    })
+    .catch((err) => {
+      throw err;
+      res.end(400);
+    });
+});
+
 app.post('/questions/add', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   console.log(req.body);

@@ -10,6 +10,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 const App = () => {
   const [productId, setProductId] = useState(0);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (loading) {
       setLoading(false);

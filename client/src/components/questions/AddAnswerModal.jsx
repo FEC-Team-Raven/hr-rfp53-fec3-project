@@ -36,11 +36,18 @@ const AddAnswerModal = (props) => {
       questionId: questionId
     };
 
+    //post new answer then get all answer from api
     axios({
       url: '/answers/add',
       method: 'post',
       data: data
-    });
+    })
+      .then((result) => {
+        props.getAnswer();
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
 
 

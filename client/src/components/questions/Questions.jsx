@@ -10,9 +10,11 @@ export const ProductContext = React.createContext('');
 
 
 const Questions = (props) => {
+  // const [productId, setProductId] = useState(props.productId);
   const [questions, setQuestions] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const onClick = () => setShowModal(!showModal);
+
 
   //get questions
   useEffect(() => {
@@ -25,7 +27,19 @@ const Questions = (props) => {
           console.log(err);
         });
     }
-  }, [props, showModal]);
+  }, [props]);
+
+  const getQuestions = (productId) => {
+    if (props.productId !== 0) {
+      axios('/questions', {params: {productId: productId}})
+        .then(questions => {
+          setQuestions(questions.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 
   return (
     <div>
@@ -34,18 +48,19 @@ const Questions = (props) => {
 
       <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={questions}>
-          <QuestionsList />
+          <QuestionsList getQuestions={getQuestions}/>
         </QuestionContext.Provider>
       </ProductContext.Provider>
 
       <button>MORE ANSWERED QUESTIONS</button>
       <button onClick={onClick}>ADD A QUESTION</button>
 
-      <ProductContext.Provider value={props.productId}>
+      {/* <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={questions}>
           <AddQuestionModal />
         </QuestionContext.Provider>
-      </ProductContext.Provider>
+      </ProductContext.Provider> */}
+      <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions}/>
 
       {/* <div id="AddQuestionModal">
         {showModal ? <AddQuestionModal value={props.productId}/> : null}

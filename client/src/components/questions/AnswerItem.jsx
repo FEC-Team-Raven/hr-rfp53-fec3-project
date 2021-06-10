@@ -17,18 +17,20 @@ const AnswerItem = (props) => {
   let answer = ref.body;
   let help = ref.helpfulness;
   let user = ref.answerer_name;
+
   //asnwer id --> ref.id
   const handleClick = (e) => {
-    console.log(ref.id);
+    console.log(ref.answer_id);
     console.log(e.target.innerHTML);
     if (e.target.innerHTML === 'Report') {
       axios({
         url: '/report/answer',
         method: 'post',
-        data: {id: ref.id}
+        data: {id: ref.answer_id}
       })
         .then((result) => {
-          console.log(result);
+          //get all answers
+          props.getAnswer();
         })
         .catch((err) => {
           console.log(err);
@@ -37,9 +39,12 @@ const AnswerItem = (props) => {
       axios({
         url: '/helpful/answer',
         method: 'post',
-        data: {id: ref.id}
-      }).then((data) => { console.log(data); }).catch((err) => { throw err; });
+        data: {id: ref.answer_id}
+      })
+        .then((data) => { props.getAnswer(); })
+        .catch((err) => { throw err; });
     }
+
 
   };
 
