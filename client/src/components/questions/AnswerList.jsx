@@ -21,7 +21,7 @@ const AnswerList = (props) => {
         )}
       </div>
       {ans ? <div><button onClick={onClick}>
-        {showAll ? 'HideAnswers' : 'Load more Answers'}
+        {showAll ? 'Hide Answers' : 'Load more Answers'}
       </button></div> : <div></div>}
     </div>
   );

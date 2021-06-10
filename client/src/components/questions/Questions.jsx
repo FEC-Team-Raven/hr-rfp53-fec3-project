@@ -10,10 +10,13 @@ export const ProductContext = React.createContext('');
 
 
 const Questions = (props) => {
-  // const [productId, setProductId] = useState(props.productId);
   const [questions, setQuestions] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const onClick = () => setShowModal(!showModal);
+  const [showAllQ, setShowAllQ] = useState(false);
+  const ques = questions.length > 4;
+  const show = ques ? questions.slice(0, 4) : questions;
+  const test = showAllQ ? questions : show;
+
+  const onClick = () => setShowAllQ(!showAllQ);
 
 
   //get questions
@@ -47,13 +50,15 @@ const Questions = (props) => {
       <input type="text" name="search"></input>
 
       <ProductContext.Provider value={props.productId}>
-        <QuestionContext.Provider value={questions}>
+        <QuestionContext.Provider value={test}>
           <QuestionsList getQuestions={getQuestions}/>
         </QuestionContext.Provider>
       </ProductContext.Provider>
 
-      <button>MORE ANSWERED QUESTIONS</button>
-      <button onClick={onClick}>ADD A QUESTION</button>
+      <button onClick={onClick}>
+        {showAllQ ? 'Hide' : 'MORE ANSWERED QUESTIONS'}
+      </button>
+      <button>ADD A QUESTION</button>
 
       {/* <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={questions}>
