@@ -4,10 +4,13 @@ import AnswerList from './AnswerList.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 
 const QuestionItem = (props) => {
+  const [showAnsModal, setShowAnsModal] = useState(false);
   const [answer, setAnswers] = useState([]);
   const [helpful, setHelpful] = useState(false);
   const questionId = props.value.question_id;
   const productId = props.id;
+
+  const clickAddAnswer = () => { setShowAnsModal(!showAnsModal); };
 
 
   useEffect(() => {
@@ -78,7 +81,7 @@ const QuestionItem = (props) => {
             ({props.value.question_helpfulness})
           </div>
           <div id="addAns">
-            <button>Add Answer</button>
+            <button onClick={clickAddAnswer}>Add Answer</button>
           </div>
           <div id="Report">
             <button onClick={handleClick}>Report</button>
@@ -88,7 +91,10 @@ const QuestionItem = (props) => {
       <div>
         <AnswerList value={answer} getAnswer={getAnswer}/>
       </div>
-      <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer}/>
+      <div id="AddAnswerModal">
+        {showAnsModal ? <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer} addAnswerModal={clickAddAnswer}/> : null}
+      </div>
+      {/* <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer}/> */}
     </div>
   );
 };

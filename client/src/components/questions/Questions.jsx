@@ -12,11 +12,13 @@ export const ProductContext = React.createContext('');
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [showAllQ, setShowAllQ] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const ques = questions.length > 4;
   const show = ques ? questions.slice(0, 4) : questions;
   const test = showAllQ ? questions : show;
 
   const onClick = () => setShowAllQ(!showAllQ);
+  const clickAddQuestion = () => setShowModal(!showModal);
 
 
   //get questions
@@ -58,18 +60,19 @@ const Questions = (props) => {
       <button onClick={onClick}>
         {showAllQ ? 'Hide' : 'MORE ANSWERED QUESTIONS'}
       </button>
-      <button>ADD A QUESTION</button>
+      <button onClick={clickAddQuestion}>ADD A QUESTION</button>
 
       {/* <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={questions}>
           <AddQuestionModal />
         </QuestionContext.Provider>
       </ProductContext.Provider> */}
-      <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions}/>
 
-      {/* <div id="AddQuestionModal">
-        {showModal ? <AddQuestionModal value={props.productId}/> : null}
-      </div> */}
+      {/* <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions}/> */}
+
+      <div id="AddQuestionModal">
+        {showModal ? <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions} showModal={clickAddQuestion}/> : null}
+      </div>
     </div>
   );
 };

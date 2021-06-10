@@ -12,6 +12,7 @@ const AddQuestionModal = (props) => {
   const [body, setBody] = useState('');
 
 
+
   const handleChange = (e) => {
     e.preventDefault();
     let target = e.target.name;
@@ -57,6 +58,7 @@ const AddQuestionModal = (props) => {
         <input type="text" name="Body" onChange={handleChange}></input>
         <button>Submit</button>
       </form>
+      <button onClick={props.showModal}>close</button>
     </div>
   );
 };

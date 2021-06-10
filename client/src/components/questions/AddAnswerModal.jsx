@@ -63,6 +63,7 @@ const AddAnswerModal = (props) => {
         <input type="text" name="Body" onChange={handleChange}></input>
         <button>Submit</button>
       </form>
+      <button onClick={props.addAnswerModal}>close</button>
     </div>
   );
 };
