@@ -11,13 +11,10 @@ const Outfit = ({productId}) => {
   const addOutfit = () => {
     handleClick(true);
     // Prevent duplicate outfits
-    if (outfitIds.includes(productId)) {
-      console.log('Outfit already added!');
-    } else {
-      if (isClicked) {
-        handleClick(false);
-      }
+    let unique = !outfitIds.includes(productId);
 
+    if (unique) {
+      handleClick(false);
       axios('http://localhost:3000/product', {headers: {'productId': productId}})
         .then(response => {
           setOutfitIds([...outfitIds, response.data.id]);
