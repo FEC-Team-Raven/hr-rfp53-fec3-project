@@ -7,24 +7,37 @@ class Outfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isClicked: false,
       outfitIds: [],
       outfits: []
     };
 
-    this.addOutfit = this.addOutfit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      isClicked: true
+    });
+    this.addOutfit();
   }
 
   addOutfit() {
     if (this.state.outfitIds.includes(this.props.productId)) {
       console.log('Outfit already added!');
     } else {
-      axios('http://localhost:3000/product', {headers: {'productId': this.props.productId}})
-        .then(response => {
-          this.setState({
-            outfitIds: [...this.state.outfits, response.data.id],
-            outfits: [...this.state.outfits, response.data],
-          });
+      if (this.state.isClicked) {
+        this.setState({
+          isClicked: false,
         });
+        axios('http://localhost:3000/product', {headers: {'productId': this.props.productId}})
+          .then(response => {
+            this.setState({
+              outfitIds: [...this.state.outfits, response.data.id],
+              outfits: [...this.state.outfits, response.data],
+            });
+          });
+      }
     }
   }
 
@@ -32,7 +45,7 @@ class Outfit extends React.Component {
     return (
       <div className="grid-container">
         <div className="card addOutfit">
-          <button onClick={this.addOutfit}>+</button>
+          <button onClick={this.handleClick}>+</button>
           <h2>Add to Outfit</h2>
         </div>
         {this.state.outfits.map(outfit =>
