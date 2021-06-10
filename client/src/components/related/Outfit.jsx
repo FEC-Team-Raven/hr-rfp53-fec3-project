@@ -3,14 +3,23 @@ import ProductCard from './ProductCard.jsx';
 
 import axios from 'axios';
 
+export const OutfitContext = React.createContext([]);
+
 const Outfit = ({productId}) => {
   const [outfitIds, setOutfitIds] = useState([]);
   const [outfits, setOutfits] = useState([]);
   const [isClicked, handleClick] = useState([false]);
 
+  const providerVal = {
+    outfitIds,
+    setOutfitIds,
+    outfits,
+    setOutfits
+  };
+
   const addOutfit = () => {
     handleClick(true);
-    // Prevent duplicate outfits
+    // Prevents duplicate outfits
     let unique = !outfitIds.includes(productId);
 
     if (unique) {
@@ -29,9 +38,14 @@ const Outfit = ({productId}) => {
         <button onClick={addOutfit}>+</button>
         <h2>Add to Outfit</h2>
       </div>
-      {outfits.map(outfit =>
-        <ProductCard product={outfit} key={outfit.id}/>)
-      }
+      <OutfitContext.Provider value={providerVal}>
+        {outfits.map(outfit =>
+          <ProductCard
+            product={outfit}
+            listType={'outfit'}
+            key={outfit.id}/>)
+        }
+      </OutfitContext.Provider>
     </div>
   );
 };

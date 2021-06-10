@@ -10,6 +10,7 @@ const RelatedProducts = () => {
     productData.map(product =>
       <ProductCard
         product={product}
+        list={'related'}
         key={product.id}/>
     )
   );
