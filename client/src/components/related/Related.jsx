@@ -5,12 +5,10 @@ import Outfit from './Outfit.jsx';
 import axios from 'axios';
 
 export const RelatedContext = React.createContext([]);
-export const OutfitContext = React.createContext([]);
 
 const Related = ({productId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfits, setOutfits] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
@@ -22,9 +20,19 @@ const Related = ({productId}) => {
           return response.data;
         })
 
-        // Retrieves data and styles of SPECIFIC product
+        // Retrieves data of specific products
         .then(related => {
           let promises = [];
+
+          // Retrieves data of CURRENT product
+          // promises.push(
+          //   axios('http://localhost:3000/product', {headers: {'productId': productId}})
+          //     .then(response => {
+          //       return response.data;
+          //     })
+          // );
+
+          // Retrieves data of RELATED products
           for (var i = 0; i < related.length; i++) {
             promises.push(
               axios('http://localhost:3000/product', {headers: {'productId': related[i]}})
@@ -33,8 +41,9 @@ const Related = ({productId}) => {
                 })
             );
           }
-          Promise.all(promises).then((related) => {
-            setRelatedProducts(related);
+          Promise.all(promises).then((products) => {
+            // setCurrentProduct(products.shift());
+            setRelatedProducts(products);
           });
         })
 
@@ -54,10 +63,8 @@ const Related = ({productId}) => {
         </RelatedContext.Provider>
       </div>
       <h1>YOUR OUTFITS</h1>
-      <div className="grid-container">
-        <OutfitContext.Provider value={outfits}>
-          <Outfit />
-        </OutfitContext.Provider>
+      <div>
+        <Outfit productId={productId}/>
       </div>
     </div>
   );
