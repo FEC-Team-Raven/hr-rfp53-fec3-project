@@ -8,29 +8,30 @@ import axios from 'axios';
 
 const App = () => {
   const [productId, setProductId] = useState(0);
+  let [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (loading) {
       setLoading(false);
       axios('http://localhost:3000/products')
         .then(products => {
           setProductId(products.data[0].id);
+          setProductData(products.data[0]);
         })
         .catch(err => {
           console.log(err);
           setLoading(true);
         });
     }
-  });
+  }, []);
 
   return (
     <div>
-      {/*
-      <Overview productId={productId}/>
-      <Related productId={productId}/>
+      <Overview productId={productId} product={productData}/>
+      {/* <Related productId={productId}/>
       <Questions productId={productId}/>
-      */}
-      <Reviews productId={productId}/>
+      <Reviews productId={productId}/> */}
     </div>
   );
 };
