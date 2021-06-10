@@ -5,6 +5,7 @@ import AddAnswerModal from './AddAnswerModal.jsx';
 
 const QuestionItem = (props) => {
   const [answer, setAnswers] = useState([]);
+  const [helpful, setHelpful] = useState(false);
   const questionId = props.value.question_id;
   const productId = props.id;
 
@@ -43,14 +44,16 @@ const QuestionItem = (props) => {
   const handleClick = (e) => {
     console.log(e.target.innerHTML);
     if (e.target.innerHTML === 'Yes') {
-      console.log(questionId);
-      axios({
-        url: '/helpful/question',
-        method: 'post',
-        data: {id: questionId}
-      })
-        .then((result) => { props.getQuestions(productId); })
-        .catch((err) => { throw err; });
+      if (!helpful) {
+        setHelpful(true);
+        axios({
+          url: '/helpful/question',
+          method: 'post',
+          data: {id: questionId}
+        })
+          .then((result) => { props.getQuestions(productId); })
+          .catch((err) => { throw err; });
+      }
 
     } else if (e.target.innerHTML === 'Report') {
       axios({

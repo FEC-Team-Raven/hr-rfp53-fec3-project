@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const convertDate = (iso8601String) => {
@@ -12,6 +12,7 @@ const convertDate = (iso8601String) => {
 };
 
 const AnswerItem = (props) => {
+  const [helpful, setHelpful] = useState(false);
   let ref = props.value[1];
   let date = convertDate(ref.date);
   let answer = ref.body;
@@ -36,13 +37,16 @@ const AnswerItem = (props) => {
           console.log(err);
         });
     } else if (e.target.innerHTML === 'Yes') {
-      axios({
-        url: '/helpful/answer',
-        method: 'post',
-        data: {id: ref.answer_id}
-      })
-        .then((data) => { props.getAnswer(); })
-        .catch((err) => { throw err; });
+      if (!helpful) {
+        setHelpful(true);
+        axios({
+          url: '/helpful/answer',
+          method: 'post',
+          data: {id: ref.answer_id}
+        })
+          .then((data) => { props.getAnswer(); })
+          .catch((err) => { throw err; });
+      }
     }
 
 
