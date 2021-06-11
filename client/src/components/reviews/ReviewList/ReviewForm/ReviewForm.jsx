@@ -4,15 +4,29 @@ import CharacteristicInput from './CharacteristicInput.jsx';
 import axios from 'axios';
 
 const ReviewForm = props => {
-  const [starRating, setStarRating] = useState(0);
-  const [characteristics, setCharacteristics] = useState({});
+  const [productCharacteristics, setProductCharacteristics] = useState({});
   const [loading, setLoading] = useState(true);
+  const [starRating, setStarRating] = useState(0);
+  const [recommended, setRecommended] = useState(null);
+  var characteristicRatings = {
+    Size: useState(0),
+    Width: useState(0),
+    Comfort: useState(0),
+    Quality: useState(0),
+    Length: useState(0),
+    Fit: useState(0)
+  };
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     if (props.productId !== 0) {
       getMetaData(props.productId);
     }
   }, [props.productId]);
+
 
   var getMetaData = reviewId => {
     axios('http://localhost:3000/reviews/meta', {
@@ -21,8 +35,9 @@ const ReviewForm = props => {
       }
     })
       .then(meta => {
-        setCharacteristics(meta.data.characteristics);
+        setProductCharacteristics(meta.data.characteristics);
         setLoading(false);
+        console.log(meta.data.characteristics);
       });
   };
 
@@ -53,22 +68,45 @@ const ReviewForm = props => {
   };
 
   var renderCharacteristics = () => {
-    if (characteristics) {
-      return Object.keys(characteristics).map(characteristic => {
-        return <CharacteristicInput characteristic={characteristic} />;
-      });
-    }
+    return Object.keys(productCharacteristics).map(characteristic => {
+      return <CharacteristicInput characteristic={characteristic} setCharacteristicValue={characteristicRatings[characteristic][1]}/>;
+    });
   };
 
   var handleSubmit = event => {
     event.preventDefault();
+    var charInputs = {};
+    for (var key in productCharacteristics) {
+      charInputs[productCharacteristics[key].id] = characteristicRatings[key][0];
+    }
+    var data = {
+      // eslint-disable-next-line camelcase
+      product_id: props.productId,
+      rating: starRating,
+      summary,
+      body,
+      recommended,
+      name: nickname,
+      email,
+      characteristics: charInputs
+    };
+    console.log(data);
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/reviews',
+      params: {
+
+      }
+    })
+      .then(() => {
+
+      });
   };
 
   var renderForm = () => {
     if (!loading) {
       return (
         <form onSubmit={handleSubmit}>
-          <input id="star" name="star" type="hidden" value={starRating}></input>
           <div className="reviewRow">
             <span>Select a rating: </span>
             <span className="starContainer" >
@@ -76,21 +114,33 @@ const ReviewForm = props => {
             </span>
             {renderRatingMessage()}
           </div>
+
           <div>
             Do you recommend this product?
-            <input id="recommendedYes" name="recommended" type="radio" value={true}></input>
+            <input id="recommendedYes" name="recommended" type="radio" value={true} onChange={(e) => setRecommended(e.target.value)}></input>
             <label for="recommendedYes">Yes</label>
-            <input id="recommendedNo" name="recommended" type="radio" value={false}></input>
+            <input id="recommendedNo" name="recommended" type="radio" value={false} onChange={(e) => setRecommended(e.target.value)}></input>
             <label for="recommendedNo">No</label>
           </div>
+
           {renderCharacteristics()}
+
           <div>
             <label for="summary">Review Summary</label>
-            <input id="summary" name="summary" type="text" maxlength="60"></input>
+            <input id="summary" name="summary" type="text" maxlength="60" onChange={e => setSummary(e.target.value)}></input>
           </div>
+
           <div>
-            {/* FIGURE OUT HOW TO PASS INTO FORM */}
-            <textarea className="reviewBody" rows="5" columns="100" wrap="hard" maxlength="1000" placeholder="Why did you like the product or not?"></textarea>
+            <textarea
+              className="reviewBody"
+              rows="5"
+              columns="100"
+              wrap="hard"
+              maxlength="1000"
+              placeholder="Why did you like the product or not?"
+              onChange={e => setBody(e.target.value)}
+            >
+            </textarea>
           </div>
 
           <div>
@@ -100,12 +150,14 @@ const ReviewForm = props => {
 
           <div>
             <label for="nickname">Nickname: </label>
-            <input type="text" id="nickname" name="nickname" maxlength="60"></input>
+            <input type="text" id="nickname" name="nickname" maxlength="60" onChange={e => setNickname(e.target.value)}></input>
           </div>
+
           <div>
             <label for="email">Email: </label>
-            <input type="text" id="email" name="email" maxlength="60"></input>
+            <input type="text" id="email" name="email" maxlength="60" onChange={e => setEmail(e.target.value)}></input>
           </div>
+
           <input type="submit"></input>
         </form>
       );

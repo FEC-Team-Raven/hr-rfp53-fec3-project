@@ -50,23 +50,58 @@ const CharacteristicInput = props => {
       {props.characteristic} <br />
       <div className="characteristicInput">
         <div>
-          <input id={`${props.characteristic}1`} type="radio" name={props.characteristic} value="1"></input>
+          <input
+            id={`${props.characteristic}1`}
+            type="radio"
+            name={props.characteristic}
+            value="1"
+            onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+          >
+          </input>
           <label for={`${props.characteristic}1`}>{rating1}</label>
         </div>
         <div>
-          <input id={`${props.characteristic}2`} type="radio" name={props.characteristic} value="2"></input>
+          <input
+            id={`${props.characteristic}2`}
+            type="radio"
+            name={props.characteristic}
+            value="2"
+            onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+          >
+          </input>
           <label for={`${props.characteristic}2`}>{rating2}</label>
         </div>
         <div>
-          <input id={`${props.characteristic}3`} type="radio" name={props.characteristic} value="3"></input>
+          <input
+            id={`${props.characteristic}3`}
+            type="radio"
+            name={props.characteristic}
+            value="3"
+            onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+          >
+          </input>
           <label for={`${props.characteristic}3`}>{rating3}</label>
         </div>
         <div>
-          <input id={`${props.characteristic}4`} type="radio" name={props.characteristic} value="4"></input>
+          <input
+            id={`${props.characteristic}4`}
+            type="radio"
+            name={props.characteristic}
+            value="4"
+            onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+          >
+          </input>
           <label for={`${props.characteristic}4`}>{rating4}</label>
         </div>
         <div>
-          <input id={`${props.characteristic}5`} type="radio" name={props.characteristic} value="5"></input>
+          <input
+            id={`${props.characteristic}5`}
+            type="radio"
+            name={props.characteristic}
+            value="5"
+            onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+          >
+          </input>
           <label for={`${props.characteristic}5`}>{rating5}</label>
         </div>
       </div>
