@@ -89,7 +89,10 @@ app.get('/answers', (req, res) => {
   axios({
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
-    headers: { Authorization: token }
+    headers: { Authorization: token },
+    params: {
+      'count': 100
+    }
   })
     .then((result) => {
       res.end(JSON.stringify(result.data));

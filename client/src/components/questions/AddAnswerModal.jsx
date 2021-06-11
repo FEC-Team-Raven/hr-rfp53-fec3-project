@@ -43,6 +43,7 @@ const AddAnswerModal = (props) => {
       data: data
     })
       .then((result) => {
+        props.addAnswerModal();
         props.getAnswer();
       })
       .catch((err) => {

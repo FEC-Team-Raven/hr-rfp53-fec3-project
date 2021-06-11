@@ -37,7 +37,7 @@ const AddQuestionModal = (props) => {
     };
     axios.post('/questions/add', data)
       .then((data) => {
-        console.log(data);
+        props.showModal();
         props.getQ(productId);
       })
       .catch ((err) => {

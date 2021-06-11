@@ -4,6 +4,7 @@ import QuestionsList from './QuestionsList.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 
+
 export const QuestionContext = React.createContext([]);
 export const ModalContext = React.createContext(false);
 export const ProductContext = React.createContext('');
@@ -14,9 +15,10 @@ const Questions = (props) => {
   const [test, setTest] = useState(false);
   const [showAllQ, setShowAllQ] = useState(4);
   const [showModal, setShowModal] = useState(false);
+  const [search, setSearch] = useState('');
   const ques = questions.length > 4;
   const show = ques ? questions.slice(0, showAllQ) : questions;
-  // const test = showAllQ ? questions : show;
+  const modalId = test ? 'MoreQInactive' : 'MoreQActive';
 
   const onClick = () => {
     let hold = showAllQ;
@@ -55,18 +57,34 @@ const Questions = (props) => {
     }
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let text = e.target.value;
+    if (text.length >= 3) {
+      setSearch(text);
+    } else {
+      setSearch('');
+    }
+  };
+
   return (
-    <div>
+    <div class="main">
       <div>QUESTIONS AND ANSWERS</div>
-      <input type="text" name="search"></input>
+
+      <div class="search">
+        <form>
+          <input id="searchBar" type="text" name="search" onChange={handleSearch}></input>
+          <button>Search</button>
+        </form>
+      </div>
 
       <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={show}>
-          <QuestionsList getQuestions={getQuestions}/>
+          <QuestionsList search={search} getQuestions={getQuestions} allQuestions={questions}/>
         </QuestionContext.Provider>
       </ProductContext.Provider>
 
-      <button id="MoreQ"onClick={onClick}>
+      <button id={modalId} onClick={onClick}>
         {test ? null : 'MORE ANSWERED QUESTIONS'}
         {/* MORE ANSWERED QUESTIONS */}
       </button>

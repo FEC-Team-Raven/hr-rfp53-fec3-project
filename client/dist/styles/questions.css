@@ -1,15 +1,33 @@
 #app {
-  width: 800px;
+  display: block;
+  height: auto;
+  width: 900px;
   margin: 0 auto;
+  overflow: auto;
+}
+
+.main {
+  padding-left: 7vw;
+  padding-right: 7vw;
 }
 
 button {
   all: unset;
+}
 
+input.search {
+  height: 30px;
+  width: 100%
 }
 
 button:hover {
   font-weight: bold;
+}
+
+/* QUESTION */
+.QList {
+  max-height: 75vh;
+  overflow: auto;
 }
 
 .question {
@@ -17,6 +35,7 @@ button:hover {
   justify-content: space-between;
   /* border: solid 1px; */
   align-items: center;
+  height: 45px;
 
 }
 
@@ -50,8 +69,17 @@ button:hover {
   flex-direction: row;
   /* border: solid 1px; */
 }
+
+.answerList {
+  max-height: 50vh;
+  overflow: auto;
+  width: 100vw;
+
+}
+
 #answer-text {
-  padding: 0px 10px 10px 10px;
+  padding: 1px 10px 10px 10px;
+  font-size: small;
 }
 
 .answer-extra {
@@ -73,9 +101,20 @@ button:hover {
   padding-left: 10px;
 }
 
+button.moreAns {
+  margin-left: 22px;
+  padding: 5px;
+  font-size: small;
+  font-weight: bold;
+}
+
+button.moreAns:hover {
+  text-decoration: underline;
+}
+
 /* ADD ANSWER MODAL */
 .modal {
-  /* position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -84,7 +123,7 @@ button:hover {
   max-height: 100%;
   width: 400px;
   max-width: 100%;
-  background-color: gainsboro; */
+  background-color: gainsboro;
 }
 
 /* buttons --> add and more */
@@ -94,9 +133,36 @@ button:hover {
   padding: 10px;
 }
 
-#MoreQ {
+#MoreQActive {
   font-size: smaller;
   border: 1px solid black;
   padding: 10px;
   margin-right: 8px;
+}
+
+#MoreQInactive {
+  font-size: smaller;
+}
+
+/* SEARCH */
+.search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 35px;
+}
+
+.search form button {
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-right: 10px;
+}
+
+#searchBar {
+  flex-grow: 1;
+  border-right: none;
+  border-left: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
