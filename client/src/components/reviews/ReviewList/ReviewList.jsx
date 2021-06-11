@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
-import ReviewForm from './ReviewForm.jsx';
+import ReviewForm from './ReviewForm/ReviewForm.jsx';
 import {FilterContext} from '../Reviews.jsx';
 
 const ReviewList = (props) => {

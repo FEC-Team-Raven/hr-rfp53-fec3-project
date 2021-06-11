@@ -7,8 +7,8 @@ const CharacteristicBreakdown = props => {
   var perfect = 'Perfect';
 
   if (props.characteristic === 'Fit') {
-    low = 'Too Small';
-    high = 'Too Big';
+    low = 'Too tight';
+    high = 'Too loose';
   } else if (props.characteristic === 'Length') {
     low = 'Too short';
     high = 'Too long';
@@ -20,6 +20,12 @@ const CharacteristicBreakdown = props => {
     low = 'Low';
     high = 'High';
     perfect = '';
+  } else if (props.characteristic === 'Size') {
+    low = 'Too small';
+    high = 'Too big';
+  } else if (props.characteristic === 'Width') {
+    low = 'Too narrow';
+    high = 'Too wide';
   }
 
   return (

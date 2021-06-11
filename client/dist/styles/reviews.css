@@ -201,3 +201,14 @@
   width: 20px;
   margin-top: 5px;
 }
+
+.characteristicInputContainer {
+  margin-top: 10px;
+}
+
+.characteristicInput {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
