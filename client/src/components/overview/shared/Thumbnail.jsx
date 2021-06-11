@@ -2,8 +2,8 @@ import React from 'react';
 
 const Thumbnail = props => {
   return (
-    <div className="thumbnail">
-      Thumbnail
-    </div>
+    <div className="thumbnail"></div>
   );
 };
+
+export default Thumbnail;
