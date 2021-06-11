@@ -4,9 +4,11 @@ const Thumbnail = props => {
   let selected = props.selected;
   const select = event => {
     if (selected) { selected = false; }
-    console.log('Clickd!');
+    console.log('Clicked!');
     document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
-    event.target.classList.add('selected');
+    event.target.closest('.thumbnail').classList.add('selected');
+    let mainImageURL = event.target.style.backgroundImage;
+    document.querySelector('#image-gallery').style.backgroundImage = mainImageURL;
   };
 
   return (

@@ -23,7 +23,6 @@ const ImageGallery = props => {
         <Thumbnail imageURL={images[5]}/>
         <Thumbnail imageURL={images[6]}/>
       </div>
-      Image Gallery
     </div>
   );
 };
