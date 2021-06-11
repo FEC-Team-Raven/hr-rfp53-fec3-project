@@ -60,10 +60,14 @@ const ReviewForm = props => {
     }
   };
 
+  var handleSubmit = event => {
+    event.preventDefault();
+  };
+
   var renderForm = () => {
     if (!loading) {
       return (
-        <form>
+        <form onSubmit={handleSubmit}>
           <input id="star" name="star" type="hidden" value={starRating}></input>
           <div className="reviewRow">
             <span>Select a rating: </span>
@@ -80,6 +84,29 @@ const ReviewForm = props => {
             <label for="recommendedNo">No</label>
           </div>
           {renderCharacteristics()}
+          <div>
+            <label for="summary">Review Summary</label>
+            <input id="summary" name="summary" type="text" maxlength="60"></input>
+          </div>
+          <div>
+            {/* FIGURE OUT HOW TO PASS INTO FORM */}
+            <textarea className="reviewBody" rows="5" columns="100" wrap="hard" maxlength="1000" placeholder="Why did you like the product or not?"></textarea>
+          </div>
+
+          <div>
+            Upload images <br />
+            <input id="photos" name="photos" type="file" accept="image"></input>
+          </div>
+
+          <div>
+            <label for="nickname">Nickname: </label>
+            <input type="text" id="nickname" name="nickname" maxlength="60"></input>
+          </div>
+          <div>
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email" maxlength="60"></input>
+          </div>
+          <input type="submit"></input>
         </form>
       );
     }

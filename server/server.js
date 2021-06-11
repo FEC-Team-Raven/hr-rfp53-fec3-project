@@ -75,6 +75,11 @@ app.put('/reviews/helpful', (req, res) => {
     });
 });
 
+app.post('/reviews', (req, res) => {
+  console.log(`SERVING POST REQUEST AT ${req.url}`);
+  console.log(req.body);
+});
+
 app.get('/reviews/meta', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/reviews/meta', ''));
