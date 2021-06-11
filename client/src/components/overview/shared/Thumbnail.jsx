@@ -1,8 +1,12 @@
 import React from 'react';
 
 const Thumbnail = props => {
+  const select = event => {
+    event.target.classList.add('selected');
+  };
+
   return (
-    <div className="thumbnail"></div>
+    <button className="thumbnail" onClick={select}></button>
   );
 };
 
