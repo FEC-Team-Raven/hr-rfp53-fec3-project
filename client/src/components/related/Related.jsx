@@ -23,16 +23,6 @@ const Related = ({productId}) => {
         // Retrieves data of specific products
         .then(related => {
           let promises = [];
-
-          // Retrieves data of CURRENT product
-          // promises.push(
-          //   axios('http://localhost:3000/product', {headers: {'productId': productId}})
-          //     .then(response => {
-          //       return response.data;
-          //     })
-          // );
-
-          // Retrieves data of RELATED products
           for (var i = 0; i < related.length; i++) {
             promises.push(
               axios('http://localhost:3000/product', {headers: {'productId': related[i]}})
@@ -42,7 +32,6 @@ const Related = ({productId}) => {
             );
           }
           Promise.all(promises).then((products) => {
-            // setCurrentProduct(products.shift());
             setRelatedProducts(products);
           });
         })

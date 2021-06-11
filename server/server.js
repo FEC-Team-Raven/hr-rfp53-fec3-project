@@ -60,6 +60,7 @@ app.get('/product', (req, res) => {
     }
   })
     .then(result => {
+      console.log(result.data);
       res.end(JSON.stringify(result.data));
     })
     .catch(err => {

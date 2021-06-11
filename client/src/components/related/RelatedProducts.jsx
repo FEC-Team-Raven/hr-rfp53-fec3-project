@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductCard from './ProductCard.jsx';
 
-import {RelatedContext} from './Related.jsx';
+import { RelatedContext } from './Related.jsx';
 
 const RelatedProducts = () => {
   const productData = useContext(RelatedContext);
-
   return (
     productData.map(product =>
       <ProductCard
