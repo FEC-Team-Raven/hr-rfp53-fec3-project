@@ -5,7 +5,7 @@
 
 button {
   all: unset;
-  text-decoration: underline;
+
 }
 
 button:hover {
@@ -87,4 +87,16 @@ button:hover {
   background-color: gainsboro; */
 }
 
+/* buttons --> add and more */
+#AddQ {
+  font-size: smaller;
+  border: 1px solid black;
+  padding: 10px;
+}
 
+#MoreQ {
+  font-size: smaller;
+  border: 1px solid black;
+  padding: 10px;
+  margin-right: 8px;
+}

@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
     headers: {
@@ -33,7 +33,7 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/reviews', ''));
   var productId = searchParams.get('productId');
   axios({
@@ -58,7 +58,7 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/questions', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/questions', ''));
   var productId = searchParams.get('productId');
 
@@ -82,7 +82,7 @@ app.get('/questions', (req, res) => {
 
 //get all answers
 app.get('/answers', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/answers', ''));
   var questionId = searchParams.get('id');
 
@@ -101,8 +101,7 @@ app.get('/answers', (req, res) => {
 });
 
 app.post('/questions/add', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  console.log(req.body);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
 
   axios({
     method: 'post',
@@ -111,7 +110,6 @@ app.post('/questions/add', (req, res) => {
     data: req.body
   })
     .then(result => {
-      console.log(result.data);
       res.status(201).send(result.data);
     })
     .catch(err => {
@@ -123,7 +121,7 @@ app.post('/questions/add', (req, res) => {
 
 
 app.post('/answers/add', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   const questionId = req.body.questionId;
   delete req.body.questionId;
 
@@ -143,7 +141,7 @@ app.post('/answers/add', (req, res) => {
 });
 
 app.post('/report/answer', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.id}/report`,
@@ -159,8 +157,8 @@ app.post('/report/answer', (req, res) => {
 });
 
 app.post('/helpful/answer', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  console.log(req.body);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
+  // console.log(req.body);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.id}/helpful`,
@@ -176,8 +174,7 @@ app.post('/helpful/answer', (req, res) => {
 });
 
 app.post('/helpful/question', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  console.log(req.body);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.body.id}/helpful`,
@@ -193,8 +190,7 @@ app.post('/helpful/question', (req, res) => {
 });
 
 app.post('/report/question', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  console.log(req.body);
+  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.body.id}/report`,
