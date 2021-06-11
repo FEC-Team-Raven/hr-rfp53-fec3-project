@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Thumbnail from './../shared/Thumbnail.jsx';
 
 const ImageGallery = props => {
+
   return (
     <div id="image-gallery">
       <div id="image-gallery-thumbnail-list">
-        <Thumbnail order="1"/>
-        <Thumbnail order="2"/>
-        <Thumbnail order="3"/>
-        <Thumbnail order="4"/>
-        <Thumbnail order="5"/>
-        <Thumbnail order="6"/>
-        <Thumbnail order="7"/>
+        <Thumbnail selected={true}/>
+        <Thumbnail />
+        <Thumbnail />
+        <Thumbnail />
+        <Thumbnail />
+        <Thumbnail />
+        <Thumbnail />
       </div>
       Image Gallery
     </div>
