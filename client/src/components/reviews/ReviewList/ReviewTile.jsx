@@ -88,11 +88,21 @@ const ReviewTile = (props) => {
     }
   };
 
+  var reportReview = () => {
+    axios({
+      url: 'http://localhost:3000/reviews/report',
+      method: 'PUT',
+      params: {
+        reviewId: props.review.review_id
+      }
+    });
+  };
+
   return (
     <div className="reviewTile">
       <div className="reviewRow between">
         <Stars rating={props.review.rating} />
-        <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
+        <div className="rating">{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
       </div>
       <div className="summary">{props.review.summary}</div>
       {renderBody(props.review.body)}
@@ -105,6 +115,7 @@ const ReviewTile = (props) => {
       <div className="reviewRow">
         Helpful?
         <button onClick={() => postHelpfulness()} style={{'margin-left': '5px'}}>Yes ({helpfulness})</button>
+        <button onClick={reportReview}>Report</button>
       </div>
     </div>
   );

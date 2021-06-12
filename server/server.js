@@ -83,6 +83,19 @@ app.put('/reviews/helpful', (req, res) => {
     });
 });
 
+app.put('/reviews/report', (req, res) => {
+  console.log(`SERVING PUT REQUEST AT ${req.url}`);
+  var searchParams = new URLSearchParams(req.url.replace('/reviews/report', ''));
+  var reviewId = searchParams.get('reviewId');
+  axios({
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/report`,
+    headers: {
+      Authorization: token
+    }
+  });
+});
+
 app.post('/reviews', (req, res) => {
   console.log(`SERVING POST REQUEST AT ${req.url}`);
   let upload = multer({storage: multer.memoryStorage()}).any('files');

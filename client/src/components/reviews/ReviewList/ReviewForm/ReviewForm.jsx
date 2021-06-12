@@ -148,7 +148,7 @@ const ReviewForm = props => {
       return (
         <form className="reviewForm" onSubmit={handleSubmit}>
           <div className="reviewRow">
-            <div>Select a rating: </div>
+            <div className="rating">Select a rating: </div>
             <div className="starContainer" >
               <input type="hidden" required></input>
               <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars}/>
