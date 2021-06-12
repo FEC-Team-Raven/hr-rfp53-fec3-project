@@ -52,7 +52,7 @@ const Related = ({currProductId}) => {
   return (
     <div>
       <h1>RELATED PRODUCTS</h1>
-      <div className="list">
+      <div className="related list">
         <RelatedContext.Provider value={providerVal}>
           <RelatedProducts />
         </RelatedContext.Provider>

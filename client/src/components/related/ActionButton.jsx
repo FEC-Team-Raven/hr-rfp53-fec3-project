@@ -10,7 +10,7 @@ const ActionButton = ({currProductId, product, listType}) => {
   const [modal, toggleModal] = useState(false);
 
   useEffect(() => {
-    if (loading) {
+    if (loading && !modal) {
       setLoading(false);
       axios('http://localhost:3000/products/productid', {headers: {'productId': currProductId}})
         .then(response => {
@@ -41,7 +41,7 @@ const ActionButton = ({currProductId, product, listType}) => {
 
   const renderButton = () => {
     if (listType === 'outfit') {
-      return 'x';
+      return <span>&#10005;</span>;
     } else {
       return <span>&#x2605;</span>;
     }
@@ -52,18 +52,23 @@ const ActionButton = ({currProductId, product, listType}) => {
       {modal &&
       <div id="modal">
         COMPARING
-        <button id="close" onClick={handleClick}>X</button>
+        <button id="close" onClick={handleClick}>&#10005;</button>
         <div id="compare">
           <div className="current-product">
             {currProductData.name}
           </div>
           <div className="characteristics">
-            Characteristics
+            CHARACTERISTICS
           </div>
           <div className="compare-product">
             {console.log('clicked product data:', product)}
             {product.name}
           </div>
+          <div className="modal-row">row</div>
+          <div className="modal-row">row</div>
+          <div className="modal-row">row</div>
+          <div className="modal-row">row</div>
+          <div className="modal-row">row</div>
         </div>
       </div>
       }

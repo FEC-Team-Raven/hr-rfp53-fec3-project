@@ -8,7 +8,6 @@ export const OutfitContext = React.createContext([]);
 const Outfit = ({productId}) => {
   const [outfitIds, setOutfitIds] = useState([]);
   const [outfits, setOutfits] = useState([]);
-  const [isClicked, handleClick] = useState([false]);
 
   const providerVal = {
     outfitIds,
@@ -18,16 +17,16 @@ const Outfit = ({productId}) => {
   };
 
   const addOutfit = () => {
-    handleClick(true);
     // Prevents duplicate outfits
     let unique = !outfitIds.includes(productId);
-
     if (unique) {
-      handleClick(false);
       axios('http://localhost:3000/products/productid', {headers: {'productId': productId}})
         .then(response => {
           setOutfitIds([...outfitIds, response.data.id]);
           setOutfits([...outfits, response.data]);
+        })
+        .catch(err => {
+          throw err;
         });
     }
   };
@@ -35,7 +34,7 @@ const Outfit = ({productId}) => {
   return (
     <div className="outfit list">
       <div className="card addOutfit">
-        <button onClick={addOutfit}>+</button>
+        <button onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
       </div>
       <OutfitContext.Provider value={providerVal}>
