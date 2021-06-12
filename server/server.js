@@ -3,8 +3,10 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const token = require('./config.js');
-const cloudinary = require('cloudinary');
+const imgbbUploader = require('imgbb-uploader');
 const FormData = require('form-data');
+const fs = require('fs');
+const URL = require('url');
 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -111,36 +113,47 @@ app.post('/reviews', (req, res) => {
     formInputs['photos'] = [];
     formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
 
-    // var fakeData = {
-    //   "product_id":17067,
-    //   "rating":5,
-    //   "summary":"Lorem ipsum",
-    //   "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    //   "recommend":false,
-    //   "name":"Lorem",
-    //   "email":"lorem@ipsum.com",
-    //   "photos":[],
-    //   "characteristics":{}
-    // };
-
-    axios({
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
-      method: 'POST',
-      data: formInputs,
-      headers: {
-        Authorization: token
-      }
-    })
-      .then(() => {
-        res.end();
-      })
-      .catch(err => {
-        console.log(err);
-        //console.log(formInputs);
-      });
-
-
+    // axios({
+    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+    //   method: 'POST',
+    //   data: formInputs,
+    //   headers: {
+    //     Authorization: token
+    //   }
+    // })
+    //   .then(() => {
+    //     res.end();
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     //console.log(formInputs);
+    //   });
     console.log(req.files);
+
+    var options = {
+      apiKey: '9b6f7c68837140863a35c6c962e93276',
+      base64string: req.files[0].buffer.toString('base64')
+    };
+
+    imgbbUploader(options)
+      .then(response => {
+        formInputs.photos.push(response.url);
+        axios({
+          url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+          method: 'POST',
+          data: formInputs,
+          headers: {
+            Authorization: token
+          }
+        })
+          .then(() => {
+            res.end();
+          })
+          .catch(err => {
+            console.log(err);
+            //console.log(formInputs);
+          });
+      });
 
     // cloudinary.config({
     //   cloud_name: 'dczltf399',

@@ -115,6 +115,7 @@ const ReviewTile = (props) => {
       <div className="reviewRow">
         Helpful?
         <button onClick={() => postHelpfulness()} style={{'margin-left': '5px'}}>Yes ({helpfulness})</button>
+        |
         <button onClick={reportReview}>Report</button>
       </div>
     </div>

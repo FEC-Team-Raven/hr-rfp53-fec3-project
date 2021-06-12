@@ -58,15 +58,15 @@ const ReviewForm = props => {
 
   var renderRatingMessage = () => {
     if (starRating === 1) {
-      return <span>Poor</span>;
+      return <div className="rating">Poor</div>;
     } else if (starRating === 2) {
-      return <span>Fair</span>;
+      return <div className="rating">Fair</div>;
     } else if (starRating === 3) {
-      return <span>Average</span>;
+      return <div className="rating">Average</div>;
     } else if (starRating === 4) {
-      return <span>Good</span>;
+      return <div className="rating">Good</div>;
     } else if (starRating === 5) {
-      return <span>Great</span>;
+      return <div className="rating">Great</div>;
     }
   };
 
@@ -78,7 +78,7 @@ const ReviewForm = props => {
 
   var renderRequireRating = () => {
     if (displayRequireStars) {
-      return <div>Please select a rating</div>;
+      return <div className="rating">Please select a rating</div>;
     }
   };
 
@@ -219,6 +219,7 @@ const ReviewForm = props => {
               maxlength="60"
               onChange={e => setEmail(e.target.value)}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              placeholder="Example: jackson11@email.com"
               required
             >
             </input>
