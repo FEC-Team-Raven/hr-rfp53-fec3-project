@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div>
       {!loading &&
-        <Related productId={productId}/>
+        <Related currProductId={productId}/>
       }
       {/* <Overview productId={productId}/>
       <Questions productId={productId}/> */}

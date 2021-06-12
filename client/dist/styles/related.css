@@ -61,6 +61,11 @@
 
 #compare {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+}
+
+.compared-product {
+  margin-right: 0px;
+  float: right;
 }

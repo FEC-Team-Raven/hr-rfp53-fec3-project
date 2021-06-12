@@ -6,15 +6,21 @@ import axios from 'axios';
 
 export const RelatedContext = React.createContext([]);
 
-const Related = ({productId}) => {
+const Related = ({currProductId}) => {
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const providerVal = {
+    currProductId,
+    relatedProducts
+  };
+
   useEffect(() => {
     if (loading) {
       setLoading(false);
       // Retrieves an ARRAY of related IDs of a specific product
-      axios('http://localhost:3000/products/relatedIds', {headers: {'productId': productId}})
+      axios('http://localhost:3000/products/relatedIds', {headers: {'productId': currProductId}})
         .then(response => {
           setRelatedIds(response.data);
           return response.data;
@@ -47,13 +53,13 @@ const Related = ({productId}) => {
     <div>
       <h1>RELATED PRODUCTS</h1>
       <div className="list">
-        <RelatedContext.Provider value={relatedProducts}>
+        <RelatedContext.Provider value={providerVal}>
           <RelatedProducts />
         </RelatedContext.Provider>
       </div>
       <h1>YOUR OUTFITS</h1>
       <div>
-        <Outfit productId={productId}/>
+        <Outfit productId={currProductId}/>
       </div>
     </div>
   );

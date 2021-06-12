@@ -5,12 +5,13 @@ import ActionButton from './ActionButton.jsx';
 
 const sampleImg = 'http://pm1.narvii.com/7060/c0f21f5ee6e0f9dff1d677ce423d57b35ebbbffcr1-738-1083v2_uhq.jpg';
 
-const ProductCard = ({product, listType}) => {
-  console.log('product:', product);
+const ProductCard = ({currProductId, product, listType}) => {
+
   return (
     <div className="card">
       <img src={sampleImg} width="250" height="300"></img>
       <ActionButton
+        currProductId={currProductId}
         productId={product.id}
         listType={listType}/>
       <div className="category">CATEGORY
