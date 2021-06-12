@@ -5,6 +5,7 @@ import { OutfitContext } from './Outfit.jsx';
 const ActionButton = ({productId, listType}) => {
   // oc = outfit context
   const oc = useContext(OutfitContext);
+  const [modal, toggleModal] = useState(false);
 
   const handleClick = (e) => {
     // OUTFIT ACTION BUTTON
@@ -17,7 +18,12 @@ const ActionButton = ({productId, listType}) => {
 
     // RELATED PRODUCTS ACTION BUTTON
     } else {
-      console.log('hi');
+      // Opens a modal window, compares details of product of current page to product that was selected from the list
+      if (modal) {
+        toggleModal(!modal);
+      } else {
+        toggleModal(true);
+      }
     }
   };
 
@@ -31,7 +37,14 @@ const ActionButton = ({productId, listType}) => {
   };
 
   return (
-    <button onClick={handleClick}>{renderButton()}</button>
+    <div>
+      {modal &&
+      <div id="modal" onClick={handleClick}>
+        <button id="close" onClick={handleClick}>X</button>
+      </div>
+      }
+      <button onClick={handleClick}>{renderButton()}</button>
+    </div>
   );
 };
 

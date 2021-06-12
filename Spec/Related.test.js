@@ -76,7 +76,7 @@ it ('should render outfit list and be empty by default', () => {
 //       throw err;
 //     });
 
-  // expect(addOutfit).toHaveBeenCalledTimes(1);
+// expect(addOutfit).toHaveBeenCalledTimes(1);
 
 
 // });
