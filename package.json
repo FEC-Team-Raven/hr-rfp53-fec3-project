@@ -31,7 +31,13 @@
   "homepage": "https://github.com/FEC-Team-Raven/hr-rfp53-fec3-project#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cloudinary": "^1.26.0",
     "express": "^4.17.1",
+    "form-data": "^3.0.1",
+    "fs": "^0.0.1-security",
+    "imgbb-uploader": "^1.3.1",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

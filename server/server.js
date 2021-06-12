@@ -1,10 +1,18 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const token = require('./config.js');
+const cloudinary = require('cloudinary');
+const FormData = require('form-data');
+
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
 
 const app = express();
 const port = 3000;
+
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
@@ -77,7 +85,47 @@ app.put('/reviews/helpful', (req, res) => {
 
 app.post('/reviews', (req, res) => {
   console.log(`SERVING POST REQUEST AT ${req.url}`);
-  console.log(req.body);
+  let upload = multer({storage: multer.memoryStorage()}).any('files');
+  upload(req, res, err => {
+    var formInputs = {};
+    for (var key in req.body) {
+      formInputs[key] = req.body[key];
+    }
+
+    formInputs['product_id'] = parseInt(formInputs['product_id'], 10);
+    formInputs['rating'] = parseInt(formInputs['rating'], 10);
+    formInputs['recommended'] = formInputs['recommended'] === 'true';
+    formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
+    formInputs['photos'] = [];
+
+    axios({
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+      method: 'POST',
+      body: formInputs,
+      headers: {
+        Authorization: token
+      }
+    })
+      .then(() => {
+        res.end();
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(formInputs);
+      });
+
+    console.log(req.files);
+
+    // cloudinary.config({
+    //   cloud_name: 'dczltf399',
+    //   api_key: '946126219219165',
+    //   api_secret: 'vWxGANXZlZ8vgCEJGrpKWGHMHAE'
+    // });
+
+    // cloudinary.v2.uploader.unsigned_upload(req.files[0].buffer.toString('base64'), 'mtmwkcmo', (response) => {
+    //   console.log(response);
+    // });
+  });
 });
 
 app.get('/reviews/meta', (req, res) => {

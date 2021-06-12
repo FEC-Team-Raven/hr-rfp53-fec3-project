@@ -18,6 +18,8 @@ const ReviewForm = props => {
   };
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [displayPhotos, setDisplayPhotos] = useState([]);
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
@@ -79,28 +81,43 @@ const ReviewForm = props => {
     for (var key in productCharacteristics) {
       charInputs[productCharacteristics[key].id] = characteristicRatings[key][0];
     }
-    var data = {
-      // eslint-disable-next-line camelcase
-      product_id: props.productId,
-      rating: starRating,
-      summary,
-      body,
-      recommended,
-      name: nickname,
-      email,
-      characteristics: charInputs
-    };
-    console.log(data);
+    console.log(charInputs);
+    var formData = new FormData();
+    formData.append('product_id', props.productId);
+    formData.append('rating', starRating);
+    formData.append('summary', summary);
+    formData.append('body', body);
+    formData.append('recommended', recommended);
+    formData.append('name', nickname);
+    formData.append('email', email);
+    formData.append('characteristics', JSON.stringify(charInputs));
+    for (var i = 0; i < photos.length; i++) {
+      formData.append(`file${i}`, photos[i]);
+    }
+
     axios({
       method: 'POST',
       url: 'http://localhost:3000/reviews',
-      params: {
-
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
       }
     })
       .then(() => {
 
       });
+  };
+
+  var handleImageUpload = event => {
+    if (event.target.files.length <= 5) {
+      var images = [];
+      for (var i = 0; i < event.target.files.length; i++) {
+        images.push(URL.createObjectURL(event.target.files[i]));
+      }
+      setDisplayPhotos(images);
+      setPhotos(event.target.files);
+      console.log(event.target.files[0]);
+    }
   };
 
   var renderForm = () => {
@@ -144,8 +161,13 @@ const ReviewForm = props => {
           </div>
 
           <div>
-            Upload images <br />
-            <input id="photos" name="photos" type="file" accept="image"></input>
+            Upload up to 5 images <br />
+            <input id="photos" name="photos" type="file" accept="image/png, image/jpeg" onChange={handleImageUpload} multiple></input>
+            <div className="reviewRow">
+              {displayPhotos.map(photo => {
+                return <img className="reviewImage" src={photo}></img>;
+              })}
+            </div>
           </div>
 
           <div>

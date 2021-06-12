@@ -10,6 +10,7 @@ const ReviewList = (props) => {
   const [sort, setSort] = useState('relevant');
   const [displayCount, setDisplayCount] = useState(2);
   const [displayFormModal, setDisplayFormModal] = useState(false);
+  const [searchFilter, setSearchFilter] = useState('');
   var {starFilter} = useContext(FilterContext);
 
   useEffect(() => {
@@ -20,16 +21,28 @@ const ReviewList = (props) => {
 
 
   useEffect(() => {
-    filterStars(reviews);
-  }, [starFilter]);
+    filter(reviews);
+  }, [starFilter, searchFilter]);
 
-  var filterStars = reviews => {
-    if (starFilter.length === 0) {
+  var filter = reviews => {
+    if (starFilter.length === 0 && searchFilter.length < 3) {
       setRenderedReviews(reviews);
-    } else {
+    } else if (searchFilter.length < 3) {
       setRenderedReviews(reviews.filter(review => {
         return starFilter.includes(review.rating);
       }));
+    } else if (starFilter.length === 0) {
+      setRenderedReviews(reviews.filter(review => {
+        console.log(review.body, '|', searchFilter);
+        return review.body.toLowerCase().includes(searchFilter.toLowerCase());
+      }));
+    } else {
+      setRenderedReviews(reviews.filter(review => {
+        return starFilter.includes(review.rating);
+      })
+        .filter(review => {
+          return review.body.toLowerCase().includes(searchFilter.toLowerCase());
+        }));
     }
   };
 
@@ -42,7 +55,7 @@ const ReviewList = (props) => {
     })
       .then(reviews => {
         setReviews(reviews.data.results);
-        filterStars(reviews.data.results);
+        filter(reviews.data.results);
       })
       .catch(err => {
         console.log(err);
@@ -86,7 +99,8 @@ const ReviewList = (props) => {
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
-      </select> <br />
+      </select>
+      <input type="text" onChange={e => setSearchFilter(e.target.value)}></input> <br />
       {renderList()}
       {renderMoreReviews()}
       <button onClick={() => setDisplayFormModal(true)}>Add a Review +</button>
