@@ -7,6 +7,7 @@ const ReviewForm = props => {
   const [productCharacteristics, setProductCharacteristics] = useState({});
   const [loading, setLoading] = useState(true);
   const [starRating, setStarRating] = useState(0);
+  const [displayRequireStars, setDisplayRequireStars] = useState(false);
   const [recommended, setRecommended] = useState(null);
   var characteristicRatings = {
     Size: useState(0),
@@ -75,19 +76,39 @@ const ReviewForm = props => {
     });
   };
 
+  var renderRequireRating = () => {
+    if (displayRequireStars) {
+      return <div>Please select a rating</div>;
+    }
+  };
+
+  var renderBodyMessage = () => {
+    if (body.length < 50) {
+      return <div>Minimum required characters left: [{50 - body.length}]</div>;
+    } else {
+      return <div>Minimum reached</div>;
+    }
+  };
+
   var handleSubmit = event => {
     event.preventDefault();
+    if (starRating === 0) {
+      setDisplayRequireStars(true);
+      return;
+    }
+    if (body.length < 50) {
+      return;
+    }
     var charInputs = {};
     for (var key in productCharacteristics) {
       charInputs[productCharacteristics[key].id] = characteristicRatings[key][0];
     }
-    console.log(charInputs);
     var formData = new FormData();
     formData.append('product_id', props.productId);
     formData.append('rating', starRating);
     formData.append('summary', summary);
     formData.append('body', body);
-    formData.append('recommended', recommended);
+    formData.append('recommend', recommended);
     formData.append('name', nickname);
     formData.append('email', email);
     formData.append('characteristics', JSON.stringify(charInputs));
@@ -104,7 +125,7 @@ const ReviewForm = props => {
       }
     })
       .then(() => {
-
+        props.setDisplayFormModal(false);
       });
   };
 
@@ -120,28 +141,30 @@ const ReviewForm = props => {
     }
   };
 
+
+
   var renderForm = () => {
     if (!loading) {
       return (
-        <form onSubmit={handleSubmit}>
+        <form className="reviewForm" onSubmit={handleSubmit}>
           <div className="reviewRow">
-            <span>Select a rating: </span>
-            <span className="starContainer" >
-              <StarSelector setStarRating={setStarRating}/>
-            </span>
+            <div>Select a rating: </div>
+            <div className="starContainer" >
+              <input type="hidden" required></input>
+              <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars}/>
+            </div>
             {renderRatingMessage()}
+            {renderRequireRating()}
           </div>
 
           <div>
             Do you recommend this product?
-            <input id="recommendedYes" name="recommended" type="radio" value={true} onChange={(e) => setRecommended(e.target.value)}></input>
+            <input id="recommendedYes" name="recommended" type="radio" value={true} onChange={(e) => setRecommended(e.target.value)} required></input>
             <label for="recommendedYes">Yes</label>
-            <input id="recommendedNo" name="recommended" type="radio" value={false} onChange={(e) => setRecommended(e.target.value)}></input>
+            <input id="recommendedNo" name="recommended" type="radio" value={false} onChange={(e) => setRecommended(e.target.value)} required></input>
             <label for="recommendedNo">No</label>
           </div>
-
           {renderCharacteristics()}
-
           <div>
             <label for="summary">Review Summary</label>
             <input id="summary" name="summary" type="text" maxlength="60" onChange={e => setSummary(e.target.value)}></input>
@@ -156,8 +179,10 @@ const ReviewForm = props => {
               maxlength="1000"
               placeholder="Why did you like the product or not?"
               onChange={e => setBody(e.target.value)}
+              required
             >
             </textarea>
+            {renderBodyMessage()}
           </div>
 
           <div>
@@ -172,12 +197,32 @@ const ReviewForm = props => {
 
           <div>
             <label for="nickname">Nickname: </label>
-            <input type="text" id="nickname" name="nickname" maxlength="60" onChange={e => setNickname(e.target.value)}></input>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              maxlength="60"
+              onChange={e => setNickname(e.target.value)}
+              placeholder="Example: jackson11!"
+              required
+            >
+            </input>
+            <div>For privacy reasons, do not use your full name or email address</div>
           </div>
 
           <div>
             <label for="email">Email: </label>
-            <input type="text" id="email" name="email" maxlength="60" onChange={e => setEmail(e.target.value)}></input>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              maxlength="60"
+              onChange={e => setEmail(e.target.value)}
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              required
+            >
+            </input>
+            <div>For authentication reasons, you will not be emailed</div>
           </div>
 
           <input type="submit"></input>

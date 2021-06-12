@@ -33,7 +33,6 @@ const ReviewList = (props) => {
       }));
     } else if (starFilter.length === 0) {
       setRenderedReviews(reviews.filter(review => {
-        console.log(review.body, '|', searchFilter);
         return review.body.toLowerCase().includes(searchFilter.toLowerCase());
       }));
     } else {
@@ -101,6 +100,7 @@ const ReviewList = (props) => {
         <option value="newest">newest</option>
       </select>
       <input type="text" onChange={e => setSearchFilter(e.target.value)}></input> <br />
+
       {renderList()}
       {renderMoreReviews()}
       <button onClick={() => setDisplayFormModal(true)}>Add a Review +</button>

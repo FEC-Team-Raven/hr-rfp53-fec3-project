@@ -23,6 +23,7 @@ const StarSelector = (props) => {
   var handleClick = event => {
     setClickedRating(event.target.getAttribute('data-star'));
     props.setStarRating(parseInt(event.target.getAttribute('data-star'), 10));
+    props.setDisplayRequireStars(false);
   };
 
   return (

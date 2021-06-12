@@ -13,7 +13,6 @@
 .reviewRow {
   display: flex;
   flex-direction: row;
-  margin-bottom: 5px;
 }
 
 .between {
@@ -37,6 +36,10 @@
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
+}
+
+.summary {
+  font-weight: bold;
 }
 
 .reviewImage {
@@ -197,24 +200,22 @@
 }
 
 .emptyStar {
-  height: 20px;
+  height: 25px;
   width: 20px;
-  margin-top: 5px;
 }
 
 .reviewFormContainer {
   padding: 20px;
 }
 
-.characteristicInputContainer {
-  margin-top: 10px;
+.reviewForm > * {
+  margin-bottom: 10px;
 }
 
 .characteristicInput {
   width: 800px;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
 }
 
 .reviewBody {
@@ -222,3 +223,4 @@
   width: 300px;
   height: 100px;
 }
+

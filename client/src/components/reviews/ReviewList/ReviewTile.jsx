@@ -4,7 +4,6 @@ import axios from 'axios';
 
 
 const ReviewTile = (props) => {
-  console.log(props.review);
   const [helpfulness, setHelpfullness] = useState(props.review.helpfulness);
   const [voted, setVoted] = useState(false);
   const [expandBody, setExpandBody] = useState(false);
@@ -95,6 +94,7 @@ const ReviewTile = (props) => {
         <Stars rating={props.review.rating} />
         <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
       </div>
+      <div className="summary">{props.review.summary}</div>
       {renderBody(props.review.body)}
       {renderRecommend(props.review.recommend)}
       {renderResponse(props.review.response)}

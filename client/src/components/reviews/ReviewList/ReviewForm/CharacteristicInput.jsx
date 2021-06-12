@@ -56,6 +56,7 @@ const CharacteristicInput = props => {
             name={props.characteristic}
             value="1"
             onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+            required
           >
           </input>
           <label for={`${props.characteristic}1`}>{rating1}</label>
@@ -67,6 +68,7 @@ const CharacteristicInput = props => {
             name={props.characteristic}
             value="2"
             onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+            required
           >
           </input>
           <label for={`${props.characteristic}2`}>{rating2}</label>
@@ -78,6 +80,7 @@ const CharacteristicInput = props => {
             name={props.characteristic}
             value="3"
             onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+            required
           >
           </input>
           <label for={`${props.characteristic}3`}>{rating3}</label>
@@ -89,6 +92,7 @@ const CharacteristicInput = props => {
             name={props.characteristic}
             value="4"
             onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+            required
           >
           </input>
           <label for={`${props.characteristic}4`}>{rating4}</label>
@@ -100,6 +104,7 @@ const CharacteristicInput = props => {
             name={props.characteristic}
             value="5"
             onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
+            required
           >
           </input>
           <label for={`${props.characteristic}5`}>{rating5}</label>

@@ -94,14 +94,26 @@ app.post('/reviews', (req, res) => {
 
     formInputs['product_id'] = parseInt(formInputs['product_id'], 10);
     formInputs['rating'] = parseInt(formInputs['rating'], 10);
-    formInputs['recommended'] = formInputs['recommended'] === 'true';
-    formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
+    formInputs['recommend'] = formInputs['recommend'] === 'true';
     formInputs['photos'] = [];
+    formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
+
+    // var fakeData = {
+    //   "product_id":17067,
+    //   "rating":5,
+    //   "summary":"Lorem ipsum",
+    //   "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    //   "recommend":false,
+    //   "name":"Lorem",
+    //   "email":"lorem@ipsum.com",
+    //   "photos":[],
+    //   "characteristics":{}
+    // };
 
     axios({
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
       method: 'POST',
-      body: formInputs,
+      data: formInputs,
       headers: {
         Authorization: token
       }
@@ -111,8 +123,9 @@ app.post('/reviews', (req, res) => {
       })
       .catch(err => {
         console.log(err);
-        console.log(formInputs);
+        //console.log(formInputs);
       });
+
 
     console.log(req.files);
 
