@@ -57,8 +57,8 @@ const AnswerItem = (props) => {
       <div id="answer-text">{answer}</div>
       <div className="answer-extra">
         <div id="ans-user">by {user}, {date}</div>
-        <div id="ans-help">Helpful? <button onClick={handleClick}>Yes</button> ({help})</div>
-        <div id="ans-report"><button onClick={handleClick}>Report</button></div>
+        <div id="ans-help">Helpful? <button onClick={handleClick} id='yes'>Yes</button> ({help})</div>
+        <div id="ans-report"><button onClick={handleClick} id='report'>Report</button></div>
       </div>
     </div>
   );

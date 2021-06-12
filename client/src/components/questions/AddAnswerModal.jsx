@@ -53,18 +53,20 @@ const AddAnswerModal = (props) => {
 
 
   return (
-    <div className="modal">
-      ADD ANSWER FORM
+    <div className="modal" >
+      <h3 id='modal-title'>ADD ANSWER</h3>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
         <input type="text" name="Name" onChange={handleChange}></input>
         <label>Email</label>
         <input type="text" name="Email" onChange={handleChange}></input>
         <label>Answer</label>
-        <input type="text" name="Body" onChange={handleChange}></input>
-        <button>Submit</button>
+        <textarea type="text" name="Body" onChange={handleChange}></textarea>
+        <div id='form-buttons'>
+          <button id='form-submit'>Submit</button>
+          <button id='form-close' onClick={props.addAnswerModal}>Close</button>
+        </div>
       </form>
-      <button onClick={props.addAnswerModal}>close</button>
     </div>
   );
 };

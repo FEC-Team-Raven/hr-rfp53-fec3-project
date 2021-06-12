@@ -69,12 +69,17 @@ const Questions = (props) => {
 
   return (
     <div class="main">
-      <div>QUESTIONS AND ANSWERS</div>
+      <div id="titleQA">QUESTIONS AND ANSWERS</div>
 
       <div class="search">
         <form>
-          <input id="searchBar" type="text" name="search" onChange={handleSearch}></input>
-          <button>Search</button>
+          <input id="searchBar" type="text" name="search" onChange={handleSearch}
+            placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </button>
         </form>
       </div>
 
@@ -86,20 +91,16 @@ const Questions = (props) => {
 
       <button id={modalId} onClick={onClick}>
         {test ? null : 'MORE ANSWERED QUESTIONS'}
-        {/* MORE ANSWERED QUESTIONS */}
       </button>
-      <button onClick={clickAddQuestion} id="AddQ">ADD A QUESTION</button>
 
-      {/* <ProductContext.Provider value={props.productId}>
-        <QuestionContext.Provider value={questions}>
-          <AddQuestionModal />
-        </QuestionContext.Provider>
-      </ProductContext.Provider> */}
-
-      {/* <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions}/> */}
+      <button onClick={clickAddQuestion} id="AddQ">
+        ADD A QUESTION
+      </button>
 
       <div id="AddQuestionModal">
+        <div id={showModal ? 'modal-blur-active' : 'modal-blur-inactive'}></div>
         {showModal ? <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions} showModal={clickAddQuestion}/> : null}
+
       </div>
     </div>
   );

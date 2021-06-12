@@ -76,15 +76,15 @@ const QuestionItem = (props) => {
         {/* question, helpful, add ans */}
         <div id="q-text"> <h5 id="q-head">Q: </h5>{props.value.question_body}</div>
         <div className='question-extra'>
-          <div id="helpful">Helpful?
-            <button onClick={handleClick}>Yes</button>
+          <div id="helpful" >Helpful?
+            <button onClick={handleClick} id='yes'>Yes</button>
             ({props.value.question_helpfulness})
           </div>
           <div id="addAns">
-            <button onClick={clickAddAnswer}>Add Answer</button>
+            <button onClick={clickAddAnswer} id='add'>Add Answer</button>
           </div>
           <div id="Report">
-            <button onClick={handleClick}>Report</button>
+            <button onClick={handleClick} id='report'>Report</button>
           </div>
         </div>
       </div>
@@ -92,9 +92,9 @@ const QuestionItem = (props) => {
         <AnswerList value={answer} getAnswer={getAnswer}/>
       </div>
       <div id="AddAnswerModal">
+        <div id={showAnsModal ? 'modal-blur-active' : 'modal-blur-inactive'}></div>
         {showAnsModal ? <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer} addAnswerModal={clickAddAnswer}/> : null}
       </div>
-      {/* <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer}/> */}
     </div>
   );
 };

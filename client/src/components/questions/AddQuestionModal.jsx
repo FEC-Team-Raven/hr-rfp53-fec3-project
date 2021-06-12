@@ -48,17 +48,19 @@ const AddQuestionModal = (props) => {
 
   return (
     <div className="modal">
-      ADD QUESTION MODAL
+      <h3 id='modal-title'>ADD QUESTION MODAL</h3>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
         <input type="text" name="Name" onChange={handleChange}></input>
         <label>Email</label>
         <input type="text" name="Email" onChange={handleChange}></input>
         <label>Question</label>
-        <input type="text" name="Body" onChange={handleChange}></input>
-        <button>Submit</button>
+        <textarea type="text" name="Body" onChange={handleChange}></textarea>
+        <div id="form-buttons">
+          <button id='form-submit'>Submit</button>
+          <button id='form-close' onClick={props.showModal}>Close</button>
+        </div>
       </form>
-      <button onClick={props.showModal}>close</button>
     </div>
   );
 };
