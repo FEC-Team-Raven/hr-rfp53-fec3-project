@@ -33,7 +33,7 @@ const Outfit = ({productId}) => {
   };
 
   return (
-    <div className="outfit grid-container">
+    <div className="outfit list">
       <div className="card addOutfit">
         <button onClick={addOutfit}>+</button>
         <h2>Add to Outfit</h2>

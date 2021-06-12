@@ -39,8 +39,17 @@ const ActionButton = ({productId, listType}) => {
   return (
     <div>
       {modal &&
-      <div id="modal" onClick={handleClick}>
+      <div id="modal">
+        COMPARING
         <button id="close" onClick={handleClick}>X</button>
+        <div id="compare">
+          <div className="compare-product">
+            Current Product
+          </div>
+          <div className="compare-product">
+            product 2
+          </div>
+        </div>
       </div>
       }
       <button onClick={handleClick}>{renderButton()}</button>
