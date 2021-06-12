@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Retrieves the list of products
-app.get('/products_list', (req, res) => {
+app.get('/products/list', (req, res) => {
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
     headers: {
@@ -51,7 +51,7 @@ app.get('/products/relatedIds', (req, res) => {
 });
 
 // Retrieves produdct level info about a SPECIFIC product id
-app.get('/product', (req, res) => {
+app.get('/products/productid', (req, res) => {
   let productId = req.headers.productid;
   axios({
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`,

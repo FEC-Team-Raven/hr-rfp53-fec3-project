@@ -24,7 +24,7 @@ const Outfit = ({productId}) => {
 
     if (unique) {
       handleClick(false);
-      axios('http://localhost:3000/product', {headers: {'productId': productId}})
+      axios('http://localhost:3000/products/productid', {headers: {'productId': productId}})
         .then(response => {
           setOutfitIds([...outfitIds, response.data.id]);
           setOutfits([...outfits, response.data]);

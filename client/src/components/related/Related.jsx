@@ -25,7 +25,7 @@ const Related = ({productId}) => {
           let promises = [];
           for (var i = 0; i < related.length; i++) {
             promises.push(
-              axios('http://localhost:3000/product', {headers: {'productId': related[i]}})
+              axios('http://localhost:3000/products/productid', {headers: {'productId': related[i]}})
                 .then(response => {
                   return response.data;
                 })

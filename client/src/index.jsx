@@ -12,7 +12,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (loading) {
-      axios('http://localhost:3000/products_list')
+      axios('http://localhost:3000/products/list')
         .then(products => {
           // Sets id as the first product object in the array of products
           setProductId(products.data[0].id);
