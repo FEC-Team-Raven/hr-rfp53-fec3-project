@@ -64,12 +64,10 @@ const ActionButton = ({currProductId, product, listType}) => {
             {console.log('clicked product data:', product)}
             {product.name}
           </div>
-          <div className="modal-row">row</div>
-          <div className="modal-row">row</div>
-          <div className="modal-row">row</div>
-          <div className="modal-row">row</div>
-          <div className="modal-row">row</div>
         </div>
+        <div className="modal-row">row</div>
+        <div className="modal-row">row</div>
+        <div className="modal-row">row</div>
       </div>
       }
       <button onClick={handleClick}>{renderButton()}</button>
