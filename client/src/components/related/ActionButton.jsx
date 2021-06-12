@@ -3,11 +3,10 @@ import axios from 'axios';
 
 import { OutfitContext } from './Outfit.jsx';
 
-const ActionButton = ({currProductId, productId, listType}) => {
+const ActionButton = ({currProductId, product, listType}) => {
+  const oc = useContext(OutfitContext); // oc = outfit context
   const [currProductData, setCurrProductData] = useState({});
   const [loading, setLoading] = useState(true);
-  // oc = outfit context
-  const oc = useContext(OutfitContext);
   const [modal, toggleModal] = useState(false);
 
   useEffect(() => {
@@ -25,9 +24,9 @@ const ActionButton = ({currProductId, productId, listType}) => {
     // OUTFIT ACTION BUTTON
     if (listType === 'outfit') {
       // Remove productid from outfidIds
-      oc.setOutfitIds(oc.outfitIds.filter(outfitId => outfitId !== productId));
+      oc.setOutfitIds(oc.outfitIds.filter(outfitId => outfitId !== product.id));
       // Remove productid from outfits
-      oc.setOutfits(oc.outfits.filter(outfit => outfit.id !== productId));
+      oc.setOutfits(oc.outfits.filter(outfit => outfit.id !== product.id));
 
     // RELATED PRODUCTS ACTION BUTTON
     } else {
@@ -44,7 +43,7 @@ const ActionButton = ({currProductId, productId, listType}) => {
     if (listType === 'outfit') {
       return 'x';
     } else {
-      return 'star';
+      return <span>&#x2605;</span>;
     }
   };
 
@@ -62,7 +61,8 @@ const ActionButton = ({currProductId, productId, listType}) => {
             Characteristics
           </div>
           <div className="compare-product">
-            Compared Product
+            {console.log('clicked product data:', product)}
+            {product.name}
           </div>
         </div>
       </div>

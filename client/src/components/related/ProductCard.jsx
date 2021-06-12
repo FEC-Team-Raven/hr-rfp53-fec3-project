@@ -12,7 +12,7 @@ const ProductCard = ({currProductId, product, listType}) => {
       <img src={sampleImg} width="250" height="300"></img>
       <ActionButton
         currProductId={currProductId}
-        productId={product.id}
+        product={product}
         listType={listType}/>
       <div className="category">CATEGORY
         <div>{product.name}</div>
