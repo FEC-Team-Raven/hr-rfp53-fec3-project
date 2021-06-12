@@ -4,7 +4,6 @@ const Thumbnail = props => {
   let selected = props.selected;
   const select = event => {
     if (selected) { selected = false; }
-    console.log('Clicked!');
     document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
     event.target.closest('.thumbnail').classList.add('selected');
     let mainImageURL = event.target.style.backgroundImage;
