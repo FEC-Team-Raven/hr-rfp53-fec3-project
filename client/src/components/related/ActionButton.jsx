@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 
+import Compare from './Compare.jsx';
 import { OutfitContext } from './Outfit.jsx';
 
-const ActionButton = ({currProductId, product, listType}) => {
+const ActionButton = ({ currProductId, product, listType }) => {
   const oc = useContext(OutfitContext); // oc = outfit context
   const [currProductData, setCurrProductData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,6 @@ const ActionButton = ({currProductId, product, listType}) => {
         });
     }
   });
-
 
   const handleClick = (e) => {
     // OUTFIT ACTION BUTTON
@@ -38,7 +38,6 @@ const ActionButton = ({currProductId, product, listType}) => {
     }
   };
 
-
   const renderButton = () => {
     if (listType === 'outfit') {
       return <span>&#10005;</span>;
@@ -57,17 +56,13 @@ const ActionButton = ({currProductId, product, listType}) => {
           <div className="current-product">
             {currProductData.name}
           </div>
-          <div className="characteristics">
-            CHARACTERISTICS
-          </div>
-          <div className="compare-product">
-            {console.log('clicked product data:', product)}
+          <div className="compared-product">
             {product.name}
           </div>
         </div>
-        <div className="modal-row">row</div>
-        <div className="modal-row">row</div>
-        <div className="modal-row">row</div>
+        <Compare
+          currFeats={currProductData.features}
+          compareFeats={product.features}/>
       </div>
       }
       <button onClick={handleClick}>{renderButton()}</button>
