@@ -32,11 +32,11 @@ const Outfit = ({productId}) => {
   };
 
   return (
-    <div className="outfit list">
-      <div className="card addOutfit">
+    <ol className="outfit list carousel__viewport">
+      <li className="card addOutfit carousel__slide">
         <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
-      </div>
+      </li>
       <OutfitContext.Provider value={providerVal}>
         {outfits.map(outfit =>
           <ProductCard
@@ -45,7 +45,7 @@ const Outfit = ({productId}) => {
             key={outfit.id}/>)
         }
       </OutfitContext.Provider>
-    </div>
+    </ol>
   );
 };
 

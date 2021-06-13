@@ -52,13 +52,15 @@ const Related = ({currProductId}) => {
   return (
     <div>
       <h1>RELATED PRODUCTS</h1>
-      <div className="related list">
-        <RelatedContext.Provider value={providerVal}>
-          <RelatedProducts />
-        </RelatedContext.Provider>
+      <div className="carousel">
+        <ol className="related list carousel__viewport">
+          <RelatedContext.Provider value={providerVal}>
+            <RelatedProducts />
+          </RelatedContext.Provider>
+        </ol>
       </div>
       <h1>YOUR OUTFITS</h1>
-      <div>
+      <div className="carousel">
         <Outfit productId={currProductId}/>
       </div>
     </div>

@@ -8,18 +8,20 @@ const sampleImg = 'http://pm1.narvii.com/7060/c0f21f5ee6e0f9dff1d677ce423d57b35e
 const ProductCard = ({currProductId, product, listType}) => {
 
   return (
-    <div className="card">
-      <img src={sampleImg} width="250" height="300"></img>
-      <ActionButton
-        currProductId={currProductId}
-        product={product}
-        listType={listType}/>
-      <div className="category">CATEGORY
-        <div>{product.name}</div>
-        <div>{product.default_price}</div>
-        <Stars />
+    <li className="carousel__slide">
+      <div className="card carousel__snapper">
+        <img src={sampleImg} width="250" height="300"></img>
+        <ActionButton
+          currProductId={currProductId}
+          product={product}
+          listType={listType}/>
+        <div className="category">CATEGORY
+          <div>{product.name}</div>
+          <div>{product.default_price}</div>
+          <Stars />
+        </div>
       </div>
-    </div>
+    </li>
   );
 };
 
