@@ -21,16 +21,23 @@ const ImageGallery = props => {
 
   const [ thumbnailList, setThumbnailList ] = useState(images.slice(0, 7));
 
-  const getThumbnailList = index => {
-    currentLowestThumbnailIndex = index + 1;
-    currentHighestThumbnailIndex += 7;
-    let newImageList = images.slice(currentLowestThumbnailIndex, currentHighestThumbnailIndex).filter(imageURL => imageURL !== undefined);
+  const getThumbnailList = (index, direction) => {
+    let preGetIndexes = [currentLowestThumbnailIndex, currentHighestThumbnailIndex];
+    if (direction === 1) {
+      currentLowestThumbnailIndex += 7;
+      currentHighestThumbnailIndex += 7;
+    } else {
+      currentHighestThumbnailIndex -= 7;
+      currentLowestThumbnailIndex -= 7;
+    }
+    let newImageList = images.slice(currentLowestThumbnailIndex, currentHighestThumbnailIndex + 1).filter(imageURL => imageURL !== undefined);
     if (newImageList[0] !== undefined) {
+      // if we got any new images
       return newImageList;
     } else {
-      currentLowestThumbnailIndex = 0;
-      currentHighestThumbnailIndex = 6;
-      return images.slice(0, 7);
+      // if we're out of images
+      [ currentLowestThumbnailIndex, currentHighestThumbnailIndex ] = preGetIndexes;
+      return images.slice(preGetIndexes[0], preGetIndexes[1] + 1);
     }
   };
 
@@ -43,19 +50,15 @@ const ImageGallery = props => {
   return (
     <div id="image-gallery">
       <div id="image-gallery-thumbnail-list">
-        <button id="image-gallery-thumbnail-list-scroll-up">&#11105;</button>
+        <button id="image-gallery-thumbnail-list-scroll-up" onClick={setThumbnailList
+          .bind(null, getThumbnailList
+            .bind(null, currentHighestThumbnailIndex, -1))
+        }>&#11105;</button>
         <Thumbnail imageURL={thumbnailList[0]} selected={true} />
         {thumbnailList.slice(1).map(thumbnail => <Thumbnail imageURL={thumbnail} />)}
-        {/* <Thumbnail imageURL={images[0]} selected={true}/>
-        <Thumbnail imageURL={images[1]}/>
-        <Thumbnail imageURL={images[2]}/>
-        <Thumbnail imageURL={images[3]}/>
-        <Thumbnail imageURL={images[4]}/>
-        <Thumbnail imageURL={images[5]}/>
-        <Thumbnail imageURL={images[6]}/> */}
         <button id="image-gallery-thumbnail-list-scroll-down" onClick={setThumbnailList
           .bind(null, getThumbnailList
-            .bind(null, currentHighestThumbnailIndex))
+            .bind(null, currentHighestThumbnailIndex, 1))
         }>&#11107;</button>
       </div>
     </div>
