@@ -20,6 +20,13 @@ const ImageGallery = props => {
   ];
 
   const [ thumbnailList, setThumbnailList ] = useState(images.slice(0, 7));
+  const [ mainImageIndex, setMainImageIndex ] = useState(0);
+
+  const select = event => {
+    if (event.target.closest('.thumbnail').classList.contains('selected')) { return; }
+    document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
+    setMainImageIndex(event.target.closest('.thumbnail').dataset.index);
+  };
 
   const getThumbnailList = (index, direction) => {
     let preGetIndexes = [currentLowestThumbnailIndex, currentHighestThumbnailIndex];
@@ -42,20 +49,27 @@ const ImageGallery = props => {
   };
 
   useEffect(() => {
-    document.getElementById('image-gallery').style.backgroundImage = `url(${images[currentLowestThumbnailIndex]})`;
+    setMainImageIndex(0);
     Array.prototype.slice.call(document.getElementsByClassName('thumbnail')).forEach(thumbnail => thumbnail.classList.remove('selected'));
     document.querySelector('#image-gallery').getElementsByClassName('thumbnail')[0].classList.add('selected');
   }, [thumbnailList]);
 
+  useEffect(() => {
+    Array.prototype.slice.call(document.querySelector('#image-gallery-thumbnail-list').getElementsByClassName('thumbnail')).forEach(thumbnail => {
+      if (Number.parseInt(thumbnail.dataset.index) === Number.parseInt(mainImageIndex)) {
+        thumbnail.classList.add('selected');
+      }
+    });
+  }, [mainImageIndex]);
+
   return (
-    <div id="image-gallery">
+    <div style={{backgroundImage: `url(${thumbnailList[mainImageIndex]})`}} id="image-gallery">
       <div id="image-gallery-thumbnail-list">
         <button id="image-gallery-thumbnail-list-scroll-up" onClick={setThumbnailList
           .bind(null, getThumbnailList
             .bind(null, currentHighestThumbnailIndex, -1))
         }>&#11105;</button>
-        <Thumbnail imageURL={thumbnailList[0]} selected={true} />
-        {thumbnailList.slice(1).map(thumbnail => <Thumbnail imageURL={thumbnail} />)}
+        {thumbnailList.map((thumbnail, index) => <Thumbnail key={index} selectHandler={select} imageURL={thumbnail} data-index={index} />)}
         <button id="image-gallery-thumbnail-list-scroll-down" onClick={setThumbnailList
           .bind(null, getThumbnailList
             .bind(null, currentHighestThumbnailIndex, 1))
