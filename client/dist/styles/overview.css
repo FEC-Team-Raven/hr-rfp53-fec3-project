@@ -29,12 +29,17 @@ button.thumbnail {
 }
 
 #image-gallery > #select-image-left, #image-gallery > #select-image-right {
-  flex: 1 1 100%;
+  flex: 1 1 10%;
   background: none;
   border: none;
   padding: 0;
   text-align: left;
   cursor: pointer;
+  font-size: 2rem;
+}
+
+#image-gallery > #select-gap {
+  flex: 1 1 100%;
 }
 
 #image-gallery > #select-image-right {

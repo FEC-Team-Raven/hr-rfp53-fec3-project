@@ -22,12 +22,6 @@ const ImageGallery = props => {
   const [ thumbnailList, setThumbnailList ] = useState(images.slice(0, 7));
   const [ mainImageIndex, setMainImageIndex ] = useState(0);
 
-  const select = event => {
-    if (event.target.closest('.thumbnail').classList.contains('selected')) { return; }
-    document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
-    setMainImageIndex(event.target.closest('.thumbnail').dataset.index);
-  };
-
   const getThumbnailList = (index, direction) => {
     let preGetIndexes = [currentLowestThumbnailIndex, currentHighestThumbnailIndex];
     if (direction === 1) {
@@ -45,6 +39,27 @@ const ImageGallery = props => {
       // if we're out of images
       [ currentLowestThumbnailIndex, currentHighestThumbnailIndex ] = preGetIndexes;
       return images.slice(preGetIndexes[0], preGetIndexes[1] + 1);
+    }
+  };
+
+  const select = (event, direction) => {
+    const changeSelected = newVal => {
+      console.log(newVal);
+      if (thumbnailList[newVal]) {
+        document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
+        setMainImageIndex(newVal);
+      } else if (thumbnailList[newVal] === undefined && newVal < 7 && newVal > 0) {
+        return;
+      } else {
+        setThumbnailList(getThumbnailList.bind(null, newVal, direction));
+      }
+    };
+
+    if (event === null) {
+      changeSelected(Number.parseInt(mainImageIndex) + direction);
+    } else {
+      if (event.target.closest('.thumbnail').classList.contains('selected')) { return; }
+      changeSelected(event.target.closest('.thumbnail').dataset.index);
     }
   };
 
@@ -75,8 +90,9 @@ const ImageGallery = props => {
             .bind(null, currentHighestThumbnailIndex, 1))
         }>&#11107;</button>
       </div>
-      <button id="select-image-left">&#9664;</button>
-      <button id="select-image-right">&#9654;</button>
+      <button id="select-image-left" onClick={select.bind(null, null, -1)}>&#9664;</button>
+      <div id="select-gap"></div>
+      <button id="select-image-right" onClick={select.bind(null, null, 1)}>&#9654;</button>
     </div>
   );
 };
