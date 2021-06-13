@@ -63,6 +63,7 @@ const ImageGallery = props => {
       <button id="select-image-left" onClick={select.bind(null, null, -1)}>&#9664;</button>
       <div id="select-gap"></div>
       <button id="select-image-right" onClick={select.bind(null, null, 1)}>&#9654;</button>
+      <button id="expand-image-gallery" onClick={() => { document.querySelector('#image-gallery').classList.toggle('expanded'); }}>&#11034;</button>
     </div>
   );
 };
