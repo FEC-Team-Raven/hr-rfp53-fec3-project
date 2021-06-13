@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Thumbnail from './../shared/Thumbnail.jsx';
 
-let currentLowestThumbnailIndex = 0;
-let currentHighestThumbnailIndex = 6;
-
 const ImageGallery = props => {
   const images = [
     'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xvdGhpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
@@ -19,57 +16,50 @@ const ImageGallery = props => {
     'https://images.unsplash.com/photo-1543508282-6319a3e2621f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGNsb3RoaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'
   ];
 
-  const [ thumbnailList, setThumbnailList ] = useState(images.slice(0, 7));
+  const [ thumbnailSetNumber, setThumbnailSetNumber ] = useState(0);
+  const [ thumbnailListBoundaries, setThumbnailListBoundaries ] = useState({start: 0, end: 6});
   const [ mainImageIndex, setMainImageIndex ] = useState(0);
 
-  const getThumbnailList = (index, direction) => {
-    let preGetIndexes = [currentLowestThumbnailIndex, currentHighestThumbnailIndex];
-    if (direction === 1) {
-      currentLowestThumbnailIndex += 7;
-      currentHighestThumbnailIndex += 7;
-    } else {
-      currentHighestThumbnailIndex -= 7;
-      currentLowestThumbnailIndex -= 7;
-    }
-    let newImageList = images.slice(currentLowestThumbnailIndex, currentHighestThumbnailIndex + 1).filter(imageURL => imageURL !== undefined);
-    if (newImageList[0] !== undefined) {
-      // if we got any new images
-      return newImageList;
-    } else {
-      // if we're out of images
-      [ currentLowestThumbnailIndex, currentHighestThumbnailIndex ] = preGetIndexes;
-      return images.slice(preGetIndexes[0], preGetIndexes[1] + 1);
+  const adjustThumbnailListBoundaries = direction => {
+    let newStart = thumbnailListBoundaries.start + 7 * direction;
+    let newEnd = thumbnailListBoundaries.end + 7 * direction;
+    if (images.slice(newStart, newEnd + 1).filter(imageURL => imageURL !== undefined)[0] !== undefined) {
+      setThumbnailListBoundaries({start: newStart, end: newEnd});
     }
   };
 
   const select = (event, direction) => {
     const changeSelected = newVal => {
-      console.log(newVal);
-      if (thumbnailList[newVal]) {
+      if (newVal >= thumbnailListBoundaries.start && newVal <= thumbnailListBoundaries.end && images[newVal]) {
+        // if thumbnail at index newVal is currently on-screen and does exist
         document.querySelector('#image-gallery-thumbnail-list').querySelector('.selected').classList.remove('selected');
         setMainImageIndex(newVal);
-      } else if (thumbnailList[newVal] === undefined && newVal < 7 && newVal > 0) {
-        return;
+      } else if (images[newVal] !== undefined) {
+        // if thumbnail at index newVal does exist but is off-screen
+        adjustThumbnailListBoundaries(direction);
+        setMainImageIndex(newVal);
       } else {
-        setThumbnailList(getThumbnailList.bind(null, newVal, direction));
+        return;
       }
     };
 
+
     if (event === null) {
+      // if we clicked on a select arrow
       changeSelected(Number.parseInt(mainImageIndex) + direction);
     } else {
+      // if we clicked on a thumbnail to select
       if (event.target.closest('.thumbnail').classList.contains('selected')) { return; }
       changeSelected(event.target.closest('.thumbnail').dataset.index);
     }
   };
 
-  useEffect(() => {
-    setMainImageIndex(0);
-    Array.prototype.slice.call(document.getElementsByClassName('thumbnail')).forEach(thumbnail => thumbnail.classList.remove('selected'));
-    document.querySelector('#image-gallery').getElementsByClassName('thumbnail')[0].classList.add('selected');
-  }, [thumbnailList]);
+  const [ thumbnailList, setThumbnailList ] = useState(images.map((image, index) =>
+    <Thumbnail key={index} imageURL={image} data-index={index} selectHandler={select} />
+  ));
 
   useEffect(() => {
+    // if we change the mainImage, make sure the corresponding thumbnail is selected just in case
     Array.prototype.slice.call(document.querySelector('#image-gallery-thumbnail-list').getElementsByClassName('thumbnail')).forEach(thumbnail => {
       if (Number.parseInt(thumbnail.dataset.index) === Number.parseInt(mainImageIndex)) {
         thumbnail.classList.add('selected');
@@ -78,17 +68,11 @@ const ImageGallery = props => {
   }, [mainImageIndex]);
 
   return (
-    <div style={{backgroundImage: `url(${thumbnailList[mainImageIndex]})`}} id="image-gallery">
+    <div style={{backgroundImage: `url(${images[mainImageIndex]})`}} id="image-gallery">
       <div id="image-gallery-thumbnail-list">
-        <button id="image-gallery-thumbnail-list-scroll-up" onClick={setThumbnailList
-          .bind(null, getThumbnailList
-            .bind(null, currentHighestThumbnailIndex, -1))
-        }>&#11105;</button>
-        {thumbnailList.map((thumbnail, index) => <Thumbnail key={index} selectHandler={select} imageURL={thumbnail} data-index={index} />)}
-        <button id="image-gallery-thumbnail-list-scroll-down" onClick={setThumbnailList
-          .bind(null, getThumbnailList
-            .bind(null, currentHighestThumbnailIndex, 1))
-        }>&#11107;</button>
+        <button id="image-gallery-thumbnail-list-scroll-up" onClick={adjustThumbnailListBoundaries.bind(null, -1)}>&#11105;</button>
+        {thumbnailList.slice(thumbnailListBoundaries.start, thumbnailListBoundaries.end + 1)}
+        <button id="image-gallery-thumbnail-list-scroll-down" onClick={adjustThumbnailListBoundaries.bind(null, 1)}>&#11107;</button>
       </div>
       <button id="select-image-left" onClick={select.bind(null, null, -1)}>&#9664;</button>
       <div id="select-gap"></div>
