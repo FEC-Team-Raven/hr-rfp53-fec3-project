@@ -61,6 +61,8 @@ const ImageGallery = props => {
             .bind(null, currentHighestThumbnailIndex, 1))
         }>&#11107;</button>
       </div>
+      <button id="select-image-left">&#9664;</button>
+      <button id="select-image-right">&#9654;</button>
     </div>
   );
 };

@@ -10,6 +10,8 @@ select {
 
 #image-gallery {
   grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  align-items: center;
   background-color: lightgrey;
   background-image: url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80');
   background-repeat: no-repeat;
@@ -26,7 +28,21 @@ button.thumbnail {
   cursor: pointer;
 }
 
+#image-gallery > #select-image-left, #image-gallery > #select-image-right {
+  flex: 1 1 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+#image-gallery > #select-image-right {
+  text-align: end;
+  margin-right: 15px;
+}
+
 #image-gallery-thumbnail-list {
+  flex: 0 0 100px;
   display: grid;
   grid-template: .5fr repeat(7, 1fr) .5fr / 100%;
   width: 100px;
