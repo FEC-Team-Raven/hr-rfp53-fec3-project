@@ -22,11 +22,18 @@
   border-top: 1px solid;
 }
 
+/*
+  ========================================
+  Modal Window
+  ========================================
+*/
+
 #modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow: scroll;
   width: 700px;
   max-width: 100%;
   height: 500px;
@@ -34,31 +41,27 @@
   background: rgb(255, 255, 255);
   border: 3px solid;
   border-radius: 5px;
-
 }
 
-.modal-overlay {
+/******* SCROLL BAR *******/
+#modal::-webkit-scrollbar {
+  width: 1em;
+}
 
-  /* recommendation:
-     don't focus on the number "1000" here, but rather,
-     you should have a documented system for z-index and
-     follow that system. This number should be pretty
-     high on the scale in that system.
-  */
-  z-index: 1000;
+#modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
+#modal::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 #close {
   float: right;
 }
 
+/******* MODAL CONTENT *******/
 #compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -75,10 +78,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1;
-  border: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }
 
-.characteristic {
+.feat {
   float: center;
   text-align: center;
   padding: 5px;

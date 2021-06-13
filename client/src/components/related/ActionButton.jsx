@@ -11,7 +11,7 @@ const ActionButton = ({ currProductId, product, listType }) => {
   const [modal, toggleModal] = useState(false);
 
   useEffect(() => {
-    if (loading && !modal) {
+    if (loading) {
       setLoading(false);
       axios('http://localhost:3000/products/productid', {headers: {'productId': currProductId}})
         .then(response => {
