@@ -4,7 +4,7 @@ import axios from 'axios';
 import Compare from './Compare.jsx';
 import { OutfitContext } from './Outfit.jsx';
 
-const ActionButton = ({ currProductId, product, listType }) => {
+const ActionButton = ({ currProductId, product, listType, uniqueKey}) => {
   const oc = useContext(OutfitContext); // oc = outfit context
   const [currProductData, setCurrProductData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -51,7 +51,7 @@ const ActionButton = ({ currProductId, product, listType }) => {
       {modal &&
       <div id="modal">
         COMPARING
-        <button id="close" onClick={handleClick}>&#10005;</button>
+        <button id="close" className="action-btn" onClick={handleClick}>&#10005;</button>
         <div id="compare">
           <div className="current-product">
             {currProductData.name}
@@ -65,7 +65,7 @@ const ActionButton = ({ currProductId, product, listType }) => {
           compareFeats={product.features}/>
       </div>
       }
-      <button onClick={handleClick}>{renderButton()}</button>
+      <button className="action-btn" onClick={handleClick}>{renderButton()}</button>
     </div>
   );
 };

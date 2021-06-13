@@ -66,3 +66,18 @@ const Related = ({currProductId}) => {
 };
 
 export default Related;
+
+// return (
+//   <div>
+//     <h1>RELATED PRODUCTS</h1>
+//     <div className="related list">
+//       <RelatedContext.Provider value={providerVal}>
+//         <RelatedProducts />
+//       </RelatedContext.Provider>
+//     </div>
+//     <h1>YOUR OUTFITS</h1>
+//     <div>
+//       <Outfit productId={currProductId}/>
+//     </div>
+//   </div>
+// );

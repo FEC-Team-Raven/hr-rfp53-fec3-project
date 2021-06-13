@@ -18,8 +18,8 @@ const Outfit = ({productId}) => {
 
   const addOutfit = () => {
     // Prevents duplicate outfits
-    let unique = !outfitIds.includes(productId);
-    if (unique) {
+    // let unique = !outfitIds.includes(productId);
+    // if (unique) {
       axios('http://localhost:3000/products/productid', {headers: {'productId': productId}})
         .then(response => {
           setOutfitIds([...outfitIds, response.data.id]);
@@ -28,13 +28,13 @@ const Outfit = ({productId}) => {
         .catch(err => {
           throw err;
         });
-    }
+    // }
   };
 
   return (
     <div className="outfit list">
       <div className="card addOutfit">
-        <button onClick={addOutfit}>&#43;</button>
+        <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
       </div>
       <OutfitContext.Provider value={providerVal}>

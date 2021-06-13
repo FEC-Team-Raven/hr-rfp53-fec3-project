@@ -1,7 +1,13 @@
+/*
+  ========================================
+  List Components
+  ========================================
+*/
+
 .list{
   display: grid;
   grid-template-columns: repeat(4, 25%);
-  grid-template-rows: auto;
+  grid-template-rows: 1;
   grid-gap: 10px;
 }
 
@@ -12,7 +18,13 @@
 }
 
 .addOutfit {
-  padding-bottom: 300px;
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.addOutfit-btn {
+  text-align: center;
 }
 
 .category {
@@ -86,4 +98,120 @@
   float: center;
   text-align: center;
   padding: 5px;
+}
+
+/*
+  ========================================
+  Carousel
+  ========================================
+*/
+
+@keyframes tonext {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: 100%;
+  }
+  98% {
+    left: 100%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+@keyframes tostart {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: -300%;
+  }
+  98% {
+    left: -300%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+@keyframes snap {
+  96% {
+    scroll-snap-align: center;
+  }
+  97% {
+    scroll-snap-align: none;
+  }
+  99% {
+    scroll-snap-align: none;
+  }
+  100% {
+    scroll-snap-align: center;
+  }
+}
+
+body {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  font-family: 'Lato', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: transparent transparent; /* thumb and track color */
+  scrollbar-width: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+
+ol, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  position: relative;
+  padding-top: 75%;
+  filter: drop-shadow(0 0 10px #0003);
+  perspective: 100px;
+}
+
+.carousel__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  background-color: #f99;
+  counter-increment: item;
+}
+
+.carousel_slide:nth-child(even) {
+  background-color: #99f;
+}
+
+.carousel_slide:before {
+  content: counter(item);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-40%,70px);
+  color: #fff;
+  font-size: 2em;
 }

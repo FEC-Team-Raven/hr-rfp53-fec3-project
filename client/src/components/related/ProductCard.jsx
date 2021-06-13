@@ -24,3 +24,18 @@ const ProductCard = ({currProductId, product, listType}) => {
 };
 
 export default ProductCard;
+
+// return (
+//   <div className="card">
+//     <img src={sampleImg} width="250" height="300"></img>
+//     <ActionButton
+//       currProductId={currProductId}
+//       product={product}
+//       listType={listType}/>
+//     <div className="category">CATEGORY
+//       <div>{product.name}</div>
+//       <div>{product.default_price}</div>
+//       <Stars />
+//     </div>
+//   </div>
+// );
