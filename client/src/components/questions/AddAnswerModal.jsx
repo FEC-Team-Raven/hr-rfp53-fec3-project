@@ -2,14 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { QuestionContext, ModalContext, ProductContext } from './Questions.jsx';
 
-const checkEmail = (email) => {
-  // email.indexOf('@') === -1;
-  //@ + 1 cannot be a .
-  //needs to include a .something
-  //
+const checkBlank = (dataObj) => {
+  let bodyBlank = dataObj.body === '';
+  let emailBlank = dataObj.email === '';
+  let nameBlank = dataObj.name === '';
 
+  return bodyBlank || emailBlank || nameBlank;
 };
-
 
 const AddAnswerModal = (props) => {
   const questions = useContext(QuestionContext);
@@ -19,7 +18,6 @@ const AddAnswerModal = (props) => {
   const [body, setBody] = useState('');
   const questionId = props.value;
   const productId = props.productId;
-  console.log(props.questionBody);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -36,24 +34,20 @@ const AddAnswerModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let bodyBlank = body === '';
-    let emailBlank = email === '';
-    let nameBlank = name === '';
+
+    var data = {
+      body: body,
+      name: name,
+      email: email,
+      // eslint-disable-next-line camelcase
+      product_id: productId,
+      questionId: questionId
+    };
 
 
-    if (bodyBlank || emailBlank || nameBlank) {
-      console.log('BLANK');
+    if (checkBlank(data)) {
+      alert('Please fill in all mandatory fields');
     } else {
-      var data = {
-        body: body,
-        name: name,
-        email: email,
-        // eslint-disable-next-line camelcase
-        product_id: productId,
-        questionId: questionId
-      };
-
-
       //post new answer then get all answer from api
       axios({
         url: '/answers/add',
@@ -65,6 +59,7 @@ const AddAnswerModal = (props) => {
           props.getAnswer();
         })
         .catch((err) => {
+          alert('please enter a valid email address');
           throw err;
         });
     }
