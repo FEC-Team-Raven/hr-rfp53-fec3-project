@@ -42,18 +42,26 @@ const Overview = props => {
     }
   }, []);
 
+  useEffect(() => {
+    setStyles(styles);
+  }, [styleIndex]);
+
   if (loading) {
     return (
       <div>Loading overview...</div>
     );
   }
 
+  const changeStyle = styleIndex => {
+    setStyleIndex(styleIndex);
+  };
+
   return (
     <div id="overview">
-      <ImageGallery product={props.product} images={images}/>
+      <ImageGallery product={props.product} images={styles[styleIndex].photos} style={styles[styleIndex]} />
       <div id="product-ui">
         <ProductInfo product={props.product}/>
-        <StyleSelect product={props.product} styles={styles} />
+        <StyleSelect product={props.product} styles={styles} selectStyle={changeStyle} />
         <AddToCart product={props.product}/>
       </div>
       <ProductDescription product={props.product}/>

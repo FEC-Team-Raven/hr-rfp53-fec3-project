@@ -176,6 +176,7 @@ button.thumbnail {
 }
 
 #style-select .thumbnail-img {
+  pointer-events: none;
   background-position: center;
   background-size: cover;
   width: 100%;

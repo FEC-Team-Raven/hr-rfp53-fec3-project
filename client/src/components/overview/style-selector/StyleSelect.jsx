@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import Thumbnail from './../shared/Thumbnail.jsx';
 
 const StyleSelect = props => {
-  const select = () => {
-    console.log('thumbnail selected');
+  const select = event => {
+    props.selectStyle(event.target.dataset.index);
   };
 
   return (

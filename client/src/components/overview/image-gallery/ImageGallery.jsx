@@ -47,7 +47,7 @@ const ImageGallery = props => {
     }
   };
 
-  const thumbnailList = props.images.map((image, index) =>
+  const thumbnailList = props.images.map(imagePair => imagePair.thumbnail_url).map((image, index) =>
     <Thumbnail key={index} imageURL={image} data-index={index} selectHandler={select} />
   );
 
@@ -59,7 +59,7 @@ const ImageGallery = props => {
 
   useEffect(() => {
     // if we change the mainImage, make sure the corresponding thumbnail is selected just in case
-    document.querySelector('#image-gallery').style.backgroundImage = `url(${props.images[mainImageIndex]})`;
+    // document.querySelector('#image-gallery').style.backgroundImage = `url(${props.images[mainImageIndex].url})`;
     Array.prototype.slice.call(document.querySelector('#image-gallery-thumbnail-list').getElementsByClassName('thumbnail')).forEach(thumbnail => {
       if (Number.parseInt(thumbnail.dataset.index) === Number.parseInt(mainImageIndex)) {
         thumbnail.classList.add('selected');
@@ -68,7 +68,7 @@ const ImageGallery = props => {
   }, [mainImageIndex]);
 
   return (
-    <div id="image-gallery" onClick={event => { zoom(event); }}>
+    <div id="image-gallery" style={{backgroundImage: `url(${props.images[mainImageIndex].url})`}} onClick={event => { zoom(event); }}>
       <div id="image-gallery-thumbnail-list">
         <button id="image-gallery-thumbnail-list-scroll-up" onClick={event => { adjustThumbnailListBoundaries(-1); }}>&#11105;</button>
         {thumbnailList.slice(thumbnailListBoundaries.start, thumbnailListBoundaries.end + 1)}
@@ -90,7 +90,7 @@ const ImageGallery = props => {
           heightRatio = Number.parseInt(heightRatio);
           event.target.style.backgroundPosition = `${widthRatio <= 100 ? widthRatio : oldWidthRatio}% ${heightRatio <= 100 ? heightRatio : oldHeightRatio}%`;
         }}
-        style={{backgroundImage: `url(${props.images[mainImageIndex]})`}}
+        style={{backgroundImage: `url(${props.images[mainImageIndex].url})`}}
       ></div>
     </div>
   );
