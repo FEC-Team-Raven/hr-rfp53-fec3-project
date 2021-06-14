@@ -56,7 +56,8 @@ const Overview = props => {
     <div id="overview">
       <ImageGallery product={props.product} images={styles[styleIndex].photos} style={styles[styleIndex]} />
       <div id="product-ui">
-        <ProductInfo product={props.product}/>
+        <ProductInfo product={props.product} style={styles[styleIndex]}/>
+        <div id="style-name"><b>STYLE &gt;</b> {styles[styleIndex].name.toUpperCase()}</div>
         <StyleSelect product={props.product} styles={styles} selectStyle={changeStyle} />
         <AddToCart product={props.product}/>
       </div>

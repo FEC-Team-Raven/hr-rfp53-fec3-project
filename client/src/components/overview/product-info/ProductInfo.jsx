@@ -15,7 +15,7 @@ const ProductInfo = props => {
       </div>
       <p id="product-category">{props.product.category}</p>
       <p id="product-name">{props.product.name}</p>
-      <Price price={props.product.default_price}/>
+      <Price price={props.style.original_price} salePrice={props.style.sale_price}/>
       <SocialMedia />
     </div>
   );

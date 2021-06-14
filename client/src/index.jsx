@@ -26,14 +26,14 @@ const exampleProduct = {
 };
 
 const App = () => {
-  const [productId, setProductId] = useState(0);
+  const [productData, setProductData] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (loading) {
       axios('http://localhost:3000/products')
         .then(products => {
-          setProductId(products.data[0].id);
+          setProductData(products.data[0]);
           setLoading(false);
         })
         .catch(err => {
@@ -50,7 +50,7 @@ const App = () => {
 
   return (
     <div>
-      <Overview productId={productId} product={exampleProduct}/>
+      <Overview productId={productData.id} product={productData}/>
       {/* <Related productId={productId}/>
       <Questions productId={productId}/>
       <Reviews productId={productId}/> */}
