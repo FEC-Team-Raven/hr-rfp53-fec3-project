@@ -40,7 +40,6 @@ const ReviewForm = props => {
       .then(meta => {
         setProductCharacteristics(meta.data.characteristics);
         setLoading(false);
-        console.log(meta.data.characteristics);
       });
   };
 
@@ -137,7 +136,6 @@ const ReviewForm = props => {
       }
       setDisplayPhotos(images);
       setPhotos(event.target.files);
-      console.log(event.target.files[0]);
     }
   };
 
