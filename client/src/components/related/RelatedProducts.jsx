@@ -3,11 +3,13 @@ import ProductCard from './ProductCard.jsx';
 
 import { RelatedContext } from './Related.jsx';
 
-const RelatedProducts = () => {
+import sampleData from './sampleData.jsx';
+
+const RelatedProducts = () => { // invoked 6 times, which is what we expect
   const productData = useContext(RelatedContext).relatedProducts;
   const currProductId = useContext(RelatedContext).currProductId;
   return (
-    productData.map(product =>
+    sampleData.map(product =>
       <ProductCard
         currProductId={currProductId}
         product={product}

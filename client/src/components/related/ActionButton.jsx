@@ -4,7 +4,7 @@ import axios from 'axios';
 import Compare from './Compare.jsx';
 import { OutfitContext } from './Outfit.jsx';
 
-const ActionButton = ({ currProductId, product, listType, uniqueKey}) => {
+const ActionButton = ({ currProductId, product, list, uniqueKey}) => {
   const oc = useContext(OutfitContext); // oc = outfit context
   const [currProductData, setCurrProductData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const ActionButton = ({ currProductId, product, listType, uniqueKey}) => {
 
   const handleClick = (e) => {
     // OUTFIT ACTION BUTTON
-    if (listType === 'outfit') {
+    if (list === 'outfit') {
       // Remove productid from outfidIds
       oc.setOutfitIds(oc.outfitIds.filter(outfitId => outfitId !== product.id));
       // Remove productid from outfits
@@ -39,7 +39,7 @@ const ActionButton = ({ currProductId, product, listType, uniqueKey}) => {
   };
 
   const renderButton = () => {
-    if (listType === 'outfit') {
+    if (list === 'outfit') {
       return <span>&#10005;</span>;
     } else {
       return <span>&#x2605;</span>;

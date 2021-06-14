@@ -33,7 +33,7 @@ const Outfit = ({productId}) => {
 
   return (
     <ol className="outfit list carousel__viewport">
-      <li className="card addOutfit carousel__slide">
+      <li id="carousel__slide0" className="card addOutfit carousel__slide">
         <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
       </li>
