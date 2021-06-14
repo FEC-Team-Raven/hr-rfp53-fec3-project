@@ -184,6 +184,10 @@ button.thumbnail {
   border-radius: 100%;
 }
 
+#style-select .selected {
+  border: solid 5px black;
+}
+
 #purchase-form, #purchase-select {
   width: 100%;
 }

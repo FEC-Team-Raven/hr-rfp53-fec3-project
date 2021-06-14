@@ -42,10 +42,6 @@ const Overview = props => {
     }
   }, []);
 
-  useEffect(() => {
-    setStyles(styles);
-  }, [styleIndex]);
-
   if (loading) {
     return (
       <div>Loading overview...</div>

@@ -59,7 +59,6 @@ const ImageGallery = props => {
 
   useEffect(() => {
     // if we change the mainImage, make sure the corresponding thumbnail is selected just in case
-    // document.querySelector('#image-gallery').style.backgroundImage = `url(${props.images[mainImageIndex].url})`;
     Array.prototype.slice.call(document.querySelector('#image-gallery-thumbnail-list').getElementsByClassName('thumbnail')).forEach(thumbnail => {
       if (Number.parseInt(thumbnail.dataset.index) === Number.parseInt(mainImageIndex)) {
         thumbnail.classList.add('selected');
