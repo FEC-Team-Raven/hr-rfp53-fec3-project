@@ -8,6 +8,7 @@ import ReviewTile from '../client/src/components/reviews/ReviewList/ReviewTile.j
 import RatingBar from '../client/src/components/reviews/ProductBreakdown/RatingBar.jsx';
 import CharacteristicBreakdown from '../client/src/components/reviews/ProductBreakdown/CharacteristicBreakdown.jsx';
 import CharacteristicInput from '../client/src/components/reviews/ReviewList/ReviewForm/CharacteristicInput.jsx';
+import StarSelector from '../client/src/components/reviews/ReviewList/ReviewForm/StarSelector.jsx';
 
 
 
@@ -80,3 +81,9 @@ it('renders CharacteristicInput correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
+it('renders StarSelector correctly', () => {
+  const tree = renderer
+    .create(<StarSelector />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

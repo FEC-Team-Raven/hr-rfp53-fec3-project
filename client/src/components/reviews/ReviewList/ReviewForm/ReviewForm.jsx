@@ -43,18 +43,6 @@ const ReviewForm = props => {
       });
   };
 
-  var ratingToWidth = rating => {
-    rating = Math.floor(rating / 0.25) * 0.25;
-    var decimal = rating - Math.floor(rating);
-    rating *= 20;
-    if (decimal === 0.25) {
-      rating += 3;
-    } else if (decimal === 0.75) {
-      rating -= 3;
-    }
-    return rating;
-  };
-
   var renderRatingMessage = () => {
     if (starRating === 1) {
       return <div className="rating">Poor</div>;

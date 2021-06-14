@@ -343,3 +343,92 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders StarSelector correctly 1`] = `
+<div
+  className="star-selector-container"
+>
+  <div
+    className="star-selector-rating reviewRow"
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  >
+    <div>
+      ★
+    </div>
+    <div>
+      ★
+    </div>
+    <div>
+      ★
+    </div>
+    <div>
+      ★
+    </div>
+    <div>
+      ★
+    </div>
+  </div>
+  <div
+    className="starOverlay reviewRow"
+  >
+    <div
+      className="emptyStar"
+      data-star="1"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star="2"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star="3"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star="4"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star="5"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+  </div>
+  <div
+    className="star-selector-holo reviewRow"
+  >
+    <div>
+      ☆
+    </div>
+    <div>
+      ☆
+    </div>
+    <div>
+      ☆
+    </div>
+    <div>
+      ☆
+    </div>
+    <div>
+      ☆
+    </div>
+  </div>
+</div>
+`;
