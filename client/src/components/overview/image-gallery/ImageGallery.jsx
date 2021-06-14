@@ -39,22 +39,17 @@ const ImageGallery = props => {
     }
   };
 
+  const expand = () => { document.querySelector('#image-gallery').classList.toggle('expanded'); };
+
+  const zoom = () => {
+    if (event.target.classList.contains('expanded')) {
+      document.querySelector('#zoomed-modal').classList.remove('hidden');
+    }
+  };
+
   const thumbnailList = props.images.map((image, index) =>
     <Thumbnail key={index} imageURL={image} data-index={index} selectHandler={select} />
   );
-
-  // const clickHandler = (event, caller, direction) => {
-  //   // scroll-up or scroll-down
-  //   if (caller === "list-scroll") {
-  //     adjustThumbnailListBoundaries(direction);
-  //   } else if (caller === "image-scroll") {
-  //   // scroll-left or scroll-right
-  //     select(null, direction);
-  //   } else {
-  //   // expand
-  // document.querySelector('#image-gallery').classList.toggle('expanded'); }
-  //   }
-  // };
 
   useEffect(() => {
     if (mainImageIndex > thumbnailListBoundaries.end || mainImageIndex < thumbnailListBoundaries.start) {
@@ -73,7 +68,7 @@ const ImageGallery = props => {
   }, [mainImageIndex]);
 
   return (
-    <div id="image-gallery">
+    <div id="image-gallery" onClick={event => { zoom(event); }}>
       <div id="image-gallery-thumbnail-list">
         <button id="image-gallery-thumbnail-list-scroll-up" onClick={event => { adjustThumbnailListBoundaries(-1); }}>&#11105;</button>
         {thumbnailList.slice(thumbnailListBoundaries.start, thumbnailListBoundaries.end + 1)}
@@ -82,7 +77,21 @@ const ImageGallery = props => {
       <button id="select-image-left" onClick={() => { select(null, -1); }}>&#9664;</button>
       <div id="select-gap"></div>
       <button id="select-image-right" onClick={() => { select(null, 1); }}>&#9654;</button>
-      <button id="expand-image-gallery" onClick={() => { document.querySelector('#image-gallery').classList.toggle('expanded'); }}>&#11034;</button>
+      <button id="expand-image-gallery" onClick={expand}>&#11034;</button>
+      <div id="zoomed-modal"
+        className="hidden"
+        onClick={event => event.target.classList.add('hidden')}
+        onMouseMove={event => {
+          const imageGalleryWindow = document.querySelector('#image-gallery');
+          let [ oldWidthRatio, oldHeightRatio ] = event.target.style.backgroundPosition.split(' ').map(ratioStr => ratioStr.split('%')[0]);
+          let widthRatio = (event.clientX / imageGalleryWindow.clientWidth) * 100;
+          let heightRatio = (event.clientY / imageGalleryWindow.clientHeight) * 100;
+          widthRatio = Number.parseInt(widthRatio);
+          heightRatio = Number.parseInt(heightRatio);
+          event.target.style.backgroundPosition = `${widthRatio <= 100 ? widthRatio : oldWidthRatio}% ${heightRatio <= 100 ? heightRatio : oldHeightRatio}%`;
+        }}
+        style={{backgroundImage: `url(${props.images[mainImageIndex]})`}}
+      ></div>
     </div>
   );
 };
