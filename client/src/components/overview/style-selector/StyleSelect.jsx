@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Thumbnail from './../shared/Thumbnail.jsx';
 
 const StyleSelect = props => {
+  const select = () => {
+    console.log('thumbnail selected');
+  };
+
   return (
     <div id="style-select">
-      Style Select
+      {props.styles.map((style, index) => <Thumbnail key={index} imageURL={style.photos[0].thumbnail_url} data-index={index} selectHandler={select} />)}
     </div>
   );
 };
