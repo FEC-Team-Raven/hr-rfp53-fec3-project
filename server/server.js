@@ -5,8 +5,6 @@ const axios = require('axios');
 const token = require('./config.js');
 const imgbbUploader = require('imgbb-uploader');
 const FormData = require('form-data');
-const fs = require('fs');
-const URL = require('url');
 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -113,31 +111,22 @@ app.post('/reviews', (req, res) => {
     formInputs['photos'] = [];
     formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
 
-    // axios({
-    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
-    //   method: 'POST',
-    //   data: formInputs,
-    //   headers: {
-    //     Authorization: token
-    //   }
-    // })
-    //   .then(() => {
-    //     res.end();
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     //console.log(formInputs);
-    //   });
-    console.log(req.files);
-
     var options = {
       apiKey: '9b6f7c68837140863a35c6c962e93276',
-      base64string: req.files[0].buffer.toString('base64')
+      base64string: ''
     };
 
-    imgbbUploader(options)
-      .then(response => {
+    var uploadImages = [];
+
+    for (var i = 0; i < req.files.length; i++) {
+      options['base64string'] = req.files[i].buffer.toString('base64');
+      uploadImages.push(imgbbUploader(options).then(response => {
         formInputs.photos.push(response.url);
+      }));
+    }
+
+    Promise.all(uploadImages)
+      .then(() => {
         axios({
           url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
           method: 'POST',
@@ -155,15 +144,6 @@ app.post('/reviews', (req, res) => {
           });
       });
 
-    // cloudinary.config({
-    //   cloud_name: 'dczltf399',
-    //   api_key: '946126219219165',
-    //   api_secret: 'vWxGANXZlZ8vgCEJGrpKWGHMHAE'
-    // });
-
-    // cloudinary.v2.uploader.unsigned_upload(req.files[0].buffer.toString('base64'), 'mtmwkcmo', (response) => {
-    //   console.log(response);
-    // });
   });
 });
 
