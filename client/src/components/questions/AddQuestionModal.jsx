@@ -48,14 +48,34 @@ const AddQuestionModal = (props) => {
 
   return (
     <div className="modal">
-      <h3 id='modal-title'>ADD QUESTION MODAL</h3>
+      <h3 id='modal-title'>Ask Your Question
+        <h5>About the {props.productName}</h5>
+      </h3>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input type="text" name="Name" onChange={handleChange}></input>
-        <label>Email</label>
-        <input type="text" name="Email" onChange={handleChange}></input>
-        <label>Question</label>
-        <textarea type="text" name="Body" onChange={handleChange}></textarea>
+        <label>Your Question*</label>
+        <textarea
+          type="text"
+          name="Body"
+          maxlength='1000'
+          placeholder='Why did you like the product or not?'
+          onChange={handleChange}></textarea>
+        <label>What is your nickname?*</label>
+        <input
+          type="text"
+          name="Name"
+          maxlength='60'
+          placeholder='Example: jackson11!'
+          onChange={handleChange}
+        ></input>
+        <p>For privacy reasons, do not use your full name or email address</p>
+        <label>Your email*</label>
+        <input
+          type="text"
+          name="Email"
+          placeholder='Example: jack@email.com'
+          maxlength='60'
+          onChange={handleChange}></input>
+        <p>For authentication reasons, you will not be emailed</p>
         <div id="form-buttons">
           <button id='form-submit'>Submit</button>
           <button id='form-close' onClick={props.showModal}>Close</button>

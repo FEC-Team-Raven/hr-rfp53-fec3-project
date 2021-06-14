@@ -22,7 +22,7 @@ const QuestionsList = (props) => {
   return (
     <div class='QList'>
       {temp.map((item) =>
-        <QuestionItem value={item} id={productId} getQuestions={props.getQuestions}/>
+        <QuestionItem value={item} questionBody={item.question_body} productName={props.productName} id={productId} getQuestions={props.getQuestions}/>
       )}
     </div>
   );

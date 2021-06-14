@@ -9,6 +9,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 
 const App = () => {
   const [productId, setProductId] = useState(0);
+  const [productName, setProductName] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const App = () => {
       axios('http://localhost:3000/products')
         .then(products => {
           setProductId(products.data[0].id);
+          setProductName(products.data[0].name);
         })
         .catch(err => {
           console.log(err);
@@ -29,7 +31,7 @@ const App = () => {
     <div>
       {/* <Overview productId={productId}/> */}
       {/* <Related productId={productId}/> */}
-      <Questions productId={productId}/>
+      <Questions productId={productId} productName={productName}/>
       {/* <Reviews productId={productId}/> */}
     </div>
   );

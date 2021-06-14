@@ -2,6 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { QuestionContext, ModalContext, ProductContext } from './Questions.jsx';
 
+const checkEmail = (email) => {
+  // email.indexOf('@') === -1;
+  //@ + 1 cannot be a .
+  //needs to include a .something
+  //
+
+};
+
 
 const AddAnswerModal = (props) => {
   const questions = useContext(QuestionContext);
@@ -11,6 +19,7 @@ const AddAnswerModal = (props) => {
   const [body, setBody] = useState('');
   const questionId = props.value;
   const productId = props.productId;
+  console.log(props.questionBody);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -27,41 +36,72 @@ const AddAnswerModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var data = {
-      body: body,
-      name: name,
-      email: email,
-      // eslint-disable-next-line camelcase
-      product_id: productId,
-      questionId: questionId
-    };
+    let bodyBlank = body === '';
+    let emailBlank = email === '';
+    let nameBlank = name === '';
 
-    //post new answer then get all answer from api
-    axios({
-      url: '/answers/add',
-      method: 'post',
-      data: data
-    })
-      .then((result) => {
-        props.addAnswerModal();
-        props.getAnswer();
+
+    if (bodyBlank || emailBlank || nameBlank) {
+      console.log('BLANK');
+    } else {
+      var data = {
+        body: body,
+        name: name,
+        email: email,
+        // eslint-disable-next-line camelcase
+        product_id: productId,
+        questionId: questionId
+      };
+
+
+      //post new answer then get all answer from api
+      axios({
+        url: '/answers/add',
+        method: 'post',
+        data: data
       })
-      .catch((err) => {
-        throw err;
-      });
+        .then((result) => {
+          props.addAnswerModal();
+          props.getAnswer();
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
+
   };
 
 
   return (
     <div className="modal" >
-      <h3 id='modal-title'>ADD ANSWER</h3>
+      <h3 id='modal-title'>Submit your Answer
+        <h5>{props.productName}: {props.questionBody}</h5>
+      </h3>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input type="text" name="Name" onChange={handleChange}></input>
-        <label>Email</label>
-        <input type="text" name="Email" onChange={handleChange}></input>
-        <label>Answer</label>
-        <textarea type="text" name="Body" onChange={handleChange}></textarea>
+        <label>Your Answer*</label>
+        <textarea
+          maxlength='1000'
+          type="text"
+          name="Body"
+          onChange={handleChange}>
+        </textarea>
+        <label>What is your nickname*</label>
+        <input type="text"
+          name="Name"
+          maxlength='60'
+          placeholder='Example: jack543!'
+          onChange={handleChange}>
+        </input>
+        <p>For privacy reasons, do not use your full name or email address</p>
+        <label>Your email*</label>
+        <input
+          type="text"
+          name="Email"
+          maxlength='60'
+          placeholder='Example: jack@email.com'
+          onChange={handleChange}>
+        </input>
+        <p>For authentication reasons, you will not be emailed</p>
         <div id='form-buttons'>
           <button id='form-submit'>Submit</button>
           <button id='form-close' onClick={props.addAnswerModal}>Close</button>

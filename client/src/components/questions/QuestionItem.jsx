@@ -64,7 +64,8 @@ const QuestionItem = (props) => {
         method: 'post',
         data: {id: questionId}
       })
-        .then((result) => { props.getQuestions(productId); })
+        // .then((result) => { props.getQuestions(productId); })
+        .then((result) => { e.target.innerHTML = 'Reported'; })
         .catch((err) => { throw err; });
     }
 
@@ -74,6 +75,7 @@ const QuestionItem = (props) => {
     <div>
       <div className="question">
         {/* question, helpful, add ans */}
+
         <div id="q-text"> <h5 id="q-head">Q: </h5>{props.value.question_body}</div>
         <div className='question-extra'>
           <div id="helpful" >Helpful?
@@ -93,7 +95,14 @@ const QuestionItem = (props) => {
       </div>
       <div id="AddAnswerModal">
         <div id={showAnsModal ? 'modal-blur-active' : 'modal-blur-inactive'}></div>
-        {showAnsModal ? <AddAnswerModal value={questionId} productId={productId} getAnswer={getAnswer} addAnswerModal={clickAddAnswer}/> : null}
+        {showAnsModal ? <AddAnswerModal
+          productName={props.productName}
+          value={questionId}
+          productId={productId}
+          productName={props.productName}
+          getAnswer={getAnswer}
+          questionBody={props.questionBody}
+          addAnswerModal={clickAddAnswer}/> : null}
       </div>
     </div>
   );

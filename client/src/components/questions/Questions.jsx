@@ -85,7 +85,7 @@ const Questions = (props) => {
 
       <ProductContext.Provider value={props.productId}>
         <QuestionContext.Provider value={show}>
-          <QuestionsList search={search} getQuestions={getQuestions} allQuestions={questions}/>
+          <QuestionsList search={search} getQuestions={getQuestions} allQuestions={questions} productName={props.productName}/>
         </QuestionContext.Provider>
       </ProductContext.Provider>
 
@@ -99,7 +99,7 @@ const Questions = (props) => {
 
       <div id="AddQuestionModal">
         <div id={showModal ? 'modal-blur-active' : 'modal-blur-inactive'}></div>
-        {showModal ? <AddQuestionModal productId={props.productId} questions={questions} getQ={getQuestions} showModal={clickAddQuestion}/> : null}
+        {showModal ? <AddQuestionModal productId={props.productId} productName={props.productName} questions={questions} getQ={getQuestions} showModal={clickAddQuestion}/> : null}
 
       </div>
     </div>

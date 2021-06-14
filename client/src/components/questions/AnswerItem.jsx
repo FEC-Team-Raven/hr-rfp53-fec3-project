@@ -31,7 +31,8 @@ const AnswerItem = (props) => {
       })
         .then((result) => {
           //get all answers
-          props.getAnswer();
+          // props.getAnswer();
+          e.target.innerHTML = 'Reported';
         })
         .catch((err) => {
           console.log(err);
