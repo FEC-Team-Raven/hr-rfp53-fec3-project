@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SizeSelect from './SizeSelect.jsx';
 import QuantitySelect from './QuantitySelect.jsx';
 import AddToCartButton from './AddToCartButton.jsx';
 
 const AddToCart = props => {
+  const [ skuIndex, setSkuIndex ] = useState(0);
+
   return (
     <form id="purchase-form">
       <div id="purchase-select">
-        <SizeSelect />
-        <QuantitySelect />
+        <SizeSelect sizes={props.styleSKUs.map(sku => sku.size)} skuSetter={event => { setSkuIndex(event.target.value); }}/>
+        <QuantitySelect quantity={props.styleSKUs[skuIndex].quantity}/>
       </div>
       <div id="purchase-submit">
         <AddToCartButton />

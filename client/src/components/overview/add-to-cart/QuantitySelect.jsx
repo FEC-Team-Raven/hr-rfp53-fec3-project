@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const QuantitySelect = props => {
+  let quantities = Array(props.quantity);
+  useEffect(() => {
+    console.log(props.quantity);
+    for (let i = 0; i <= props.quantity; i++) {
+      quantities[i] = i;
+    }
+  }, []);
   return (
     <select id="quantity-select">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
+      {Array(props.quantity).fill().map((x, i) => { if (i > 0) { return <option key={i} value={i}>{i}</option>; } } )}
     </select>
   );
 };

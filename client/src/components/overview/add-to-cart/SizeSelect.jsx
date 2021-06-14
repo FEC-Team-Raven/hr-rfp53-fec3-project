@@ -2,10 +2,8 @@ import React from 'react';
 
 const SizeSelect = props => {
   return (
-    <select id="size-select">
-      <option value="small">Small</option>
-      <option value="medium">Medium</option>
-      <option value="large">Large</option>
+    <select id="size-select" onChange={props.skuSetter}>
+      {props.sizes.map((size, index) => <option key={index} value={index}>{size}</option>)}
     </select>
   );
 };
