@@ -1,16 +1,14 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import ReactTestUtils, {act} from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
 import Reviews from '../client/src/components/reviews/Reviews.jsx';
 import ReviewList from '../client/src/components/reviews/ReviewList/ReviewList.jsx';
 import ReviewTile from '../client/src/components/reviews/ReviewList/ReviewTile.jsx';
+import RatingBar from '../client/src/components/reviews/ProductBreakdown/RatingBar.jsx';
+import CharacteristicBreakdown from '../client/src/components/reviews/ProductBreakdown/CharacteristicBreakdown.jsx';
+import CharacteristicInput from '../client/src/components/reviews/ReviewList/ReviewForm/CharacteristicInput.jsx';
 
-it('renders Reviews correctly', () => {
-  const tree = renderer
-    .create(<Reviews />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
 
 
 it('renders ReviewTile correctly', () => {
@@ -52,3 +50,33 @@ it('renders ReviewTile response if there is a response correctly', () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('renders RatingBar correctly', () => {
+  var stars = 5;
+  var total = 100;
+  var count = 30;
+  var distribution = count / total;
+
+  const tree = renderer
+    .create(<RatingBar stars={stars} distribution={distribution} count={count}/>)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it('renders CharacteristicBreakdown correctly', () => {
+  var characteristic = 'Fit';
+  var rating = '4.6';
+  const tree = renderer
+    .create(<CharacteristicBreakdown characteristic={characteristic} rating={rating} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it('renders CharacteristicInput correctly', () => {
+  var characteristic = 'Comfort';
+  const tree = renderer
+    .create(<CharacteristicInput characteristic={characteristic} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+

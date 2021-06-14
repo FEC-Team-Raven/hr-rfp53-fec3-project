@@ -1,5 +1,178 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders CharacteristicBreakdown correctly 1`] = `
+<div
+  className="characteristicContainer"
+>
+  <div>
+    Fit
+  </div>
+  <div>
+    <div
+      className="characteristicBar"
+    />
+  </div>
+  <div
+    className="pointer"
+    style={
+      Object {
+        "left": "242.99999999999997px",
+      }
+    }
+  >
+    <i
+      className="fas fa-sort-up"
+    />
+  </div>
+  <div
+    className="reviewRow characteristic"
+  >
+    <div>
+      Too tight
+    </div>
+    <div>
+      Perfect
+    </div>
+    <div>
+      Too loose
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders CharacteristicInput correctly 1`] = `
+<div
+  className="characteristicInputContainer"
+>
+  Comfort
+   
+  <br />
+  <div
+    className="characteristicInput"
+  >
+    <div>
+      <input
+        id="Comfort1"
+        name="Comfort"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="1"
+      />
+      <label
+        for="Comfort1"
+      >
+        Uncomfortable
+      </label>
+    </div>
+    <div>
+      <input
+        id="Comfort2"
+        name="Comfort"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="2"
+      />
+      <label
+        for="Comfort2"
+      >
+        Slightly uncomfortable
+      </label>
+    </div>
+    <div>
+      <input
+        id="Comfort3"
+        name="Comfort"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="3"
+      />
+      <label
+        for="Comfort3"
+      >
+        Ok
+      </label>
+    </div>
+    <div>
+      <input
+        id="Comfort4"
+        name="Comfort"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="4"
+      />
+      <label
+        for="Comfort4"
+      >
+        Comfortable
+      </label>
+    </div>
+    <div>
+      <input
+        id="Comfort5"
+        name="Comfort"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="5"
+      />
+      <label
+        for="Comfort5"
+      >
+        Perfect
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders RatingBar correctly 1`] = `
+<div
+  className="reviewRow"
+>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "margin-right": "10px",
+        "text-decoration": "underline",
+      }
+    }
+  >
+    5
+     stars
+  </div>
+  <div
+    className="table"
+  >
+    <div
+      className="barContainer"
+    >
+      <div
+        className="bar"
+        style={
+          Object {
+            "width": "0.3%",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "margin-left": "5px",
+      }
+    }
+  >
+    30
+  </div>
+</div>
+`;
+
 exports[`renders ReviewTile correctly 1`] = `
 <div
   className="reviewTile"
@@ -21,11 +194,18 @@ exports[`renders ReviewTile correctly 1`] = `
         </span>
       </div>
     </span>
-    <div>
+    <div
+      className="rating"
+    >
       JoeCool
       , 
       April 19, 2021
     </div>
+  </div>
+  <div
+    className="summary"
+  >
+    Gate keepers of hell.
   </div>
   <div>
     I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
@@ -65,6 +245,12 @@ exports[`renders ReviewTile correctly 1`] = `
       8
       )
     </button>
+    |
+    <button
+      onClick={[Function]}
+    >
+      Report
+    </button>
   </div>
 </div>
 `;
@@ -90,11 +276,18 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
         </span>
       </div>
     </span>
-    <div>
+    <div
+      className="rating"
+    >
       JoeCool
       , 
       April 19, 2021
     </div>
+  </div>
+  <div
+    className="summary"
+  >
+    Gate keepers of hell.
   </div>
   <div>
     I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
@@ -141,76 +334,12 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
       8
       )
     </button>
-  </div>
-</div>
-`;
-
-exports[`renders Reviews correctly 1`] = `
-<div>
-  <div>
-    RATINGS & REVIEWS
-    <div
-      className="ratingsReviewsContainer"
+    |
+    <button
+      onClick={[Function]}
     >
-      <div
-        className="productBreakdown"
-      >
-        <div
-          className="reviewRow"
-        >
-          <div
-            className="productRating"
-          >
-            NaN
-          </div>
-          <span>
-            <div
-              className="star-rating"
-              style={
-                Object {
-                  "width": "NaN%",
-                }
-              }
-            >
-              <span>
-                ★★★★★
-              </span>
-            </div>
-          </span>
-        </div>
-      </div>
-      <div
-        className="reviewList"
-      >
-        0
-         reviews, sorted by
-        <select
-          className="sortReviews"
-          onChange={[Function]}
-        >
-          <option
-            value="relevance"
-          >
-            relevance
-          </option>
-          <option
-            value="helpful"
-          >
-            helpful
-          </option>
-          <option
-            value="newest"
-          >
-            newest
-          </option>
-        </select>
-         
-        <br />
-        <button>
-          Add a Review +
-        </button>
-      </div>
-    </div>
+      Report
+    </button>
   </div>
 </div>
 `;

@@ -7,6 +7,7 @@ export const FilterContext = React.createContext({});
 
 const Reviews = (props) => {
   const [starFilter, setStarFilter] = useState([]);
+  console.log(props.productId);
   var renderReviews = productId => {
     if (productId !== 0) {
       return (

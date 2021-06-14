@@ -94,14 +94,18 @@ const ProductBreakdown = props => {
     }
   };
 
-  return (
-    <div className="productBreakdown">
-      {renderRating()}
-      {renderRecommended()}
-      {renderStarDistribution()}
-      {renderCharacteristics()}
-    </div>
-  );
+  if (!loading) {
+    return (
+      <div className="productBreakdown">
+        {renderRating()}
+        {renderRecommended()}
+        {renderStarDistribution()}
+        {renderCharacteristics()}
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ProductBreakdown;
