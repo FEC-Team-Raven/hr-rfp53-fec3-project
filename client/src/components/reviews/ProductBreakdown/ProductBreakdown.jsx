@@ -8,7 +8,6 @@ import {ReviewContext} from '../Reviews.jsx';
 const ProductBreakdown = props => {
   var metaData = useContext(ReviewContext).metaData[0];
 
-
   var roundToQuarter = rating => {
     rating = Math.floor(rating / 0.25) * 0.25;
     var decimal = rating - Math.floor(rating);
@@ -39,40 +38,35 @@ const ProductBreakdown = props => {
   };
 
   var renderRecommended = () => {
-    if (metaData.recommended) {
-      var recommended = metaData.recommended;
-      var average = parseInt(recommended.true, 10) / (parseInt(recommended.true, 10) + parseInt(recommended.false, 10));
-      average = Math.floor(average * 100);
-      return <div className="recommendedRating">{average}% of reviews recommend this product</div>;
-    }
+    var recommended = metaData.recommended;
+    var average = parseInt(recommended.true, 10) / (parseInt(recommended.true, 10) + parseInt(recommended.false, 10));
+    average = Math.floor(average * 100);
+    return <div className="recommendedRating">{average}% of reviews recommend this product</div>;
   };
 
   var renderStarDistribution = () => {
-    if (metaData.ratings) {
-      var stars = Object.keys(metaData.ratings);
-      var total = 0;
-      for (var i = 0; i < stars.length; i++) {
-        total += parseInt(metaData.ratings[i + 1], 10);
-      }
-      stars = stars.reverse();
-      return stars.map(star => {
-        return <RatingBar
-          stars={star}
-          distribution={Math.floor((metaData.ratings[star] / total) * 100)}
-          count={metaData.ratings[star]}
-        />;
-      });
+    var stars = Object.keys(metaData.ratings);
+    var total = 0;
+    for (var i = 0; i < stars.length; i++) {
+      total += parseInt(metaData.ratings[i + 1], 10);
     }
+    stars = stars.reverse();
+    return stars.map(star => {
+      return <RatingBar
+        stars={star}
+        distribution={Math.floor((metaData.ratings[star] / total) * 100)}
+        count={metaData.ratings[star]}
+      />;
+    });
+
   };
 
   var renderCharacteristics = () => {
-    if (metaData.characteristics) {
-      return Object.keys(metaData.characteristics).map(characteristic => {
-        return <CharacteristicBreakdown
-          characteristic={characteristic}
-          rating={metaData.characteristics[characteristic].value}/>;
-      });
-    }
+    return Object.keys(metaData.characteristics).map(characteristic => {
+      return <CharacteristicBreakdown
+        characteristic={characteristic}
+        rating={metaData.characteristics[characteristic].value}/>;
+    });
   };
 
   if (metaData) {
