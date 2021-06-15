@@ -57,7 +57,7 @@ const ReviewTile = (props) => {
     if (displayImgModal) {
       return (
         <div className="imageModal">
-          <span className="close" onClick={() => setDisplayImgModal(false)}>X</span>
+          <i className="fas fa-times close" onClick={() => setDisplayImgModal(false)}></i>
           <img className="modal-content" src={modalImage}></img>
         </div>
       );

@@ -67,7 +67,7 @@ const ReviewList = (props) => {
 
   var renderMoreReviews = () => {
     if (displayCount < reviews.length) {
-      return <button id="moreReviews" onClick={handleClick}>More Reviews</button>;
+      return <button id="moreReviews" className="reviewButton" onClick={handleClick}>MORE REVIEWS</button>;
     }
   };
 
@@ -102,7 +102,7 @@ const ReviewList = (props) => {
 
       {renderList()}
       {renderMoreReviews()}
-      <button onClick={() => setDisplayFormModal(true)}>Add a Review +</button>
+      <button className="reviewButton" onClick={() => setDisplayFormModal(true)}>ADD A REVIEW   +</button>
       {renderReviewFormModal()}
     </div>
   );

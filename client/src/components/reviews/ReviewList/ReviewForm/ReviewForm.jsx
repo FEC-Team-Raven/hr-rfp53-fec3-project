@@ -113,8 +113,8 @@ const ReviewForm = props => {
 
   return (
     <div className="reviewFormModal">
-      <span className="close" onClick={() => props.setDisplayFormModal(false)}>X</span>
       <div className="reviewFormContainer">
+        <i className="fas fa-times closeForm" onClick={() => props.setDisplayFormModal(false)}></i>
         <form className="reviewForm" onSubmit={handleSubmit}>
           <div className="reviewRow">
             <div className="rating">Select a rating: </div>
@@ -221,7 +221,7 @@ const ReviewForm = props => {
             <div>For authentication reasons, you will not be emailed</div>
           </div>
 
-          <input type="submit" />
+          <input type="submit" className="reviewButton" />
         </form>
       </div>
     </div>
