@@ -40,6 +40,10 @@ app.get('/products', (req, res) => {
     });
 });
 
+/****************************
+      REVIEWS ENDPOINTS
+*****************************/
+
 app.get('/reviews', (req, res) => {
   // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/reviews', ''));
@@ -172,15 +176,18 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+/****************************
+    QUESTIONS ENDPOINTS
+*****************************/
+
 app.get('/questions', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/questions', ''));
   var productId = searchParams.get('productId');
 
   axios({
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions',
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
     params: {
       'product_id': productId,
       'count': 50
@@ -195,16 +202,14 @@ app.get('/questions', (req, res) => {
     });
 });
 
-//get all answers
 app.get('/answers', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   var searchParams = new URLSearchParams(req.url.replace('/answers', ''));
   var questionId = searchParams.get('id');
 
   axios({
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
     params: {
       'count': 100
     }
@@ -219,12 +224,10 @@ app.get('/answers', (req, res) => {
 });
 
 app.post('/questions/add', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
-
   axios({
     method: 'post',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions',
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
     data: req.body
   })
     .then(result => {
@@ -233,18 +236,20 @@ app.post('/questions/add', (req, res) => {
     .catch(err => {
       console.log(err);
       res.sendStatus(400);
+    });
+});
+
 
 
 
 app.post('/answers/add', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   const questionId = req.body.questionId;
   delete req.body.questionId;
 
   axios({
     method: 'post',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
     data: req.body
   })
     .then((result) => {
@@ -257,11 +262,10 @@ app.post('/answers/add', (req, res) => {
 });
 
 app.post('/report/answer', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.id}/report`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
   })
     .then((result) => {
       res.status(204).send('SUCCESS REPORT ANSWER');
@@ -273,12 +277,10 @@ app.post('/report/answer', (req, res) => {
 });
 
 app.post('/helpful/answer', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
-  // console.log(req.body);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${req.body.id}/helpful`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
   })
     .then((result) => {
       res.status(204).send('SUCCESS ANSWER HELPFUL');
@@ -290,11 +292,10 @@ app.post('/helpful/answer', (req, res) => {
 });
 
 app.post('/helpful/question', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.body.id}/helpful`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
   })
     .then((result) => {
       res.status(204).send('SUCCESS QUESTION HELPFUL');
@@ -306,11 +307,10 @@ app.post('/helpful/question', (req, res) => {
 });
 
 app.post('/report/question', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.body.id}/report`,
-    headers: { Authorization: token },
+    headers: { Authorization: config.github },
   })
     .then((result) => {
       res.status(204).send('SUCCESS REPORT QUESTION');
@@ -325,3 +325,4 @@ app.post('/report/question', (req, res) => {
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
+

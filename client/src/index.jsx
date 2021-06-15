@@ -35,7 +35,7 @@ const App = () => {
       {/* <Overview productId={productId}/> */}
       {/* <Related productId={productId}/> */}
       <Questions productId={productId} productName={productName}/>
-      {/* <Reviews productId={productId}/> */}
+      <Reviews productId={productId}/>
     </div>
   );
 };
