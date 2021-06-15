@@ -33,7 +33,6 @@ const ReviewList = (props) => {
       }));
     } else if (starFilter.length === 0) {
       setRenderedReviews(reviews.filter(review => {
-        console.log(review.summary);
         return review.body.toLowerCase().includes(searchFilter.toLowerCase()) || review.summary.toLowerCase().includes(searchFilter.toLowerCase());
       }));
     } else {
