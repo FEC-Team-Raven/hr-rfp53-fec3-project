@@ -50,8 +50,8 @@ const CharacteristicInput = props => {
 
   return (
     <div className="characteristicInputContainer">
-      {props.characteristic} <br />
-      <div className="characteristicInput">
+      <div style={{'text-decoration': 'underline'}}>{props.characteristic}</div>
+      <div className="characteristicInput" >
         {values.map(value => {
           return <CharacteristicRadio
             value={value}

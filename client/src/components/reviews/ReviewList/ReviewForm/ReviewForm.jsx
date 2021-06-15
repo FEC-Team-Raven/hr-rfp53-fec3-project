@@ -151,7 +151,7 @@ const ReviewForm = props => {
           {renderCharacteristics()}
 
           <div>
-            <label for="summary">Review Summary</label>
+            <label for="summary" style={{'margin-right': '5px'}}>Review Summary:</label>
             <input
               id="summary"
               name="summary"
