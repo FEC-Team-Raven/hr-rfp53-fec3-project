@@ -7,14 +7,15 @@ import Reviews from './components/reviews/Reviews.jsx';
 import axios from 'axios';
 
 const App = () => {
-  const [productData, setProductData] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [ productData, setProductData ] = useState(0);
+  const [ productIDtoRender, setProductIDtoRender ] = useState(17067);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     if (loading) {
-      axios('http://localhost:3000/products')
+      axios(`http://localhost:3000/products/${productIDtoRender}`)
         .then(products => {
-          setProductData(products.data[0]);
+          setProductData(products.data);
           setLoading(false);
         })
         .catch(err => {

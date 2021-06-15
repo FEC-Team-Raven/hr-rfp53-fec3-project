@@ -7,12 +7,9 @@ const ProductDescription = props => {
         <h2>{props.product.slogan}</h2>
         <p>{props.product.description}</p>
       </div>
-      <div id="product-facts">
+      <div id="product-features">
         <ul>
-          <li>This is a fact about the product</li>
-          <li>Cool product fact</li>
-          <li>GMO non-GMO 145.42% fake-real! This isn't even a product!</li>
-          <li>yep</li>
+          {props.product.features.map(featureObj => <li key={featureObj.feature}>{featureObj.feature}: <span className="feature-value">{featureObj.value}</span></li>)}
         </ul>
       </div>
     </div>

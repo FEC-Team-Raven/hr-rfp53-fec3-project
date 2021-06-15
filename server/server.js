@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
+
 app.get('/products/:product_id/styles', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
@@ -30,10 +31,10 @@ app.get('/products/:product_id/styles', (req, res) => {
     });
 });
 
-app.get('/products', (req, res) => {
+app.get('/products/:product_id', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}`,
     headers: {
       Authorization: token
     }
@@ -46,7 +47,6 @@ app.get('/products', (req, res) => {
       res.end();
     });
 });
-
 
 app.get('/reviews', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
