@@ -32,9 +32,9 @@ const App = () => {
   return (
     <div>
       <Overview productId={productData.id} product={productData}/>
-      {/* <Related productId={productId}/>
-      <Questions productId={productId}/>
-      <Reviews productId={productId}/> */}
+      <Related productId={productData.id}/>
+      <Questions productId={productData.id}/>
+      <Reviews productId={productData.id}/>
     </div>
   );
 };

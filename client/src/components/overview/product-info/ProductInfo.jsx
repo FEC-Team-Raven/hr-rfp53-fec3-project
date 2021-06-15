@@ -7,7 +7,7 @@ const ProductInfo = props => {
   return (
     <div id="product-info">
       <div id="product-rating">
-        <Stars rating={props.rating}/><a href="/">Read all reviews</a>
+        <Stars rating={props.rating}/><a href="#reviews">Read all reviews</a>
       </div>
       <p id="product-category">{props.product.category}</p>
       <p id="product-name">{props.product.name}</p>

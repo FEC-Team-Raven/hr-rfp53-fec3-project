@@ -20,6 +20,7 @@ const Reviews = (props) => {
 
   return (
     <ReviewContext.Provider value={reviews}>
+      <a name="reviews"></a>
       <ReviewList />
     </ReviewContext.Provider>
   );
