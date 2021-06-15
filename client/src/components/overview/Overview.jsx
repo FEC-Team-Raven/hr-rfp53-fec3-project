@@ -22,6 +22,7 @@ const images = [
 
 
 const Overview = props => {
+  const [ averageRating, setAverageRating ] = useState(0);
   const [ styleIndex, setStyleIndex ] = useState(0);
   const [ styles, setStyles ] = useState([]);
   const [ loading, setLoading ] = useState(true);
@@ -35,6 +36,18 @@ const Overview = props => {
         .then(res => {
           setStyles(res.data.results);
           setLoading(false);
+          return;
+        })
+        .then(() => {
+          axios.get(`/reviews/meta/${props.productId}`)
+            .then (res => {
+              let totalRatings = Object.values(res.data.ratings).reduce((a, b) => Number(a) + Number(b));
+              let totalStarCount = Object.keys(res.data.ratings).map(starCount => starCount * res.data.ratings[starCount]).reduce((a, b) => a + b);
+              setAverageRating(totalStarCount / totalRatings);
+            })
+            .catch(err => {
+              console.log(err);
+            });
         })
         .catch(err => {
           console.error(err);
@@ -56,7 +69,7 @@ const Overview = props => {
     <div id="overview">
       <ImageGallery product={props.product} images={styles[styleIndex].photos} style={styles[styleIndex]} />
       <div id="product-ui">
-        <ProductInfo product={props.product} style={styles[styleIndex]}/>
+        <ProductInfo product={props.product} rating={averageRating} style={styles[styleIndex]}/>
         <div id="style-name"><b>STYLE &gt;</b> {styles[styleIndex].name.toUpperCase()}</div>
         <StyleSelect product={props.product} styles={styles} selectStyle={changeStyle} />
         <AddToCart product={props.product} styleSKUs={styles[styleIndex].skus}/>

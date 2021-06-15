@@ -73,10 +73,38 @@ app.get('/reviews', (req, res) => {
     });
 });
 
+app.get('/reviews/meta/:productId', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+    method: 'GET',
+    headers: {
+      Authorization: token,
+    },
+    params: {
+      'product_id': req.params.productId
+    }
+  }).then(response => { res.send(response.data); })
+    .catch(err => {
+      throw err;
+      res.status(500);
+      res.send(err);
+    });
+});
+
 app.post('/cart', (req, res) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', {'sku_id': req.body.sku}, { headers: { Authorization: token, 'Content-Type': 'application/json' } }
-  ).then(response => res.send(response.data))
-    .catch(err => { throw err; res.status(500); res.send(err); } );
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart',
+    {'sku_id': req.body.sku},
+    { headers:
+      { Authorization: token, 'Content-Type': 'application/json' }
+    }
+  )
+    .then(response => { res.send(response.data); })
+    .catch(err => {
+      throw err;
+      res.status(500);
+      res.send(err);
+    });
 });
 
 app.get('/', (req, res) => {
