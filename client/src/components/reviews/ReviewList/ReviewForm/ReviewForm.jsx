@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import StarSelector from './StarSelector.jsx';
+import StarSelector from './StarSelector/StarSelector.jsx';
 import CharacteristicInput from './CharacteristicInput/CharacteristicInput.jsx';
 import axios from 'axios';
 import {ReviewContext} from '../../Reviews.jsx';
