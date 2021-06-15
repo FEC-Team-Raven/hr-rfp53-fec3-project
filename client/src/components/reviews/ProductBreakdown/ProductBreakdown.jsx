@@ -8,8 +8,6 @@ const ProductBreakdown = props => {
   var [metaData, setMetaData] = useState({});
   var [loading, setLoading] = useState(true);
 
-
-
   useEffect(() => {
     if (props.productId !== 0) {
       getMetaData(props.productId);
