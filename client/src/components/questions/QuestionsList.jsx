@@ -20,7 +20,7 @@ const QuestionsList = (props) => {
   }
 
   return (
-    <div class='QList'>
+    <div className='QList'>
       {temp.map((item) =>
         <QuestionItem value={item} questionBody={item.question_body} productName={props.productName} id={productId} getQuestions={props.getQuestions}/>
       )}

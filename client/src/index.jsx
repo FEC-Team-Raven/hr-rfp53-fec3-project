@@ -17,6 +17,9 @@ const App = () => {
       setLoading(false);
       axios('http://localhost:3000/products')
         .then(products => {
+          console.log('id', products.data[0].id);
+          console.log('name', products.data[0].name);
+
           setProductId(products.data[0].id);
           setProductName(products.data[0].name);
         })

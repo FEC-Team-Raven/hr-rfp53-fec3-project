@@ -6,7 +6,7 @@
   overflow: auto;
 }
 
-.main {
+.main-questions {
   padding-left: 7vw;
   padding-right: 7vw;
 }
@@ -62,6 +62,7 @@ input:focus {
   display: flex;
   justify-content: space-around;
   font-size: x-small;
+  white-space: nowrap;
 }
 
 #q-text {
@@ -258,6 +259,15 @@ button.moreAns:hover {
   padding: 10px;
   transition: all .5s ease;
   color: black;
+}
+#AddQ p {
+  all: unset;
+}
+
+p#plus {
+  padding-left: 10px;
+  font-weight: bold;
+
 }
 
 #AddQ:hover {
