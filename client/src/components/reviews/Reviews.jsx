@@ -6,12 +6,33 @@ import axios from 'axios';
 export const ReviewContext = React.createContext({});
 
 const Reviews = (props) => {
+  const [loading, setLoading] = useState(true);
+
   var context = {
-    starFilter: useState([])
+    starFilter: useState([]),
+    metaData: useState({})
+  };
+
+  useEffect(() => {
+    if (props.productId) {
+      getMetaData();
+    }
+  }, [props.productId]);
+
+  var getMetaData = () => {
+    axios('http://localhost:3000/reviews/meta', {
+      params: {
+        productId: props.productId
+      }
+    })
+      .then(meta => {
+        context.metaData[1](meta.data);
+        setLoading(false);
+      });
   };
 
   var renderReviews = productId => {
-    if (productId !== 0) {
+    if (!loading) {
       return (
         <div>
           RATINGS & REVIEWS

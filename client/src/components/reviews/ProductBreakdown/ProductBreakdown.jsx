@@ -3,28 +3,11 @@ import axios from 'axios';
 import Stars from '../../Stars.jsx';
 import RatingBar from './RatingBar.jsx';
 import CharacteristicBreakdown from './CharacteristicBreakdown.jsx';
+import {ReviewContext} from '../Reviews.jsx';
 
 const ProductBreakdown = props => {
-  var [metaData, setMetaData] = useState({});
-  var [loading, setLoading] = useState(true);
+  var metaData = useContext(ReviewContext).metaData[0];
 
-  useEffect(() => {
-    if (props.productId !== 0) {
-      getMetaData(props.productId);
-    }
-  }, [props.productId]);
-
-  var getMetaData = reviewId => {
-    axios('http://localhost:3000/reviews/meta', {
-      params: {
-        productId: props.productId
-      }
-    })
-      .then(meta => {
-        setMetaData(meta.data);
-        setLoading(false);
-      });
-  };
 
   var roundToQuarter = rating => {
     rating = Math.floor(rating / 0.25) * 0.25;
@@ -92,7 +75,7 @@ const ProductBreakdown = props => {
     }
   };
 
-  if (!loading) {
+  if (metaData) {
     return (
       <div className="productBreakdown">
         {renderRating()}
