@@ -1,13 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {ReviewContext} from '../Reviews.jsx';
 
-const style = {
-  'margin-right': '10px',
-  'text-decoration': 'underline'
-};
 
 const RatingBar = props => {
   const [starFilter, setStarFilter] = useContext(ReviewContext).starFilter;
+  const [style, setStyle] = useState({
+    'text-decoration': 'underline',
+    'width': '48px',
+    'font-weight': 'normal'
+  });
 
   var updateStarFilter = stars => {
     var copy = starFilter.slice();
@@ -20,9 +21,21 @@ const RatingBar = props => {
     }
   };
 
+  var handleClick = () => {
+    updateStarFilter(props.stars);
+    var copy = {};
+    for (var key in style) {
+      copy[key] = style[key];
+    }
+
+    copy['font-weight'] = copy['font-weight'] === 'normal' ? 'bold' : 'normal';
+    console.log(copy);
+    setStyle(copy);
+  };
+
   return (
     <div className="reviewRow">
-      <div onClick={() => updateStarFilter(props.stars)} style={style}>{props.stars} stars</div>
+      <div onClick={handleClick} style={style}>{props.stars} stars</div>
       <div className="table">
         <div className="barContainer">
           <div className="bar" style={{'width': `${props.distribution}%`}}></div>
