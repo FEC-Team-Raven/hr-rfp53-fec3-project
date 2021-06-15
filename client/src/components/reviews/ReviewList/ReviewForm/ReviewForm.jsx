@@ -150,7 +150,9 @@ const ReviewForm = props => {
             <input id="recommendedNo" name="recommended" type="radio" value={false} onChange={(e) => setRecommended(e.target.value)} required></input>
             <label for="recommendedNo">No</label>
           </div>
+
           {renderCharacteristics()}
+
           <div>
             <label for="summary">Review Summary</label>
             <input id="summary" name="summary" type="text" maxlength="60" onChange={e => setSummary(e.target.value)}></input>

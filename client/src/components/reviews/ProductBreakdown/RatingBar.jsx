@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {FilterContext} from '../Reviews.jsx';
+import {ReviewContext} from '../Reviews.jsx';
 
 const style = {
   'margin-right': '10px',
@@ -7,7 +7,7 @@ const style = {
 };
 
 const RatingBar = props => {
-  const {starFilter, setStarFilter} = useContext(FilterContext);
+  const [starFilter, setStarFilter] = useContext(ReviewContext).starFilter;
 
   var updateStarFilter = stars => {
     var copy = starFilter.slice();

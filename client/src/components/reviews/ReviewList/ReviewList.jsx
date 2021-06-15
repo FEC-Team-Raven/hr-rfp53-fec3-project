@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import ReviewForm from './ReviewForm/ReviewForm.jsx';
-import {FilterContext} from '../Reviews.jsx';
+import {ReviewContext} from '../Reviews.jsx';
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
@@ -11,7 +11,7 @@ const ReviewList = (props) => {
   const [displayCount, setDisplayCount] = useState(2);
   const [displayFormModal, setDisplayFormModal] = useState(false);
   const [searchFilter, setSearchFilter] = useState('');
-  var {starFilter} = useContext(FilterContext);
+  var starFilter = useContext(ReviewContext).starFilter[0];
 
   useEffect(() => {
     if (props.productId !== 0) {
