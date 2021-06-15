@@ -10,7 +10,7 @@ const Reviews = (props) => {
 
   var context = {
     starFilter: useState([]),
-    metaData: useState({})
+    metaData: useState({}),
   };
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const Reviews = (props) => {
         setLoading(false);
       });
   };
+
+  context.getMetaData = getMetaData;
 
   if (!loading) {
     return (

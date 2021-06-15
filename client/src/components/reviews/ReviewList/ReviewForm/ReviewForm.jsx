@@ -15,7 +15,10 @@ const ReviewForm = props => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
-  const productCharacteristics = useContext(ReviewContext).metaData[0].characteristics;
+  const context = useContext(ReviewContext);
+  const productCharacteristics = context.metaData[0].characteristics;
+  const getMetaData = context.getMetaData;
+
   var characteristicRatings = {
     Size: useState(0),
     Width: useState(0),
@@ -95,6 +98,10 @@ const ReviewForm = props => {
         'Content-Type': 'multipart/form-data'
       }
     })
+      .then(() => {
+        getMetaData();
+        props.getReviews();
+      })
       .then(() => {
         props.setDisplayFormModal(false);
       });

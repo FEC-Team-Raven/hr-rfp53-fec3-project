@@ -46,7 +46,7 @@ const ReviewList = (props) => {
   };
 
   var getReviews = () => {
-    axios('http://localhost:3000/reviews', {
+    return axios('http://localhost:3000/reviews', {
       params: {
         productId: props.productId,
         sort: sort
@@ -83,7 +83,7 @@ const ReviewList = (props) => {
 
   var renderReviewFormModal = () => {
     if (displayFormModal) {
-      return <ReviewForm productId={props.productId} setDisplayFormModal={setDisplayFormModal}/>;
+      return <ReviewForm productId={props.productId} setDisplayFormModal={setDisplayFormModal} getReviews={getReviews}/>;
     }
   };
 
