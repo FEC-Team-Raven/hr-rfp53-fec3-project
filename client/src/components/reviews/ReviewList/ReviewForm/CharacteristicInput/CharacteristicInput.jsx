@@ -57,7 +57,8 @@ const CharacteristicInput = props => {
             value={value}
             characteristic={props.characteristic}
             setCharacteristicValue={props.setCharacteristicValue}
-            rating={eval('rating' + value)}/>;
+            rating={eval('rating' + value)}
+          />;
         })}
       </div>
     </div>

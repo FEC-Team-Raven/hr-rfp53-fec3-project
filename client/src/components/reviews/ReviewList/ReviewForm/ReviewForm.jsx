@@ -16,7 +16,6 @@ const ReviewForm = props => {
   const [email, setEmail] = useState('');
 
   const productCharacteristics = useContext(ReviewContext).metaData[0].characteristics;
-
   var characteristicRatings = {
     Size: useState(0),
     Width: useState(0),
@@ -69,10 +68,12 @@ const ReviewForm = props => {
     if (body.length < 50) {
       return;
     }
+
     var charInputs = {};
     for (var key in productCharacteristics) {
       charInputs[productCharacteristics[key].id] = characteristicRatings[key][0];
     }
+
     var formData = new FormData();
     formData.append('product_id', props.productId);
     formData.append('rating', starRating);
@@ -110,102 +111,118 @@ const ReviewForm = props => {
     }
   };
 
-
-
-  var renderForm = () => {
-    return (
-      <form className="reviewForm" onSubmit={handleSubmit}>
-        <div className="reviewRow">
-          <div className="rating">Select a rating: </div>
-          <div className="starContainer" >
-            <input type="hidden" required></input>
-            <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars}/>
-          </div>
-          {renderRatingMessage()}
-          {renderRequireRating()}
-        </div>
-
-        <div>
-          Do you recommend this product?
-          <input id="recommendedYes" name="recommended" type="radio" value={true} onChange={(e) => setRecommended(e.target.value)} required></input>
-          <label for="recommendedYes">Yes</label>
-          <input id="recommendedNo" name="recommended" type="radio" value={false} onChange={(e) => setRecommended(e.target.value)} required></input>
-          <label for="recommendedNo">No</label>
-        </div>
-
-        {renderCharacteristics()}
-
-        <div>
-          <label for="summary">Review Summary</label>
-          <input id="summary" name="summary" type="text" maxlength="60" onChange={e => setSummary(e.target.value)}></input>
-        </div>
-
-        <div>
-          <textarea
-            className="reviewBody"
-            rows="5"
-            columns="100"
-            wrap="hard"
-            maxlength="1000"
-            placeholder="Why did you like the product or not?"
-            onChange={e => setBody(e.target.value)}
-            required
-          >
-          </textarea>
-          {renderBodyMessage()}
-        </div>
-
-        <div>
-          Upload up to 5 images <br />
-          <input id="photos" name="photos" type="file" accept="image/png, image/jpeg" onChange={handleImageUpload} multiple></input>
-          <div className="reviewRow">
-            {displayPhotos.map(photo => {
-              return <img className="reviewImage" src={photo}></img>;
-            })}
-          </div>
-        </div>
-
-        <div>
-          <label for="nickname">Nickname: </label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            maxlength="60"
-            onChange={e => setNickname(e.target.value)}
-            placeholder="Example: jackson11!"
-            required
-          >
-          </input>
-          <div>For privacy reasons, do not use your full name or email address</div>
-        </div>
-
-        <div>
-          <label for="email">Email: </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            maxlength="60"
-            onChange={e => setEmail(e.target.value)}
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            placeholder="Example: jackson11@email.com"
-            required
-          >
-          </input>
-          <div>For authentication reasons, you will not be emailed</div>
-        </div>
-
-        <input type="submit"></input>
-      </form>
-    );
-  };
-
   return (
     <div className="reviewFormModal">
       <span className="close" onClick={() => props.setDisplayFormModal(false)}>X</span>
       <div className="reviewFormContainer">
-        {renderForm()}
+        <form className="reviewForm" onSubmit={handleSubmit}>
+          <div className="reviewRow">
+            <div className="rating">Select a rating: </div>
+            <div className="starContainer" >
+              <input type="hidden" required></input>
+              <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars}/>
+            </div>
+            {renderRatingMessage()}
+            {renderRequireRating()}
+          </div>
+
+          <div>
+            Do you recommend this product?
+            <input
+              id="recommendedYes"
+              name="recommended"
+              type="radio"
+              value={true}
+              onChange={(e) => setRecommended(e.target.value)}
+              required
+            />
+            <label for="recommendedYes">Yes</label>
+            <input
+              id="recommendedNo"
+              name="recommended"
+              type="radio"
+              value={false}
+              onChange={(e) => setRecommended(e.target.value)}
+              required
+            />
+            <label for="recommendedNo">No</label>
+          </div>
+
+          {renderCharacteristics()}
+
+          <div>
+            <label for="summary">Review Summary</label>
+            <input
+              id="summary"
+              name="summary"
+              type="text"
+              maxlength="60"
+              onChange={e => setSummary(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <textarea
+              className="reviewBody"
+              rows="5"
+              columns="100"
+              wrap="hard"
+              maxlength="1000"
+              placeholder="Why did you like the product or not?"
+              onChange={e => setBody(e.target.value)}
+              required
+            />
+            {renderBodyMessage()}
+          </div>
+
+          <div>
+            Upload up to 5 images <br />
+            <input
+              id="photos"
+              name="photos"
+              type="file"
+              accept="image/png, image/jpeg"
+              onChange={handleImageUpload}
+              multiple
+            />
+            <div className="reviewRow">
+              {displayPhotos.map(photo => {
+                return <img className="reviewImage" src={photo}></img>;
+              })}
+            </div>
+          </div>
+
+          <div>
+            <label for="nickname">Nickname: </label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              maxlength="60"
+              onChange={e => setNickname(e.target.value)}
+              placeholder="Example: jackson11!"
+              required
+            />
+            <div>For privacy reasons, do not use your full name or email address</div>
+          </div>
+
+          <div>
+            <label for="email">Email: </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              maxlength="60"
+              onChange={e => setEmail(e.target.value)}
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              placeholder="Example: jackson11@email.com"
+              required
+            />
+            <div>For authentication reasons, you will not be emailed</div>
+          </div>
+
+          <input type="submit" />
+        </form>
       </div>
     </div>
   );

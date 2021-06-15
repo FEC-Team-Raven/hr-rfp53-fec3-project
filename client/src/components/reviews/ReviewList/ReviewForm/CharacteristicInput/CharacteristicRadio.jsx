@@ -10,8 +10,7 @@ const CharacteristicRadio = props => {
         value={props.value}
         onChange={e => props.setCharacteristicValue(parseInt(e.target.value, 10))}
         required
-      >
-      </input>
+      />
       <label for={`${props.characteristic}${props.value}`}>{props.rating}</label>
     </div>
   );
