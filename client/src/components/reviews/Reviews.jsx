@@ -31,27 +31,20 @@ const Reviews = (props) => {
       });
   };
 
-  var renderReviews = productId => {
-    if (!loading) {
-      return (
-        <div>
-          RATINGS & REVIEWS
-          <div className="ratingsReviewsContainer">
-            <ReviewContext.Provider value={context}>
-              <ProductBreakdown productId={props.productId} />
-              <ReviewList productId={props.productId} />
-            </ReviewContext.Provider>
-          </div>
+  if (!loading) {
+    return (
+      <div>
+        RATINGS & REVIEWS
+        <div className="ratingsReviewsContainer">
+          <ReviewContext.Provider value={context}>
+            <ProductBreakdown productId={props.productId} />
+            <ReviewList productId={props.productId} />
+          </ReviewContext.Provider>
         </div>
-      );
-    }
-  };
-
-  return (
-    <div>
-      {renderReviews(props.productId)}
-    </div>
-  );
+      </div>
+    );
+  }
+  return null;
 };
 
 export default Reviews;

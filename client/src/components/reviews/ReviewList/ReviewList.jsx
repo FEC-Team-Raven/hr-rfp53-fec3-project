@@ -61,10 +61,6 @@ const ReviewList = (props) => {
       });
   };
 
-  var handleChange = event => {
-    setSort(event.target.value);
-  };
-
   var handleClick = () => {
     setDisplayCount(displayCount + 2);
   };
@@ -94,12 +90,15 @@ const ReviewList = (props) => {
   return (
     <div className="reviewList">
       {reviews.length} reviews, sorted by
-      <select className="sortReviews" onChange={handleChange}>
+      <select className="sortReviews" onChange={e => setSort(e.target.value)}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
       </select>
-      <input type="text" onChange={e => setSearchFilter(e.target.value)}></input> <br />
+      <input
+        type="text"
+        onChange={e => setSearchFilter(e.target.value)}
+      /> <br />
 
       {renderList()}
       {renderMoreReviews()}
