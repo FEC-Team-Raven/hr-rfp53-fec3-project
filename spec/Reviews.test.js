@@ -1,7 +1,10 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ReactTestUtils, {act} from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
+import { JSDOM } from 'jsdom';
+
 import Reviews from '../client/src/components/reviews/Reviews.jsx';
 import ReviewList from '../client/src/components/reviews/ReviewList/ReviewList.jsx';
 import ReviewTile from '../client/src/components/reviews/ReviewList/ReviewTile.jsx';
@@ -9,6 +12,7 @@ import RatingBar from '../client/src/components/reviews/ProductBreakdown/RatingB
 import CharacteristicBreakdown from '../client/src/components/reviews/ProductBreakdown/CharacteristicBreakdown.jsx';
 import CharacteristicInput from '../client/src/components/reviews/ReviewList/ReviewForm/CharacteristicInput.jsx';
 import StarSelector from '../client/src/components/reviews/ReviewList/ReviewForm/StarSelector.jsx';
+import ReviewForm from '../client/src/components/reviews/ReviewList/ReviewForm/ReviewForm.jsx';
 
 
 
@@ -86,4 +90,51 @@ it('renders StarSelector correctly', () => {
     .create(<StarSelector />)
     .toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+xit('renders ReviewForm correctly', () => {
+  act(() => {
+    const tree = renderer
+      .create(<ReviewForm productId={17076}/>)
+      .toJSON();
+  });
+  expect(tree).toMatchSnapshot();
+});
+
+let container;
+let productId = 17067;
+
+const dom = new JSDOM();
+global.window = dom.window;
+global.document = dom.window.document;
+
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
+
+xit('renders two more reviews when clicking More Reviews', () => {
+  act(() => {
+    var FilterContext = React.createContext({});
+    var context = {
+      starFilter: [],
+      setStarFiler: () => {}
+    };
+    ReactDOM.render(
+      <FilterContext.Provider value={context} >
+        <ReviewList productId={productId} />
+      </FilterContext.Provider>
+      , container);
+  });
+  const moreReviews = container.querySelector('#moreReviews');
+  act(() => {
+    moreReviews.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+  });
+
+
 });

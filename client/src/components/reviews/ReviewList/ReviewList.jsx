@@ -71,7 +71,7 @@ const ReviewList = (props) => {
 
   var renderMoreReviews = () => {
     if (displayCount < reviews.length) {
-      return <button onClick={handleClick}>More Reviews</button>;
+      return <button id="moreReviews" onClick={handleClick}>More Reviews</button>;
     }
   };
 

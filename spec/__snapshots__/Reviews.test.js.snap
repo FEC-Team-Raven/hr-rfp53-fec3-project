@@ -173,6 +173,22 @@ exports[`renders RatingBar correctly 1`] = `
 </div>
 `;
 
+exports[`renders ReviewForm correctly 1`] = `
+<div
+  className="reviewFormModal"
+>
+  <span
+    className="close"
+    onClick={[Function]}
+  >
+    X
+  </span>
+  <div
+    className="reviewFormContainer"
+  />
+</div>
+`;
+
 exports[`renders ReviewTile correctly 1`] = `
 <div
   className="reviewTile"
@@ -430,5 +446,45 @@ exports[`renders StarSelector correctly 1`] = `
       ☆
     </div>
   </div>
+</div>
+`;
+
+exports[`renders two more reviews when clicking More Reviews 1`] = `
+<div
+  className="reviewList"
+>
+  0
+   reviews, sorted by
+  <select
+    className="sortReviews"
+    onChange={[Function]}
+  >
+    <option
+      value="relevance"
+    >
+      relevance
+    </option>
+    <option
+      value="helpful"
+    >
+      helpful
+    </option>
+    <option
+      value="newest"
+    >
+      newest
+    </option>
+  </select>
+  <input
+    onChange={[Function]}
+    type="text"
+  />
+   
+  <br />
+  <button
+    onClick={[Function]}
+  >
+    Add a Review +
+  </button>
 </div>
 `;
