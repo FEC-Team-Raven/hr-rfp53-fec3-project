@@ -146,6 +146,18 @@ button.thumbnail {
 
 #product-info > #price {
   margin: 20px 0px 20px;
+  font-size: 1.5rem;
+}
+
+#price > #sale-price {
+  color: red;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+#price > #original-price {
+  text-decoration: line-through;
+  font-size: .9rem;
 }
 
 #product-ui {
