@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-const token = require('./config.js');
+const config = require('./config.js');
 const imgbbUploader = require('imgbb-uploader');
 const FormData = require('form-data');
 
@@ -25,7 +25,7 @@ app.get('/products', (req, res) => {
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
     headers: {
-      Authorization: token
+      Authorization: config.github
     }
   })
     .then(result => {
@@ -53,7 +53,7 @@ app.get('/reviews', (req, res) => {
       product_id: productId
     },
     headers: {
-      Authorization: token
+      Authorization: config.github
     }
   })
     .then(reviews => {
@@ -72,7 +72,7 @@ app.put('/reviews/helpful', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`,
     method: 'PUT',
     headers: {
-      Authorization: token
+      Authorization: config.github
     }
   })
     .then(() => {
@@ -91,7 +91,7 @@ app.put('/reviews/report', (req, res) => {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/report`,
     headers: {
-      Authorization: token
+      Authorization: config.github
     }
   });
 });
@@ -104,7 +104,6 @@ app.post('/reviews', (req, res) => {
     for (var key in req.body) {
       formInputs[key] = req.body[key];
     }
-
     formInputs['product_id'] = parseInt(formInputs['product_id'], 10);
     formInputs['rating'] = parseInt(formInputs['rating'], 10);
     formInputs['recommend'] = formInputs['recommend'] === 'true';
@@ -112,7 +111,7 @@ app.post('/reviews', (req, res) => {
     formInputs['characteristics'] = JSON.parse(formInputs['characteristics']);
 
     var options = {
-      apiKey: '9b6f7c68837140863a35c6c962e93276',
+      apiKey: config.imgbb,
       base64string: ''
     };
 
@@ -132,7 +131,7 @@ app.post('/reviews', (req, res) => {
           method: 'POST',
           data: formInputs,
           headers: {
-            Authorization: token
+            Authorization: config.github
           }
         })
           .then(() => {
@@ -159,7 +158,7 @@ app.get('/reviews/meta', (req, res) => {
       product_id: productId
     },
     headers: {
-      Authorization: token
+      Authorization: config.github
     }
   })
     .then(meta => {
