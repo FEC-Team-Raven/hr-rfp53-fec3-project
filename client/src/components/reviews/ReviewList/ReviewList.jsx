@@ -33,14 +33,15 @@ const ReviewList = (props) => {
       }));
     } else if (starFilter.length === 0) {
       setRenderedReviews(reviews.filter(review => {
-        return review.body.toLowerCase().includes(searchFilter.toLowerCase());
+        console.log(review.summary);
+        return review.body.toLowerCase().includes(searchFilter.toLowerCase()) || review.summary.toLowerCase().includes(searchFilter.toLowerCase());
       }));
     } else {
       setRenderedReviews(reviews.filter(review => {
         return starFilter.includes(review.rating);
       })
         .filter(review => {
-          return review.body.toLowerCase().includes(searchFilter.toLowerCase());
+          return review.body.toLowerCase().includes(searchFilter.toLowerCase()) || review.summary.toLowerCase().includes(searchFilter.toLowerCase());
         }));
     }
   };
