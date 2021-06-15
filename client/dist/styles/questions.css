@@ -180,12 +180,13 @@ button.moreAns:hover {
 
 #modal-blur-active {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: grey;
-  opacity: 0.5;
+  background-color: black;
+  opacity: 0.6;
 }
 
 #modal-blur-inactive {
