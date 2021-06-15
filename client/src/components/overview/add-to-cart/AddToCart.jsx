@@ -6,6 +6,7 @@ import AddToCartButton from './AddToCartButton.jsx';
 
 const AddToCart = props => {
   const [ skuIndex, setSkuIndex ] = useState(0);
+  const [ isOutOfStock, setIsOutOfStock ] = useState(false);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -23,6 +24,16 @@ const AddToCart = props => {
     }
   };
 
+  useEffect(() => {
+    if (Object.values(props.styleSKUs)[skuIndex].quantity <= 0) {
+      setIsOutOfStock(true);
+    } else {
+      if (isOutOfStock) {
+        setIsOutOfStock(false);
+      }
+    }
+  }, [skuIndex]);
+
   return (
     <form id="purchase-form">
       <div id="purchase-select">
@@ -30,8 +41,8 @@ const AddToCart = props => {
         <QuantitySelect quantity={Object.values(props.styleSKUs)[skuIndex].quantity}/>
       </div>
       <div id="purchase-submit">
-        <AddToCartButton submit={submitHandler}/>
-        <button id="favorite-button">&#x2605;</button>
+        {isOutOfStock ? null : <AddToCartButton submit={submitHandler}/>}
+        {isOutOfStock ? null : <button id="favorite-button">&#x2605;</button>}
       </div>
     </form>
   );

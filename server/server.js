@@ -58,8 +58,7 @@ app.get('/reviews', (req, res) => {
       page: 1,
       count: 50,
       sort: 'newest',
-      // eslint-disable-next-line camelcase
-      product_id: productId
+      'product_id': productId
     },
     headers: {
       Authorization: token
