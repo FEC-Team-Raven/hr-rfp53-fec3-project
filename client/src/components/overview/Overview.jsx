@@ -59,7 +59,7 @@ const Overview = props => {
         <ProductInfo product={props.product} style={styles[styleIndex]}/>
         <div id="style-name"><b>STYLE &gt;</b> {styles[styleIndex].name.toUpperCase()}</div>
         <StyleSelect product={props.product} styles={styles} selectStyle={changeStyle} />
-        <AddToCart product={props.product} styleSKUs={Object.values(styles[styleIndex].skus)}/>
+        <AddToCart product={props.product} styleSKUs={styles[styleIndex].skus}/>
       </div>
       <ProductDescription product={props.product}/>
     </div>

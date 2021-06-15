@@ -6,11 +6,10 @@ const token = require('./config.js');
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.end();
-});
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/products/:product_id/styles', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
@@ -73,6 +72,16 @@ app.get('/reviews', (req, res) => {
       console.log(err);
 
     });
+});
+
+app.post('/cart', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', {'sku_id': req.body.sku}, { headers: { Authorization: token, 'Content-Type': 'application/json' } }
+  ).then(response => res.send(response.data))
+    .catch(err => { throw err; res.status(500); res.send(err); } );
+});
+
+app.get('/', (req, res) => {
+  res.end();
 });
 
 app.listen(port, () => {
