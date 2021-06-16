@@ -13,7 +13,7 @@ const SocialMedia = () => {
     FacebookScript.async = true;
     FacebookScript.defer = true;
     FacebookScript.crossorigin = 'anonymous';
-    FacebookScript.nonce = 'fa0zn1LF';
+    FacebookScript.nonce = 'qUrHun0D';
 
     PinterestScript.src = '//assets.pinterest.com/js/pinit.js';
     PinterestScript.async = true;
@@ -31,10 +31,16 @@ const SocialMedia = () => {
   }, []);
 
   return (
-    <div className="social-media">
-      <a key="twitter-button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a>
-      <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-      <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
+    <div id="social-media">
+      <span className="social-media-button">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false"></a>
+      </span>
+      <span className="social-media-button">
+        <div className="fb-share-button" data-href="http://localhost:3000/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
+      </span>
+      <span className="social-media-button">
+        <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
+      </span>
     </div>
   );
 };
