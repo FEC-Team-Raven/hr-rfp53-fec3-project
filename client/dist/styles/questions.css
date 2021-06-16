@@ -1,0 +1,320 @@
+#app {
+  display: block;
+  height: auto;
+  width: 900px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.main-questions {
+  padding-left: 7vw;
+  padding-right: 7vw;
+}
+
+button {
+  all: unset;
+}
+
+#titleQA {
+  margin-bottom: 10px;
+}
+
+#yes:hover {
+  text-decoration: underline;
+}
+
+#add:hover {
+  text-decoration: underline;
+}
+
+#report:hover {
+  text-decoration: underline;
+}
+
+input.search {
+  height: 30px;
+  width: 100%
+}
+
+input:focus {
+  outline: none;
+}
+
+
+/* QUESTION */
+.QList {
+  max-height: 75vh;
+  overflow: auto;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  /* border: solid 1px; */
+  align-items: baseline;
+  height: fit-content;
+  margin: 10px 0px 10px 0px;
+
+
+}
+
+.question-extra {
+  display: flex;
+  justify-content: space-around;
+  font-size: x-small;
+  white-space: nowrap;
+}
+
+#q-text {
+  display: flex;
+  /* align-items: center; */
+}
+#q-head {
+  all: unset;
+  margin-right: 9px;
+}
+
+#helpful {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid black;
+}
+
+#add {
+  border-right: 1px solid black;
+  padding-right: 10px;
+}
+
+#addAns {
+  margin-right: 10px;
+
+}
+
+/* ANSWERS */
+.answer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  /* border: solid 1px; */
+}
+
+.answerList {
+  max-height: 50vh;
+  overflow: auto;
+  width: 100vw;
+
+}
+
+#answer-text {
+  padding: 1px 10px 10px 10px;
+  font-size: small;
+}
+
+.answer-extra {
+  display: flex;
+  padding: 0px 10px 10px 10px;
+  font-size: x-small;
+}
+
+#ans-user {
+  padding-right: 10px;
+  border-right: solid 1px;
+}
+#ans-help {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: solid 1px;
+}
+#ans-report {
+  padding-left: 10px;
+}
+
+button.moreAns {
+  margin-left: 22px;
+  padding: 5px;
+  font-size: small;
+  font-weight: bold;
+}
+
+button.moreAns:hover {
+  text-decoration: underline;
+}
+
+/* ADD ANSWER/QUESTION MODAL */
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid grey;
+  /* height: 335px; */
+  max-height: 100%;
+  width: 500px;
+  max-width: 100%;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 1px 5px rgb(0 0 0 / 30%)
+}
+
+#modal-title {
+  /* display: flex;
+  flex-direction: row; */
+  align-content: center;
+  margin-left: 10px;
+  border-bottom: 1px solid lightgray;
+  margin-right: 10px;
+}
+
+#modal-title h5 {
+  all: unset;
+  display: block;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.modal label {
+  padding-bottom: 1px;
+  padding-top: 5px;
+}
+
+#modal-blur-active {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  opacity: 0.6;
+}
+
+#modal-blur-inactive {
+  position: fixed;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.modal form input {
+  height: 20px;
+}
+
+.modal form p {
+  all: unset;
+  font-size: small;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal textarea {
+  height: 100px;
+  resize: none;
+  margin-bottom: 10px
+}
+
+#form-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid lightgray;
+}
+
+#form-submit {
+  transition: all .5s ease;
+  margin-right: 10px;
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#form-submit:hover {
+  background-color: rgba(138, 236, 138, 0.787);
+  /* background-color: rgba(180, 180, 180, 0.746); */
+}
+#form-close {
+  transition: all .5s ease;
+  margin-right: 10px;
+  border: 1px solid grey;
+  padding: 10px;
+  /* background-image: linear-gradient(rgb(254 248 248 / 74%), rgb(123 121 121 / 37%)); */
+  border-radius: 4px;
+}
+#form-close:hover {
+  background-color: rgba(180, 180, 180, 0.746);
+}
+
+
+/* buttons --> add and more */
+#AddQ {
+  font-size: smaller;
+  border: 1px solid black;
+  padding: 10px;
+  transition: all .5s ease;
+  color: black;
+}
+#AddQ p {
+  all: unset;
+}
+
+p#plus {
+  padding-left: 10px;
+  font-weight: bold;
+
+}
+
+#AddQ:hover {
+  /* border: 1px solid rgb(187 187 187 / 82%); */
+  background-color: rgba(180, 180, 180, 0.746);
+}
+
+#MoreQActive {
+  font-size: smaller;
+  border: 1px solid black;
+  padding: 10px;
+  margin-right: 8px;
+  transition: all .5s ease;
+  color: black;
+
+}
+#MoreQActive:hover {
+
+
+  background-color: rgba(180, 180, 180, 0.746);
+}
+
+#MoreQInactive {
+  font-size: smaller;
+}
+
+/* SEARCH */
+.search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 35px;
+}
+
+.search form button {
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-right: 10px;
+}
+
+#searchBar {
+  flex-grow: 1;
+  border-right: none;
+  border-left: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
