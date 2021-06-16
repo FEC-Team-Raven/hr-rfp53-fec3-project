@@ -7,6 +7,19 @@ import Questions from './components/questions/Questions.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 
 
+const ClickTracker = (Component) => {
+  console.log(Component);
+  return (props) => {
+
+    return (
+      <React.Fragment>
+        <Component productId={props.productId}/>
+      </React.Fragment>
+    );
+  };
+};
+
+
 const App = () => {
   const [productId, setProductId] = useState(0);
   const [productName, setProductName] = useState('');
@@ -32,10 +45,11 @@ const App = () => {
 
   return (
     <div>
+      {React.createElement(ClickTracker(Reviews), {productId: 0})}
       {/* <Overview productId={productId}/> */}
       {/* <Related productId={productId}/> */}
       <Questions productId={productId} productName={productName}/>
-      <Reviews productId={productId}/>
+      {/* <Reviews productId={productId}/> */}
     </div>
   );
 };
