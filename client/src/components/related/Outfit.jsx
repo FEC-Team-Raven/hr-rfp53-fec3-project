@@ -5,9 +5,11 @@ import axios from 'axios';
 
 export const OutfitContext = React.createContext([]);
 
+
 const Outfit = ({productId}) => {
   const [outfitIds, setOutfitIds] = useState([]);
   const [outfits, setOutfits] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const providerVal = {
     outfitIds,
@@ -32,16 +34,17 @@ const Outfit = ({productId}) => {
   };
 
   return (
-    <ol className="outfit list carousel__viewport">
+    <ol id="outfit" className="outfit list carousel__viewport">
       <li id="carousel__slide0" className="card addOutfit carousel__slide">
         <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
       </li>
       <OutfitContext.Provider value={providerVal}>
-        {outfits.map(outfit =>
+        {outfits.map((outfit, index) =>
           <ProductCard
+            cardNum={index}
             product={outfit}
-            listType={'outfit'}
+            list={'outfit'}
             key={outfit.id}/>)
         }
       </OutfitContext.Provider>

@@ -6,8 +6,7 @@ import Questions from './components/questions/Questions.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 import axios from 'axios';
 
-
-const App = () => {
+const App = () => { // executed 6 times
   const [productId, setProductId] = useState(0);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -20,6 +19,7 @@ const App = () => {
         })
         .catch(err => {
           console.log(err);
+
           setLoading(true);
         });
     }

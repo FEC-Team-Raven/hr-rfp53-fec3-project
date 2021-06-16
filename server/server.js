@@ -69,7 +69,7 @@ app.get('/products/productid', (req, res) => {
 });
 
 // Retrieves ALL STYLES for a given product
-app.get('/product/styles', (req, res) => {
+app.get('/products/styles', (req, res) => {
   let productId = req.headers.productid;
   axios({
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`,
