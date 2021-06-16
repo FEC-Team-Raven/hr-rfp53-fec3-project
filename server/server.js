@@ -19,26 +19,6 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
-
-app.get('/products/:product_id/styles', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
-  axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles`,
-    method: 'GET',
-    headers: {
-      Authorization: token
-    }
-  })
-    .then(response => {
-      res.send(JSON.stringify(response.data));
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500);
-      res.send(`Failed to get styles at "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles"`);
-    });
-});
-
 app.get('/products/:product_id', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
@@ -53,6 +33,25 @@ app.get('/products/:product_id', (req, res) => {
     .catch(err => {
       console.log(err);
       res.end();
+    });
+});
+
+app.get('/products/:product_id/styles', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles`,
+    method: 'GET',
+    headers: {
+      Authorization: config.github
+    }
+  })
+    .then(response => {
+      res.send(JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.send(`Failed to get styles at "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles"`);
     });
 });
 
@@ -198,7 +197,7 @@ app.get('/reviews/meta/:productId', (req, res) => {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
     method: 'GET',
     headers: {
-      Authorization: token,
+      Authorization: config.github,
     },
     params: {
       'product_id': req.params.productId
@@ -215,7 +214,7 @@ app.post('/cart', (req, res) => {
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart',
     {'sku_id': req.body.sku},
     { headers:
-      { Authorization: token, 'Content-Type': 'application/json' }
+      { Authorization: config.github, 'Content-Type': 'application/json' }
     }
   )
     .then(response => { res.send(response.data); })

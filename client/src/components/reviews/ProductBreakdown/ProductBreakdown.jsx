@@ -51,8 +51,9 @@ const ProductBreakdown = props => {
       total += parseInt(metaData.ratings[i + 1], 10);
     }
     stars = stars.reverse();
-    return stars.map(star => {
+    return stars.map((star, index) => {
       return <RatingBar
+        key={index}
         stars={star}
         distribution={Math.floor((metaData.ratings[star] / total) * 100)}
         count={metaData.ratings[star]}
@@ -62,8 +63,9 @@ const ProductBreakdown = props => {
   };
 
   var renderCharacteristics = () => {
-    return Object.keys(metaData.characteristics).map(characteristic => {
+    return Object.keys(metaData.characteristics).map((characteristic, index) => {
       return <CharacteristicBreakdown
+        key={index}
         characteristic={characteristic}
         rating={metaData.characteristics[characteristic].value}/>;
     });

@@ -23,7 +23,7 @@ const ReviewTile = (props) => {
   var renderRecommend = recommend => {
     if (recommend) {
       return <div>
-        <i className="fas fa-check" style={{'margin-right': '5px'}}></i>
+        <i className="fas fa-check" style={{'marginRight': '5px'}}></i>
         I recommend this product
       </div>;
     }
@@ -108,13 +108,13 @@ const ReviewTile = (props) => {
       {renderBody(props.review.body)}
       {renderRecommend(props.review.recommend)}
       {renderResponse(props.review.response)}
-      {props.review.photos.map(photo => {
-        return <img className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
+      {props.review.photos.map((photo, index) => {
+        return <img key={index} className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
       })}
       {renderImageModal()}
       <div className="reviewRow">
         Helpful?
-        <button onClick={() => postHelpfulness()} style={{'margin-left': '5px'}}>Yes ({helpfulness})</button>
+        <button onClick={() => postHelpfulness()} style={{'marginLeft': '5px'}}>Yes ({helpfulness})</button>
         |
         <button onClick={reportReview}>Report</button>
       </div>

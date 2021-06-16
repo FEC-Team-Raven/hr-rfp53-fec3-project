@@ -2,13 +2,16 @@
   display: block;
   height: auto;
   width: 900px;
-  margin: 0 auto;
   overflow: auto;
 }
 
-.main-questions {
+/* .main-questions {
   padding-left: 7vw;
   padding-right: 7vw;
+} */
+
+.main-questions {
+  margin: 50px 0;
 }
 
 button {
