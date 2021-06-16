@@ -19,14 +19,30 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
-  res.end();
+
+app.get('/products/:product_id/styles', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles`,
+    method: 'GET',
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(response => {
+      res.send(JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.send(`Failed to get styles at "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles"`);
+    });
 });
 
-app.get('/products', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
+app.get('/products/:product_id', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}`,
     headers: {
       Authorization: config.github
     }
@@ -174,6 +190,44 @@ app.get('/reviews/meta', (req, res) => {
     .catch(err => {
       console.log(err);
     });
+});
+
+app.get('/reviews/meta/:productId', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+    method: 'GET',
+    headers: {
+      Authorization: token,
+    },
+    params: {
+      'product_id': req.params.productId
+    }
+  }).then(response => { res.send(response.data); })
+    .catch(err => {
+      throw err;
+      res.status(500);
+      res.send(err);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart',
+    {'sku_id': req.body.sku},
+    { headers:
+      { Authorization: token, 'Content-Type': 'application/json' }
+    }
+  )
+    .then(response => { res.send(response.data); })
+    .catch(err => {
+      throw err;
+      res.status(500);
+      res.send(err);
+    });
+});
+
+app.get('/', (req, res) => {
+  res.end();
 });
 
 /****************************
