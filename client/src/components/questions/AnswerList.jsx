@@ -13,16 +13,16 @@ const AnswerList = (props) => {
     setShowAll(!showAll);
   };
   return (
-    <div class='answerWhole'>
+    <div className='answerWhole'>
       <div className="answer">
         {showA ? <div></div> : <div>A: </div>}
-        <div class="answerList">
-          {show.map((item) =>
-            <AnswerItem value={item} getAnswer={props.getAnswer}/>
+        <div className="answerList">
+          {show.map((item, index) =>
+            <AnswerItem key={index} value={item} getAnswer={props.getAnswer}/>
           )}
         </div>
       </div>
-      {ans ? <div><button class="moreAns" onClick={onClick}>
+      {ans ? <div><button className="moreAns" onClick={onClick}>
         {showAll ? 'Collapse answers' : 'See more answers'}
       </button></div> : <div></div>}
     </div>

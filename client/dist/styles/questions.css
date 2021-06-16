@@ -2,13 +2,11 @@
   display: block;
   height: auto;
   width: 900px;
-  margin: 0 auto;
   overflow: auto;
 }
 
 .main-questions {
-  padding-left: 7vw;
-  padding-right: 7vw;
+  margin: 50px 0;
 }
 
 button {
