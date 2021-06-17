@@ -6,11 +6,19 @@ import Related from './components/related/Related.jsx';
 import Questions from './components/questions/Questions.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 
-
 const App = () => {
   const [ productData, setProductData ] = useState(0);
-  const [ productIDtoRender, setProductIDtoRender ] = useState(17067);
+  const [ productIDtoRender, setProductIDtoRender ] = useState(17071);
   const [ loading, setLoading ] = useState(true);
+
+  const clickAnalytics = event => {
+    console.log('Click analytics');
+    console.log('----------------');
+    console.log(event.target);
+    console.log(event.target.closest('.module').id);
+    console.log(new Date());
+    console.log('----------------');
+  };
 
   useEffect(() => {
     if (loading) {
@@ -32,7 +40,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div onClick={clickAnalytics}>
       <Overview productId={productData.id} product={productData}/>
       <Related productId={productData.id}/>
       <Questions productId={productData.id} productName={productData.name}/>

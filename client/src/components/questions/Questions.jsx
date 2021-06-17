@@ -68,7 +68,7 @@ const Questions = (props) => {
   };
 
   return (
-    <div className="main-questions">
+    <div className="module main-questions" id="questions">
       <div id="titleQA">QUESTIONS AND ANSWERS</div>
 
       <div className="search" id="search-bar-main">

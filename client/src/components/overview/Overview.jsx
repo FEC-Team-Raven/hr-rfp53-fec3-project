@@ -52,7 +52,7 @@ const Overview = props => {
   };
 
   return (
-    <div id="overview">
+    <div className="module" id="overview">
       <ImageGallery product={props.product} images={styles[styleIndex].photos} style={styles[styleIndex]} />
       <div id="product-ui">
         <ProductInfo product={props.product} rating={averageRating} style={styles[styleIndex]}/>

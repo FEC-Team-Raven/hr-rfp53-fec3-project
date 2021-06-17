@@ -35,7 +35,7 @@ const Reviews = (props) => {
 
   if (!loading) {
     return (
-      <div>
+      <div className="module" id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>
