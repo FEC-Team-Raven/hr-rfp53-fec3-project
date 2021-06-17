@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Navbar from './components/navbar/Navbar.jsx';
 import Overview from './components/overview/Overview.jsx';
 import Related from './components/related/Related.jsx';
 import Questions from './components/questions/Questions.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
+
+const themeContext = React.createContext('light');
 
 const App = () => {
   const [ productData, setProductData ] = useState(0);
@@ -48,6 +51,7 @@ const App = () => {
 
   return (
     <div>
+      <Navbar />
       <Overview productId={productData.id} product={productData}/>
       <Related productId={productData.id}/>
       <Questions productId={productData.id} productName={productData.name}/>
@@ -57,3 +61,5 @@ const App = () => {
 };
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+export { themeContext };
