@@ -9,7 +9,11 @@
 .dark-border {
   border-color: #B2A402;
 }
+<<<<<<< HEAD
+
+=======
 /* the numbers next to each class represent brightness on the gradient */
+>>>>>>> main
 .dark-1 {
   background-color: #2D3C48;
 }
@@ -44,11 +48,11 @@
 }
 
 .light-1 {
-  background-color: #944dff;
+  background-color: #25094E;
 }
 
 .light-2 {
-  background-color: #c2adf5;
+  background-color: #52329E;
 }
 
 .light-3 {

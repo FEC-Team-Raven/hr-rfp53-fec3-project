@@ -69,7 +69,7 @@ const ReviewList = (props) => {
 
   var renderMoreReviews = () => {
     if (displayCount < reviews.length) {
-      return <button id="moreReviews" className={`reviewButton ${props.theme}-2 ${props.theme}-text`} onClick={handleClick}>MORE REVIEWS</button>;
+      return <button id="moreReviews" className={`reviewButton ${props.theme}-4 ${props.theme}-text`} onClick={handleClick}>MORE REVIEWS</button>;
     }
   };
 
@@ -98,14 +98,14 @@ const ReviewList = (props) => {
         <option value="newest">newest</option>
       </select>
       <input
-        className={`${props.theme}-1 ${props.theme}-text`}
+        className={`${props.theme}-4 ${props.theme}-text`}
         type="text"
         onChange={e => setSearchFilter(e.target.value)}
       /> <br />
 
       {renderList()}
       {renderMoreReviews()}
-      <button className={`reviewButton ${props.theme}-2 ${props.theme}-text`} onClick={() => setDisplayFormModal(true)}>ADD A REVIEW   +</button>
+      <button className={`reviewButton ${props.theme}-4 ${props.theme}-text`} onClick={() => setDisplayFormModal(true)}>ADD A REVIEW   +</button>
       {renderReviewFormModal()}
     </div>
   );

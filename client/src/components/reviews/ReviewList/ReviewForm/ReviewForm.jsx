@@ -28,6 +28,8 @@ const ReviewForm = props => {
     Fit: useState(0)
   };
 
+  var theme = props.theme === 'dark' ? 'dark-3' : 'light-5';
+
   var renderRatingMessage = () => {
     if (starRating === 1) {
       return <div className="rating">Poor</div>;
@@ -120,7 +122,7 @@ const ReviewForm = props => {
 
   return (
     <div className="reviewFormModal">
-      <div className={`reviewFormContainer ${props.theme}-3`}>
+      <div className={`reviewFormContainer ${theme}`}>
         <i className="fas fa-times closeForm" onClick={() => props.setDisplayFormModal(false)}></i>
         <form className="reviewForm" onSubmit={handleSubmit}>
           <div className="reviewRow">
@@ -228,7 +230,7 @@ const ReviewForm = props => {
             <div>For authentication reasons, you will not be emailed</div>
           </div>
 
-          <input type="submit" className={`reviewButton ${props.theme}-2 ${props.theme}-text`} />
+          <input type="submit" className={`reviewButton ${props.theme}-4 ${props.theme}-text`} />
         </form>
       </div>
     </div>
