@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "start:prod": "node server/server.js",
+    "build:prod": "webpack"
   },
   "repository": {
     "type": "git",
