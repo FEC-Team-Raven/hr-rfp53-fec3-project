@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     if (loading) {
-      axios(`http://localhost:3000/products/${productIDtoRender}`)
+      axios(`/products/${productIDtoRender}`)
         .then(products => {
           setProductData(products.data);
           setLoading(false);
