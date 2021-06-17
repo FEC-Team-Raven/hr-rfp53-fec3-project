@@ -27,11 +27,9 @@
   padding-top: 15px;
   padding-bottom: 15px;
   margin-right: 15px;
-  background: none;
   border: solid black 1px;
   font-weight: bold;
   font-size: 15px;
-  color:rgb(65, 65, 65);
 }
 
 .between {
@@ -39,7 +37,7 @@
 }
 
 .reviewTile {
-  border-bottom: solid gray 1px;
+  border-bottom: solid 1px;
   margin-bottom: 20px;
   margin-right: 15px;
   position: relative;
@@ -129,7 +127,6 @@
 .productRating {
   font-size: 80px;
   font-weight: bold;
-  color: rgb(65, 65, 65);
   margin-right: 10px;
 }
 
@@ -198,7 +195,6 @@
 
 .reviewFormContainer {
   position: relative;
-  background-color: white;
   height: 700px;
   width: 900px;
   margin: 0 auto;

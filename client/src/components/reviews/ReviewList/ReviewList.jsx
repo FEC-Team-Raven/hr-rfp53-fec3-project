@@ -13,6 +13,8 @@ const ReviewList = (props) => {
   const [searchFilter, setSearchFilter] = useState('');
   var starFilter = useContext(ReviewContext).starFilter[0];
 
+  var theme = props.theme === 'dark' ? 'dark' : '';
+
   useEffect(() => {
     if (props.productId !== 0) {
       getReviews();
@@ -90,7 +92,7 @@ const ReviewList = (props) => {
   return (
     <div className="reviewList">
       {reviews.length} reviews, sorted by
-      <select className={`sortReviews ${props.theme}-3 ${props.theme}-text`} onChange={e => setSort(e.target.value)}>
+      <select className={`sortReviews ${theme}-3 ${props.theme}-text`} onChange={e => setSort(e.target.value)}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>

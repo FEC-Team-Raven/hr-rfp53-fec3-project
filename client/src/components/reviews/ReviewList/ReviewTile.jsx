@@ -99,7 +99,7 @@ const ReviewTile = (props) => {
   };
 
   return (
-    <div className="reviewTile dark-border">
+    <div className={`reviewTile ${props.theme}-border`}>
       <div className="reviewRow between">
         <Stars rating={props.review.rating} theme={props.theme}/>
         <div className="rating">{props.review.reviewer_name}, {renderDate(props.review.date)}</div>

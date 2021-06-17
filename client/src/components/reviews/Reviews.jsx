@@ -7,6 +7,7 @@ export const ReviewContext = React.createContext({});
 
 const Reviews = (props) => {
   const [loading, setLoading] = useState(true);
+  var theme = props.theme === 'dark' ? 'dark' : '';
 
   var context = {
     starFilter: useState([]),
@@ -35,7 +36,7 @@ const Reviews = (props) => {
 
   if (!loading) {
     return (
-      <div className={`module ${props.theme}-3 ${props.theme}-text`} id="reviews">
+      <div className={`module ${theme}-3 ${props.theme}-text`} id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>
