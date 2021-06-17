@@ -67,7 +67,7 @@ const ReviewList = (props) => {
 
   var renderMoreReviews = () => {
     if (displayCount < reviews.length) {
-      return <button id="moreReviews" className="reviewButton" onClick={handleClick}>MORE REVIEWS</button>;
+      return <button id="moreReviews" className={`reviewButton ${props.theme}-2 ${props.theme}-text`} onClick={handleClick}>MORE REVIEWS</button>;
     }
   };
 
@@ -75,7 +75,7 @@ const ReviewList = (props) => {
     if (reviews.length > 0) {
       return (
         <div className="scrollable">
-          {renderedReviews.slice(0, displayCount).map((review, index) => <ReviewTile key={index} review={review} />)}
+          {renderedReviews.slice(0, displayCount).map((review, index) => <ReviewTile key={index} review={review} theme={props.theme}/>)}
         </div>
       );
     }
@@ -83,26 +83,27 @@ const ReviewList = (props) => {
 
   var renderReviewFormModal = () => {
     if (displayFormModal) {
-      return <ReviewForm productId={props.productId} setDisplayFormModal={setDisplayFormModal} getReviews={getReviews}/>;
+      return <ReviewForm productId={props.productId} setDisplayFormModal={setDisplayFormModal} getReviews={getReviews} theme={props.theme}/>;
     }
   };
 
   return (
-    <div className="reviewList dark-2">
+    <div className="reviewList">
       {reviews.length} reviews, sorted by
-      <select className="sortReviews" onChange={e => setSort(e.target.value)}>
+      <select className={`sortReviews ${props.theme}-3 ${props.theme}-text`} onChange={e => setSort(e.target.value)}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpful</option>
         <option value="newest">newest</option>
       </select>
       <input
+        className={`${props.theme}-1 ${props.theme}-text`}
         type="text"
         onChange={e => setSearchFilter(e.target.value)}
       /> <br />
 
       {renderList()}
       {renderMoreReviews()}
-      <button className="reviewButton" onClick={() => setDisplayFormModal(true)}>ADD A REVIEW   +</button>
+      <button className={`reviewButton ${props.theme}-2 ${props.theme}-text`} onClick={() => setDisplayFormModal(true)}>ADD A REVIEW   +</button>
       {renderReviewFormModal()}
     </div>
   );

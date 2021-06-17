@@ -33,16 +33,14 @@ const Reviews = (props) => {
 
   context.getMetaData = getMetaData;
 
-  var theme = 'dark';
-
   if (!loading) {
     return (
-      <div className={`module ${theme}-1`} id="reviews">
+      <div className={`module ${props.theme}-3 ${props.theme}-text`} id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>
-            <ProductBreakdown productId={props.productId} />
-            <ReviewList productId={props.productId} />
+            <ProductBreakdown productId={props.productId} theme={props.theme}/>
+            <ReviewList productId={props.productId} theme={props.theme}/>
           </ReviewContext.Provider>
         </div>
       </div>

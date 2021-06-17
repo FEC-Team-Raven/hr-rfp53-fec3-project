@@ -15,7 +15,7 @@ var ratingToWidth = rating => {
 const Stars = (props) => (
   <span>
     <div className="star-rating" style={{'width': `${ratingToWidth(props.rating)}%`}}>
-      <span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
+      <span className={`${props.theme}-text`}>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
     </div>
   </span>
 );

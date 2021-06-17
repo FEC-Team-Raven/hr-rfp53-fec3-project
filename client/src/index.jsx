@@ -10,6 +10,7 @@ const App = () => {
   const [ productData, setProductData ] = useState(0);
   const [ productIDtoRender, setProductIDtoRender ] = useState(17071);
   const [ loading, setLoading ] = useState(true);
+  const [ theme, setTheme ] = useState('light');
 
   const clickAnalytics = event => {
     let clickEvent = {
@@ -51,7 +52,7 @@ const App = () => {
       <Overview productId={productData.id} product={productData}/>
       <Related productId={productData.id}/>
       <Questions productId={productData.id} productName={productData.name}/>
-      <Reviews productId={productData.id}/>
+      <Reviews productId={productData.id} theme={theme}/>
     </div>
   );
 };
