@@ -10,9 +10,8 @@ const RelatedProducts = () => {
   const currProductId = useContext(RelatedContext).currProductId;
   return (
     <div className="carousel__cards">
-      {sampleData.map((product, index) =>
+      {sampleData.map(product =>
         <ProductCard
-          cardNum={index}
           currProductId={currProductId}
           product={product}
           list={'related'}

@@ -28,8 +28,9 @@ body {
 
 .addOutfit {
   text-align: center;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding: 150px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .addOutfit-btn {
@@ -62,7 +63,7 @@ body {
   background: rgb(255, 255, 255);
   border: 3px solid;
   border-radius: 5px;
-  z-index: 100;
+  z-index: 3;
 }
 
 /******* SCROLL BAR *******/

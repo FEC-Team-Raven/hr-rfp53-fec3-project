@@ -3,20 +3,13 @@ import ProductCard from './ProductCard.jsx';
 
 import axios from 'axios';
 
-export const OutfitContext = React.createContext([]);
-
+import { OutfitContext } from './Related.jsx';
 
 const Outfit = ({productId}) => {
-  const [outfitIds, setOutfitIds] = useState([]);
-  const [outfits, setOutfits] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const providerVal = {
-    outfitIds,
-    setOutfitIds,
-    outfits,
-    setOutfits
-  };
+  const outfitIds = useContext(OutfitContext).outfitIds;
+  const setOutfitIds = useContext(OutfitContext).setOutfitIds;
+  const outfits = useContext(OutfitContext).outfits;
+  const setOutfits = useContext(OutfitContext).setOutfits;
 
   const addOutfit = () => {
     // Prevents duplicate outfits
@@ -34,21 +27,19 @@ const Outfit = ({productId}) => {
   };
 
   return (
-    <ol id="outfit" className="outfit list carousel__viewport">
-      <li id="carousel__slide0" className="card addOutfit carousel__slide">
+    <div className="carousel__cards">
+      <div className="card addOutfit">
         <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
-      </li>
-      <OutfitContext.Provider value={providerVal}>
-        {outfits.map((outfit, index) =>
-          <ProductCard
-            cardNum={index}
-            product={outfit}
-            list={'outfit'}
-            key={outfit.id}/>)
-        }
-      </OutfitContext.Provider>
-    </ol>
+      </div>
+      {outfits.map((outfit, index) =>
+        <ProductCard
+          cardNum={index}
+          product={outfit}
+          list={'outfit'}
+          key={outfit.id}/>)
+      }
+    </div>
   );
 };
 
