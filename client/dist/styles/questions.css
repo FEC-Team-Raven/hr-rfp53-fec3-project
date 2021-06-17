@@ -43,6 +43,7 @@ input:focus {
 .QList {
   max-height: 75vh;
   overflow: auto;
+  margin-bottom: 13px;
 }
 
 .question {
@@ -255,8 +256,9 @@ button.moreAns:hover {
 /* buttons --> add and more */
 #AddQ {
   font-size: smaller;
+  font-weight: bold;
   border: 1px solid black;
-  padding: 10px;
+  padding: 15px 15px 15px 15px;
   transition: all .5s ease;
   color: black;
 }
@@ -277,8 +279,9 @@ p#plus {
 
 #MoreQActive {
   font-size: smaller;
+  font-weight: bold;
   border: 1px solid black;
-  padding: 10px;
+  padding: 15px 15px 15px 15px;
   margin-right: 8px;
   transition: all .5s ease;
   color: black;
@@ -300,6 +303,11 @@ p#plus {
   flex-direction: row;
   justify-content: space-between;
   height: 35px;
+
+}
+
+div#search-bar-main {
+  margin-bottom: 10px;
 }
 
 .search form button {
