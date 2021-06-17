@@ -1,4 +1,17 @@
 #navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   height: 100px;
   width: 100%;
+  margin-bottom: 20px;
+}
+
+#theme-toggle {
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  margin-right: 50px;
+  background-color: white;
+  top: 50%;
 }
