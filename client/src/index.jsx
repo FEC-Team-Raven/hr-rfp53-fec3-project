@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Navbar from './components/navbar/Navbar.jsx';
 import Overview from './components/overview/Overview.jsx';
 import Related from './components/related/Related.jsx';
 import Questions from './components/questions/Questions.jsx';
@@ -9,6 +10,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 const App = () => {
   const [ productData, setProductData ] = useState(0);
   const [ productIDtoRender, setProductIDtoRender ] = useState(17071);
+  const [ theme, setTheme ] = useState('light');
   const [ loading, setLoading ] = useState(true);
 
   const clickAnalytics = event => {
@@ -24,6 +26,10 @@ const App = () => {
         'event': clickEvent
       },
     });
+  };
+
+  const changeTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
@@ -48,10 +54,11 @@ const App = () => {
 
   return (
     <div>
-      <Overview productId={productData.id} product={productData}/>
-      <Related productId={productData.id}/>
-      <Questions productId={productData.id} productName={productData.name}/>
-      <Reviews productId={productData.id}/>
+      <Navbar themeSetter={changeTheme} theme={theme}/>
+      <Overview productId={productData.id} product={productData} theme={theme}/>
+      <Related productId={productData.id} theme={theme}/>
+      <Questions productId={productData.id} productName={productData.name} theme={theme}/>
+      <Reviews productId={productData.id} theme={theme}/>
     </div>
   );
 };
