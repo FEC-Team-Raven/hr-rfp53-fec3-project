@@ -15,47 +15,47 @@
         }
     </style>
 </head>
-    
+
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="index.html">All files</a> QuestionsList.jsx</h1>
         <div class='clearfix'>
-            
+
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>1/13</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>0/3</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>1/13</span>
             </div>
-        
-            
+
+
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,14 +95,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -110,7 +110,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -126,15 +126,15 @@ import {QuestionContext, ProductContext} from './Questions.jsx';
 import QuestionItem from './QuestionItem.jsx';
 &nbsp;
 &nbsp;
-const QuestionsList = (props) =&gt; {
-  const [showAll, setShowAll] = useState(false);
-  const productId = useContext(ProductContext);
-  const question = useContext(QuestionContext);
-  let temp = [];
-  const search = props.search;
+const QuestionsList = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
+  const [showAll, setShowAll] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const productId = <span class="cstat-no" title="statement not covered" >useContext(ProductContext);</span>
+  const question = <span class="cstat-no" title="statement not covered" >useContext(QuestionContext);</span>
+  let temp = <span class="cstat-no" title="statement not covered" >[];</span>
+  const search = <span class="cstat-no" title="statement not covered" >props.search;</span>
 &nbsp;
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (search.length &lt; 3) {
-    temp = question;
+<span class="cstat-no" title="statement not covered" >  if (search.length &lt; 3) {</span>
+<span class="cstat-no" title="statement not covered" >    temp = question;</span>
   } else {
 <span class="cstat-no" title="statement not covered" >    temp = props.allQuestions;</span>
 <span class="cstat-no" title="statement not covered" >    temp = temp.filter(<span class="fstat-no" title="function not covered" >(v</span>alue) =&gt;</span>
@@ -142,7 +142,7 @@ const QuestionsList = (props) =&gt; {
     );
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className='QList'&gt;
       {temp.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt;
 <span class="cstat-no" title="statement not covered" >        &lt;QuestionItem value={item} questionBody={item.question_body} productName={props.productName} id={productId} getQuestions={props.getQuestions}/&gt;</span>
@@ -160,7 +160,7 @@ export default QuestionsList;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jun 15 2021 17:44:54 GMT-0700 (Pacific Daylight Time)
+                at Wed Jun 16 2021 12:21:05 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="prettify.js"></script>
@@ -173,4 +173,3 @@ export default QuestionsList;
         <script src="block-navigation.js"></script>
     </body>
 </html>
-    
