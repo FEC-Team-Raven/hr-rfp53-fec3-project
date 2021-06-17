@@ -33,9 +33,11 @@ const Reviews = (props) => {
 
   context.getMetaData = getMetaData;
 
+  var theme = 'dark';
+
   if (!loading) {
     return (
-      <div>
+      <div className={`module ${theme}-1`} id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>

@@ -19,6 +19,29 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
+app.post('/clickAnalytics', (req, res) => {
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions',
+    method: 'POST',
+    headers: {
+      Authorization: config.github
+    },
+    data: {
+      element: req.body.event.element,
+      widget: req.body.event.widget,
+      time: req.body.event.time
+    }
+  })
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(err => {
+      res.status(500);
+      res.send(err);
+      throw err;
+    });
+});
+
 app.get('/products/:product_id', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({

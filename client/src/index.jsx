@@ -6,11 +6,25 @@ import Related from './components/related/Related.jsx';
 import Questions from './components/questions/Questions.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 
-
 const App = () => {
   const [ productData, setProductData ] = useState(0);
-  const [ productIDtoRender, setProductIDtoRender ] = useState(17067);
+  const [ productIDtoRender, setProductIDtoRender ] = useState(17071);
   const [ loading, setLoading ] = useState(true);
+
+  const clickAnalytics = event => {
+    let clickEvent = {
+      element: event.target.tagName === 'BODY' ? 'body' : event.target.id || Array.from(event.target.classList)[0] || event.target.tagName,
+      widget: event.target.tagName === 'BODY' ? 'N/A' : event.target.closest('.module').id,
+      time: (new Date()).toTimeString()
+    };
+    axios({
+      url: '/clickAnalytics',
+      method: 'POST',
+      data: {
+        'event': clickEvent
+      },
+    });
+  };
 
   useEffect(() => {
     if (loading) {
@@ -18,6 +32,7 @@ const App = () => {
         .then(products => {
           setProductData(products.data);
           setLoading(false);
+          document.body.addEventListener('click', clickAnalytics);
         })
         .catch(err => {
           console.log(err);

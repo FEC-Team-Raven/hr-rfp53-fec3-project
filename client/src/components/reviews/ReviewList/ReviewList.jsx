@@ -88,7 +88,7 @@ const ReviewList = (props) => {
   };
 
   return (
-    <div className="reviewList">
+    <div className="reviewList dark-2">
       {reviews.length} reviews, sorted by
       <select className="sortReviews" onChange={e => setSort(e.target.value)}>
         <option value="relevance">relevance</option>
