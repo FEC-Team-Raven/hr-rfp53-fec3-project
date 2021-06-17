@@ -12,12 +12,18 @@ const App = () => {
   const [ loading, setLoading ] = useState(true);
 
   const clickAnalytics = event => {
-    console.log('Click analytics');
-    console.log('----------------');
-    console.log(event.target);
-    console.log(event.target.closest('.module').id);
-    console.log(new Date());
-    console.log('----------------');
+    let clickEvent = {
+      element: event.target.tagName === 'BODY' ? 'body' : event.target.id || Array.from(event.target.classList)[0] || event.target.tagName,
+      widget: event.target.tagName === 'BODY' ? 'N/A' : event.target.closest('.module').id,
+      time: (new Date()).toTimeString()
+    };
+    axios({
+      url: '/clickAnalytics',
+      method: 'POST',
+      data: {
+        'event': clickEvent
+      },
+    });
   };
 
   useEffect(() => {
@@ -26,6 +32,7 @@ const App = () => {
         .then(products => {
           setProductData(products.data);
           setLoading(false);
+          document.body.addEventListener('click', clickAnalytics);
         })
         .catch(err => {
           console.log(err);
@@ -40,7 +47,7 @@ const App = () => {
   }
 
   return (
-    <div onClick={clickAnalytics}>
+    <div>
       <Overview productId={productData.id} product={productData}/>
       <Related productId={productData.id}/>
       <Questions productId={productData.id} productName={productData.name}/>
