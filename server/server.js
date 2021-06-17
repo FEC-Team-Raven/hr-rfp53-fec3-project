@@ -86,6 +86,28 @@ app.get('/products/styles', (req, res) => {
     });
 });
 
+// Retrieves RATINGS for a given product
+app.get('/reviews/meta', (req, res) => {
+  var searchParams = new URLSearchParams(req.url.replace('/reviews/meta', ''));
+  var productId = searchParams.get('productId');
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+    method: 'GET',
+    params: {
+      // eslint-disable-next-line camelcase
+      product_id: productId
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(meta => {
+      res.end(JSON.stringify(meta.data));
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });

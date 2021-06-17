@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext} from 'react';
 import Compare from './Compare.jsx';
 import { OutfitContext } from './Related.jsx';
 
-const OutfitActionButton = ({ list }) => {
+const OutfitActionButton = ({ product, list }) => {
   const currProductId = useContext(OutfitContext).currProductData.id;
   const outfits = useContext(OutfitContext).outfits;
   const outfitIds = useContext(OutfitContext).outfitIds;
@@ -12,9 +12,9 @@ const OutfitActionButton = ({ list }) => {
 
   const removeOutfit = () => {
     // Remove productid from outfidIds
-    setOutfitIds(outfitIds.filter(outfitId => outfitId !== currProductId));
+    setOutfitIds(outfitIds.filter(outfitId => outfitId !== product.product_id));
     // Remove productid from outfits
-    setOutfits(outfits.filter(outfit => outfit.id !== currProductId));
+    setOutfits(outfits.filter(outfit => outfit.product_id !== product.product_id));
   };
 
   const renderButton = () => {

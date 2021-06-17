@@ -6,13 +6,22 @@ import { RelatedContext } from './Related.jsx';
 import sampleData from './sampleData.jsx';
 
 const RelatedProducts = () => {
-  const productData = useContext(RelatedContext).relatedProducts;
-  const currProductId = useContext(RelatedContext).currProductId;
+  const productData = useContext(RelatedContext).relatedStyles;
+  const relatedProductData = useContext(RelatedContext).relatedProductData;
+  const relatedRatings = useContext(RelatedContext).relatedProductData;
+
+  // Adding product name and features to product data object
+  if (productData.length > 0) {
+    for (let i = 0; i < relatedProductData.length; i++) {
+      productData[i].name = relatedProductData[i].name;
+      productData[i].features = relatedProductData[i].features;
+    }
+  }
+
   return (
     <div className="carousel__cards">
-      {sampleData.map(product =>
+      {productData.map(product =>
         <ProductCard
-          currProductId={currProductId}
           product={product}
           list={'related'}
           key={product.id}/>

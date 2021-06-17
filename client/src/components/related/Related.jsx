@@ -13,9 +13,18 @@ let relatedTranslateX = 0;
 let outfitTranslateX = 0;
 
 const Related = ({currProductId}) => {
+  currProductId = '17075';
+
   // Related products IDs and data
   const [relatedIds, setRelatedIds] = useState([]);
-  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedStyles, setRelatedStyles] = useState([]);
+  const [relatedProductData, setRelatedProductData] = useState([]);
+  const [relatedRatings, setRelatedRatings] = useState([]);
+
+  // Current product data
+  const [currProductData, setCurrProductData] = useState({});
+  const [currProductStyles, setCurrProductStyles] = useState({});
+
 
   // Carousel card indexes
   const [relatedImgIndex, setRelatedImageIndex] = useState(1);
@@ -23,7 +32,6 @@ const Related = ({currProductId}) => {
 
   // Comparison modal window
   const [modal, toggleModal] = useState(false);
-  const [currProductData, setCurrProductData] = useState({});
   const [comparedProductData, setComparedProductData] = useState({});
 
   // Your Outfit state components
@@ -46,17 +54,37 @@ const Related = ({currProductId}) => {
 
         // Retrieves data of specific products
         .then(related => {
-          let promises = [];
+          let stylePromises = [];
+          let relatedPromises = [];
+          let ratingPromises = [];
           for (var i = 0; i < related.length; i++) {
-            promises.push(
+            stylePromises.push(
               axios('http://localhost:3000/products/styles', {headers: {'productId': related[i]}})
                 .then(response => {
                   return response.data;
                 })
             );
+            relatedPromises.push(
+              axios('http://localhost:3000/products/productid', {headers: {'productId': related[i]}})
+                .then(response => {
+                  return response.data;
+                })
+            );
+            ratingPromises.push(
+              axios('http://localhost:3000/reviews/meta', {params: {'productId': related[i]}})
+                .then(response => {
+                  return response.data;
+                })
+            );
           }
-          Promise.all(promises).then((products) => {
-            setRelatedProducts(products);
+          Promise.all(stylePromises).then((styles) => {
+            setRelatedStyles(styles);
+          });
+          Promise.all(relatedPromises).then((product) => {
+            setRelatedProductData(product);
+          });
+          Promise.all(ratingPromises).then((rating) => {
+            setRelatedRatings(rating);
           });
         })
 
@@ -70,13 +98,17 @@ const Related = ({currProductId}) => {
         .then(response => {
           setCurrProductData(response.data);
         });
+
+      axios('http://localhost:3000/products/styles', {headers: {'productId': currProductId}})
+        .then(response => {
+          setCurrProductStyles(response.data);
+        });
     }
   });
 
   // Related Products carousel
   const relatedCarouselCards = document.querySelector('.carousel__cards');
   const cards = document.querySelector('.related');
-  console.log('cards:', relatedCarouselCards);
   const totalCards = sampleData.length;
   const handleRelatedNav = (e) => {
     if (e.target.id === 'related prev') {
@@ -89,7 +121,7 @@ const Related = ({currProductId}) => {
       }
     }
     relatedCarouselCards.style.transform = `translateX(${relatedTranslateX}px)`;
-    //   // Your Outfit button behavior
+    // Your Outfit button behavior
     //   if (e.target.id === 'outfit prev') {
     //     outfitTranslateX += 256.5;
     //     setOutfitImageIndex(outfitImgIndex - 1);
@@ -112,8 +144,9 @@ const Related = ({currProductId}) => {
 
   // Related Context values
   const relatedVals = {
-    currProductId,
-    relatedProducts,
+    relatedStyles,
+    relatedProductData,
+    relatedRatings,
     modal,
     toggleModal,
     handleModal,
@@ -123,6 +156,7 @@ const Related = ({currProductId}) => {
   // Outfit Context values
   const outfitVals = {
     currProductData,
+    currProductStyles,
     outfitIds,
     setOutfitIds,
     outfits,
@@ -164,13 +198,13 @@ const Related = ({currProductId}) => {
 
       <h1>YOUR OUTFITS</h1>
       <div className="carousel">
-        {true &&
+        {false &&
         <button id="outfit prev" className="carousel__button prev" onClick={handleRelatedNav}>{'<'}</button>
         }
         <OutfitContext.Provider value={outfitVals}>
-          <Outfit productId={currProductId}/>
+          <Outfit/>
         </OutfitContext.Provider>
-        {true &&
+        {false &&
           <button id="outfit next" className="carousel__button next" onClick={handleRelatedNav}>{'>'}</button>
         }
       </div>

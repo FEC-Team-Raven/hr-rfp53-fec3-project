@@ -5,7 +5,14 @@ import axios from 'axios';
 
 import { OutfitContext } from './Related.jsx';
 
-const Outfit = ({productId}) => {
+const Outfit = () => {
+  const currProductData = useContext(OutfitContext).currProductData;
+  const currProductStyles = useContext(OutfitContext).currProductStyles;
+
+  // Adds product name to current product styles
+  currProductStyles.name = currProductData.name;
+  console.log('currProductStyles:', currProductStyles);
+
   const outfitIds = useContext(OutfitContext).outfitIds;
   const setOutfitIds = useContext(OutfitContext).setOutfitIds;
   const outfits = useContext(OutfitContext).outfits;
@@ -13,17 +20,11 @@ const Outfit = ({productId}) => {
 
   const addOutfit = () => {
     // Prevents duplicate outfits
-    // let unique = !outfitIds.includes(productId);
-    // if (unique) {
-      axios('http://localhost:3000/products/productid', {headers: {'productId': productId}})
-        .then(response => {
-          setOutfitIds([...outfitIds, response.data.id]);
-          setOutfits([...outfits, response.data]);
-        })
-        .catch(err => {
-          throw err;
-        });
-    // }
+    let unique = !outfitIds.includes(currProductStyles.product_id);
+    if (unique) {
+      setOutfitIds([...outfitIds, currProductStyles.product_id]);
+      setOutfits([...outfits, currProductStyles]);
+    }
   };
 
   return (
@@ -32,12 +33,11 @@ const Outfit = ({productId}) => {
         <button className="addOutfit-btn" onClick={addOutfit}>&#43;</button>
         <h2>Add to Outfit</h2>
       </div>
-      {outfits.map((outfit, index) =>
+      {outfits.map(outfit =>
         <ProductCard
-          cardNum={index}
           product={outfit}
           list={'outfit'}
-          key={outfit.id}/>)
+          key={outfit.product_id}/>)
       }
     </div>
   );
