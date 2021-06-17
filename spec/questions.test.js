@@ -1,27 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import RTU, {act, isDOMComponent, mockComponent} from 'react-dom/test-utils';
+import mockAxios from 'jest-mock-axios';
+import ReactTestUtils, { act } from 'react-dom/test-utils';
+import renderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react';
+import { JSDOM } from 'jsdom';
 import Questions from '../client/src/components/questions/Questions.jsx';
 
 /**
  * @jest-environment jsdom
  */
 
-// test('use jsdom in this test file', () => {
-//   const element = document.createElement('div');
-//   expect(element).not.toBeNull();
-// });
-
 describe('Questions component', () => {
-  let container;
 
+  test('has a main-questions div', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('.main-questions')).toBeDefined();
+    expect(wrapper.find('.main-questions').children()).toHaveLength(6);
+    //  const addQuestionButton = questions.find('MoreQActive');
+  });
+
+  test('has correct title', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('#titleQA')).toBeDefined();
+    expect(wrapper.find('#titleQA').text()).toBe('QUESTIONS AND ANSWERS');
+  });
+
+  test('has a search bar', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('.search')).toBeDefined();
+    expect(wrapper.find('.search form')).toBeDefined();
+    expect(wrapper.find('.search').children()).toHaveLength(1);
+  });
+
+  test('has a question list', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('.Qlist')).toBeDefined();
+  });
+
+  test('has a more answer questions button', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('#MoreQActive')).toBeDefined();
+    expect(wrapper.find('#MoreQActive').text()).toBe('MORE ANSWERED QUESTIONS');
+  });
+
+  test('has an add questions button', () => {
+    const wrapper = shallow(<Questions productId={17067} productName={'Camo Onesie'}/>);
+    expect(wrapper.find('#AddQ')).toBeDefined();
+  });
+});
+
+describe('main q/a page', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    act(() => {
-      ReactDOM.render(<Questions productId={17067} productName={'Camo Onesie'}/>, container);
-    });
   });
 
   afterEach(() => {
@@ -29,36 +61,19 @@ describe('Questions component', () => {
     container = null;
   });
 
-  it('has correct title', () => {
-    const title = document.getElementById('titleQA');
-    expect(title.textContent).toBe('QUESTIONS AND ANSWERS');
-  });
+  //has correct title
+  test('has correct title', () => {
 
-  // it('has search bar', () => {
-  //   let searchBar = RTU.findRenderedDOMComponentWithClass(container, 'search');
-  // });
+  });
+  //has a search bar
+  //has a question list
+  //has add question button
+  //has more added questions button
 });
 
-// describe('renders all components', () => {
+test('add a question', () => {
+  //click the add question button
+  //check that modal appears
+  //
+});
 
-//   //test first render and componentDidMount
-//   // const questionList = document.getElementById('Qlist');
-//   // const addQuestionButton = document.getElementById('AddQ');
-//   // const addMoreQuestionButton = document.getElementById('MoreQActive');
-
-
-
-
-//   // it('has a search bar', () => {
-//   //   const productId = 17067;
-//   //   const productName = 'Camo Onesie';
-//   //   act(() => {
-//   //     ReactDOM.render(<Questions productId={productId} productName={productName}/>, container);
-//   //   });
-
-//   //   const search = document.getElementById('search-bar-main');
-//   //   // expect(true).toBe(true);
-//   //   expect(isDOMComponent(search)).toBe(true);
-//   // });
-
-// });
