@@ -2,7 +2,7 @@ import React from 'react';
 
 const ThemeToggle = props => {
   return (
-    <button id="theme-toggle">Theme Toggle</button>
+    <button onClick={props.themeSetter} id="theme-toggle">{props.theme === 'light' ? <span>&#9728;</span> : <span>&#9790;</span>}</button>
   );
 };
 
