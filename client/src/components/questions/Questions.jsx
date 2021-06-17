@@ -38,7 +38,6 @@ const Questions = (props) => {
       axios('/questions', {params: {productId: props.productId}})
         .then(questions => {
           setQuestions(questions.data);
-          console.log(questions);
         })
         .catch(err => {
           console.log(err);

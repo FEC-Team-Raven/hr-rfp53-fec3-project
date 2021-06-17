@@ -75,7 +75,7 @@ const ReviewList = (props) => {
     if (reviews.length > 0) {
       return (
         <div className="scrollable">
-          {renderedReviews.slice(0, displayCount).map((review) => <ReviewTile review={review} />)}
+          {renderedReviews.slice(0, displayCount).map((review, index) => <ReviewTile key={index} review={review} />)}
         </div>
       );
     }
