@@ -152,8 +152,8 @@ const Related = ({currProductId}) => {
   };
 
   return (
-    <div className="module" id="related">
-      <h1>RELATED PRODUCTS</h1>
+    <div className="module">
+      <h1 id="related-title">RELATED PRODUCTS</h1>
       {modal &&
         <div id="modal">
           <div id="modal-header" className="light-3">
@@ -186,7 +186,7 @@ const Related = ({currProductId}) => {
         }
       </div>
 
-      <h1>YOUR OUTFITS</h1>
+      <h1 id="related-title">YOUR OUTFITS</h1>
       <div className="carousel">
         {false &&
         <button id="outfit prev" className="carousel__button prev" onClick={handleRelatedNav}>{'<'}</button>
