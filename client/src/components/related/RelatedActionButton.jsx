@@ -39,4 +39,3 @@ const RelatedActionButton = ({product, list}) => {
 };
 
 export default RelatedActionButton;
-// hi

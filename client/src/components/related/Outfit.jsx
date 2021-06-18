@@ -43,4 +43,3 @@ const Outfit = () => {
 };
 
 export default Outfit;
-// hi
