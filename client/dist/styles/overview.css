@@ -158,6 +158,13 @@ button.thumbnail {
   font-size: .9rem;
 }
 
+#product-info > #social-media {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 200px;
+}
+
 #product-ui {
   grid-area: 1 / 2 / 2 / 3;
   width: 100%;
@@ -165,12 +172,6 @@ button.thumbnail {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 30px;
-}
-
-#social-media {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 #product-ui > #style-name {
