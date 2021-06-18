@@ -68,7 +68,7 @@ const AddAnswerModal = (props) => {
 
 
   return (
-    <div className={`modal ${theme}-text`} >
+    <div className='modal' >
       <h3 id='modal-title'>Submit your Answer
         <h5>{props.productName}: {props.questionBody}</h5>
       </h3>
