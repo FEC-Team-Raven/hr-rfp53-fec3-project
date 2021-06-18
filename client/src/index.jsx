@@ -19,13 +19,13 @@ const App = () => {
       widget: event.target.tagName === 'BODY' ? 'N/A' : event.target.closest('.module').id,
       time: (new Date()).toTimeString()
     };
-    axios({
-      url: '/clickAnalytics',
-      method: 'POST',
-      data: {
-        'event': clickEvent
-      },
-    });
+    // axios({
+    //   url: '/clickAnalytics',
+    //   method: 'POST',
+    //   data: {
+    //     'event': clickEvent
+    //   },
+    // });
   };
 
   const changeTheme = () => {
@@ -53,10 +53,10 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className={`main-app ${theme}-3` }>
       <Navbar themeSetter={changeTheme} theme={theme}/>
       <Overview productId={productData.id} product={productData} theme={theme}/>
-      <Related productId={productData.id} theme={theme}/>
+      {/* <Related productId={productData.id} theme={theme}/> */}
       <Questions productId={productData.id} productName={productData.name} theme={theme}/>
       <Reviews productId={productData.id} theme={theme}/>
     </div>
