@@ -79,6 +79,30 @@ app.get('/products/:product_id/styles', (req, res) => {
 });
 
 /****************************
+  RELATED PRODUCTS ENDPOINTS
+*****************************/
+
+// Retrieves IDs of related product lists
+app.get('/products/:product_id/related', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/related`,
+    method: 'GET',
+    headers: {
+      Authorization: config.github
+    }
+  })
+    .then(response => {
+      res.send(JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.send(`Failed to get styles at "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/related"`);
+    });
+});
+
+/****************************
       REVIEWS ENDPOINTS
 *****************************/
 
