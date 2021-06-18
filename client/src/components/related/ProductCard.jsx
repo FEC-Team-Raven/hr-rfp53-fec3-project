@@ -6,10 +6,26 @@ import OutfitActionButton from './OutfitActionButton.jsx';
 const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png';
 
 const ProductCard = ({product, list}) => {
+
+  // Rating calculator helper function
+  const computeRating = () => {
+    let ratingObj = product.rating;
+    let totalRatings = 0;
+    let numberOfRatings = 0;
+    for (var score in ratingObj) {
+      totalRatings += (Number(score) * Number(ratingObj[score]));
+      numberOfRatings += Number(ratingObj[score]);
+    }
+    return totalRatings / numberOfRatings;
+
+  };
+  let rating = computeRating();
+
   let styles = product.results;
   let previewImg, defaultPrice, salePrice;
 
-  const renderDefaultImg = () => {
+  // Renders product price and default image
+  const renderProductInfo = () => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?']) {
         previewImg = styles[i].photos[0].url;
@@ -17,15 +33,17 @@ const ProductCard = ({product, list}) => {
         if (salePrice) {
           defaultPrice = '<del>' + defaultPrice + '</del>';
         }
+        break;
+      } else if (!styles[styles.length - 1]['default?']) {
+        defaultPrice = 'N/A';
       }
     }
   };
-  renderDefaultImg();
+  renderProductInfo();
 
+  // If missing image, then use placeholder image
   if (!previewImg) {
     previewImg = sampleImg;
-  } else if (!defaultPrice) {
-    defaultPrice = 'N/A';
   }
 
   // Renders action button, depending on which list the button appears within
@@ -57,7 +75,7 @@ const ProductCard = ({product, list}) => {
         <div>{product.name}</div>
         <div>{defaultPrice}</div>
         <div>{salePrice}</div>
-        <Stars />
+        <Stars rating={rating}/>
       </div>
     </div>
   );

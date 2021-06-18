@@ -5,9 +5,19 @@ import Compare from './Compare.jsx';
 import { RelatedContext } from './Related.jsx';
 
 const RelatedActionButton = ({product, list}) => {
-  const handleModal = useContext(RelatedContext).handleModal;
+  // const handleModal = useContext(RelatedContext).handleModal;
   const setComparedProductData = useContext(RelatedContext).setComparedProductData;
-  setComparedProductData(product);
+  const modal = useContext(RelatedContext).modal;
+  const toggleModal = useContext(RelatedContext).toggleModal;
+
+  const handleModal = (e) => {
+    setComparedProductData(product);
+    if (modal) {
+      toggleModal(false);
+    } else {
+      toggleModal(true);
+    }
+  };
 
   const renderButton = () => {
     if (list === 'outfit') {
@@ -16,6 +26,10 @@ const RelatedActionButton = ({product, list}) => {
       return <span>&#x2605;</span>;
     }
   };
+
+  // Async:
+  // (1) Set the state of the product being compared to
+  // (2) Toggle the modal window
 
   return (
     <div>

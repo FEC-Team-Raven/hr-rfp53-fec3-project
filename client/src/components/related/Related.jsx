@@ -25,7 +25,6 @@ const Related = ({currProductId}) => {
   const [currProductData, setCurrProductData] = useState({});
   const [currProductStyles, setCurrProductStyles] = useState({});
 
-
   // Carousel card indexes
   const [relatedImgIndex, setRelatedImageIndex] = useState(1);
   const [outfitImgIndex, setOutfitImageIndex] = useState(1);
@@ -109,7 +108,7 @@ const Related = ({currProductId}) => {
   // Related Products carousel
   const relatedCarouselCards = document.querySelector('.carousel__cards');
   const cards = document.querySelector('.related');
-  const totalCards = sampleData.length;
+  const totalCards = 7;
   const handleRelatedNav = (e) => {
     if (e.target.id === 'related prev') {
       relatedTranslateX += 256.5;
@@ -133,14 +132,6 @@ const Related = ({currProductId}) => {
     // }
   };
 
-  // Action button functionalities
-  const handleModal = (e) => {
-    if (modal) {
-      toggleModal(false);
-    } else {
-      toggleModal(true);
-    }
-  };
 
   // Related Context values
   const relatedVals = {
@@ -149,7 +140,6 @@ const Related = ({currProductId}) => {
     relatedRatings,
     modal,
     toggleModal,
-    handleModal,
     setComparedProductData
   };
 
@@ -169,7 +159,7 @@ const Related = ({currProductId}) => {
       {modal &&
         <div id="modal">
           COMPARING
-          <button id="close" className="action-btn" onClick={handleModal}>&#10005;</button>
+          <button id="close" className="action-btn" onClick={() => toggleModal(false)}>&#10005;</button>
           <div id="compare">
             <div className="current-product">
               {currProductData.name}

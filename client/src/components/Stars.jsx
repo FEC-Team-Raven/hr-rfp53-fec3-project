@@ -12,6 +12,8 @@ var ratingToWidth = rating => {
   return rating;
 };
 
+
+
 const Stars = (props) => (
   <div>
     <div className="star-rating" style={{'width': `${ratingToWidth(props.rating)}%`}}>

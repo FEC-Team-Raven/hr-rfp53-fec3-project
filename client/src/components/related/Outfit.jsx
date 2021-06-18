@@ -11,7 +11,6 @@ const Outfit = () => {
 
   // Adds product name to current product styles
   currProductStyles.name = currProductData.name;
-  console.log('currProductStyles:', currProductStyles);
 
   const outfitIds = useContext(OutfitContext).outfitIds;
   const setOutfitIds = useContext(OutfitContext).setOutfitIds;
