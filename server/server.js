@@ -14,7 +14,6 @@ const upload = multer({storage: storage});
 const app = express();
 const port = 3000;
 
-
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
@@ -42,8 +41,12 @@ app.post('/clickAnalytics', (req, res) => {
     });
 });
 
-app.get('/products/:product_id', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+/****************************
+  RELATED PRODUCTS ENDPOINTS
+*****************************/
+
+// Retrieves the list of products
+app.get('/products/list', (req, res) => {
   axios({
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}`,
     headers: {
@@ -59,50 +62,78 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
-app.get('/products/:product_id/styles', (req, res) => {
-  console.log(`SERVING GET REQUEST AT ${req.url}`);
+// Retrieves IDs of related product lists
+app.get('/products/relatedIds', (req, res) => {
+  let productId = req.headers.productid;
   axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles`,
-    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/related`,
     headers: {
       Authorization: config.github
     }
   })
-    .then(response => {
-      res.send(JSON.stringify(response.data));
+    .then(result => {
+      res.end(JSON.stringify(result.data));
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500);
-      res.send(`Failed to get styles at "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles"`);
+    .catch(err => {
+      console.log(err);
+      res.end();
     });
 });
 
-/****************************
-      REVIEWS ENDPOINTS
-*****************************/
+// Retrieves produdct level info about a SPECIFIC product id
+app.get('/products/productid', (req, res) => {
+  let productId = req.headers.productid;
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`,
+    headers: {
+      Authorization: config.github
+    }
+  })
+    .then(result => {
+      res.end(JSON.stringify(result.data));
+    })
+    .catch(err => {
+      console.log(err);
+      res.end();
+    });
+});
 
-app.get('/reviews', (req, res) => {
-  // console.log(`SERVING GET REQUEST AT ${req.url}`);
-  var searchParams = new URLSearchParams(req.url.replace('/reviews', ''));
+// Retrieves ALL STYLES for a given product
+app.get('/products/styles', (req, res) => {
+  let productId = req.headers.productid;
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`,
+    headers: {
+      Authorization: config.github
+    }
+  })
+    .then(result => {
+      res.end(JSON.stringify(result.data));
+    })
+    .catch(err => {
+      console.log(err);
+      res.end();
+    });
+});
+
+// Retrieves RATINGS for a given product
+app.get('/reviews/meta', (req, res) => {
+  var searchParams = new URLSearchParams(req.url.replace('/reviews/meta', ''));
   var productId = searchParams.get('productId');
   var sort = searchParams.get('sort');
   var page = searchParams.get('page');
   axios({
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+    method: 'GET',
     params: {
-      page: 1,
-      count: 500,
-      sort: sort,
-      // eslint-disable-next-line camelcase
       product_id: productId
     },
     headers: {
       Authorization: config.github
     }
   })
-    .then(reviews => {
-      res.end(JSON.stringify(reviews.data));
+    .then(meta => {
+      res.end(JSON.stringify(meta.data));
     })
     .catch(err => {
       console.log(err);
