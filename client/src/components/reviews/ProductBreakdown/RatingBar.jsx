@@ -6,7 +6,7 @@ const RatingBar = props => {
   const [starFilter, setStarFilter] = useContext(ReviewContext).starFilter;
   const [style, setStyle] = useState({
     'textDecoration': 'underline',
-    'width': '48px',
+    'width': '53px',
     'fontWeight': 'normal'
   });
 
