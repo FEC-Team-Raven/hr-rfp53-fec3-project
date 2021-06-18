@@ -47,7 +47,7 @@ const AddQuestionModal = (props) => {
 
 
   return (
-    <div className="modal">
+    <div className='modal'>
       <h3 id='modal-title'>Ask Your Question
         <div>About the {props.productName}</div>
       </h3>

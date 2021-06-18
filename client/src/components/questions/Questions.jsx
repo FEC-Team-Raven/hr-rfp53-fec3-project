@@ -22,12 +22,12 @@ const Questions = (props) => {
 
   //css light and dark
   const theme = props.theme;
-  const text = `${theme}-text`;
-  const color1 = `${theme}-1`;
-  const color2 = `${theme}-2`;
-  const color3 = `${theme}-3`;
-  const color4 = `${theme}-4`;
-  const color5 = `${theme}-5`;
+  // const text = `${theme}-text`;
+  // const color1 = `${theme}-1`;
+  // const color2 = `${theme}-2`;
+  // const color3 = `${theme}-3`;
+  // const color4 = `${theme}-4`;
+  // const color5 = `${theme}-5`;
   ////////////////////////////
 
   const onClick = () => {
@@ -79,7 +79,7 @@ const Questions = (props) => {
 
   return (
     <div id="questions"
-      className={`module main-questions ${theme}-5 ${theme}-text`}>
+      className={`module main-questions ${theme}-text`}>
       <div id="titleQA">QUESTIONS AND ANSWERS</div>
 
       <div className="search" id="search-bar-main">
