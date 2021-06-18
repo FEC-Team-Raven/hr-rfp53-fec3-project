@@ -6,7 +6,7 @@ const RatingBar = props => {
   const [starFilter, setStarFilter] = useContext(ReviewContext).starFilter;
   const [style, setStyle] = useState({
     'textDecoration': 'underline',
-    'width': '48px',
+    'width': '53px',
     'fontWeight': 'normal'
   });
 
@@ -28,7 +28,7 @@ const RatingBar = props => {
       copy[key] = style[key];
     }
 
-    copy['font-weight'] = copy['font-weight'] === 'normal' ? 'bold' : 'normal';
+    copy['fontWeight'] = copy['fontWeight'] === 'normal' ? 'bold' : 'normal';
     console.log(copy);
     setStyle(copy);
   };
