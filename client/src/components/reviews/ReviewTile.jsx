@@ -26,7 +26,7 @@ var renderResponse = response => {
 
 const ReviewTile = (props) => (
   <div className="reviewTile">
-    {console.log(props.review)}
+    {/* {console.log(props.review)} */}
     <div className="reviewRow between">
       <Stars rating={2.99} />
       <div>{props.review.reviewer_name}, {renderDate(props.review.date)}</div>

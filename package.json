@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "start:prod": "node server/server.js",
+    "build:prod": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,24 +17,46 @@
   "keywords": [],
   "author": "Team Raven",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs",
+      "@babel/plugin-transform-react-jsx"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/FEC-Team-Raven/hr-rfp53-fec3-project/issues"
   },
   "homepage": "https://github.com/FEC-Team-Raven/hr-rfp53-fec3-project#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cloudinary": "^1.26.0",
     "express": "^4.17.1",
-    "mysql": "^2.18.1",
+    "form-data": "^3.0.1",
+    "fs": "^0.0.1-security",
+    "imgbb-uploader": "^1.3.2",
+    "jest": "^27.0.4",
+    "jsdom": "^16.6.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "yarn": "^1.22.10"
+    "react-test-renderer": "^17.0.2",
+    "test-utils": "^1.0.21",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
+    "@testing-library/react": "^11.2.7",
+    "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
-    "babel-jest": "<current-version>",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.23.4",
@@ -40,6 +64,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^27.0.4",
+    "jest-mock-axios": "^4.4.0",
     "react-test-renderer": "^17.0.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"

@@ -1,28 +1,52 @@
 import React, {useState, useEffect} from 'react';
-import ReviewList from './ReviewList.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx';
 import axios from 'axios';
 
-export const ReviewContext = React.createContext([]);
+export const ReviewContext = React.createContext({});
 
 const Reviews = (props) => {
-  const [reviews, setReviews] = useState([]);
-  useEffect(() => {
-    if (props.productId !== 0) {
-      axios('http://localhost:3000/reviews', {params: {productId: props.productId}})
-        .then(reviews => {
-          setReviews(reviews.data.results);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }, [props]);
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <ReviewContext.Provider value={reviews}>
-      <ReviewList />
-    </ReviewContext.Provider>
-  );
+  var context = {
+    starFilter: useState([]),
+    metaData: useState({}),
+  };
+
+  useEffect(() => {
+    if (props.productId) {
+      getMetaData();
+    }
+  }, [props.productId]);
+
+  var getMetaData = () => {
+    axios('http://localhost:3000/reviews/meta', {
+      params: {
+        productId: props.productId
+      }
+    })
+      .then(meta => {
+        context.metaData[1](meta.data);
+        setLoading(false);
+      });
+  };
+
+  context.getMetaData = getMetaData;
+
+  if (!loading) {
+    return (
+      <div className="module" id="reviews">
+        RATINGS & REVIEWS
+        <div className="ratingsReviewsContainer">
+          <ReviewContext.Provider value={context}>
+            <ProductBreakdown productId={props.productId} />
+            <ReviewList productId={props.productId} />
+          </ReviewContext.Provider>
+        </div>
+      </div>
+    );
+  }
+  return null;
 };
 
 export default Reviews;

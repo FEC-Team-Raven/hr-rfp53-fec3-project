@@ -3,5 +3,5 @@ node_modules
 
 config.js
 
-bundle.js
-node_modules
+bundle.js.LICENSE.txt
+coverage
