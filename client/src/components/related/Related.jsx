@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import RelatedProducts from './RelatedProducts.jsx';
 import Outfit from './Outfit.jsx';
 import Compare from './Compare.jsx';
-import sampleData from './sampleData.jsx';
 
 import axios from 'axios';
 

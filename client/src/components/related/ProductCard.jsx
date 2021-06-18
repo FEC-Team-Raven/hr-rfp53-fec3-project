@@ -62,10 +62,10 @@ const ProductCard = ({product, list}) => {
   };
 
   // Finding average rating for each product:
-    // Create total points
-    // Iterate through ratings object
-    // Add to total point according to key value pair
-    // Divide total by number of ratings to get average rating
+  // Create total points
+  // Iterate through ratings object
+  // Add to total point according to key value pair
+  // Divide total by number of ratings to get average rating
 
   return (
     <div id={product.product_id} className="card">
@@ -82,5 +82,4 @@ const ProductCard = ({product, list}) => {
 };
 
 export default ProductCard;
-
-
+// hi

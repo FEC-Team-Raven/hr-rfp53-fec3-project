@@ -82,3 +82,4 @@ const Compare = ({ currFeats, compareFeats }) => {
 };
 
 export default Compare;
+// hi
