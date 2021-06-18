@@ -73,7 +73,7 @@ const ReviewTile = (props) => {
     if (!voted) {
       setVoted(true);
       axios({
-        url: 'http://localhost:3000/reviews/helpful',
+        url: '/reviews/helpful',
         method: 'PUT',
         params: {
           reviewId: props.review.review_id,
@@ -90,7 +90,7 @@ const ReviewTile = (props) => {
 
   var reportReview = () => {
     axios({
-      url: 'http://localhost:3000/reviews/report',
+      url: '/reviews/report',
       method: 'PUT',
       params: {
         reviewId: props.review.review_id
@@ -99,9 +99,9 @@ const ReviewTile = (props) => {
   };
 
   return (
-    <div className="reviewTile">
+    <div className={`reviewTile ${props.theme}-border`}>
       <div className="reviewRow between">
-        <Stars rating={props.review.rating} />
+        <Stars rating={props.review.rating} theme={props.theme}/>
         <div className="rating">{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
       </div>
       <div className="summary">{props.review.summary}</div>

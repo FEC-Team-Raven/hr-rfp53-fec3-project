@@ -37,8 +37,8 @@ const RatingBar = props => {
     <div className="reviewRow">
       <div onClick={handleClick} style={style}>{props.stars} stars</div>
       <div className="table">
-        <div className="barContainer">
-          <div className="bar" style={{'width': `${props.distribution}%`}}></div>
+        <div className={`barContainer ${props.theme}-5`}>
+          <div className={`bar ${props.theme}-4`} style={{'width': `${props.distribution}%`}}></div>
         </div>
       </div>
       <div style={{'marginLeft': '5px'}}>{props.count}</div>

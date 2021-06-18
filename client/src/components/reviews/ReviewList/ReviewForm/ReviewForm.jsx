@@ -28,6 +28,8 @@ const ReviewForm = props => {
     Fit: useState(0)
   };
 
+  var theme = props.theme === 'dark' ? 'dark-3' : 'light-5';
+
   var renderRatingMessage = () => {
     if (starRating === 1) {
       return <div className="rating">Poor</div>;
@@ -120,14 +122,14 @@ const ReviewForm = props => {
 
   return (
     <div className="reviewFormModal">
-      <div className="reviewFormContainer">
+      <div className={`reviewFormContainer ${theme}`}>
         <i className="fas fa-times closeForm" onClick={() => props.setDisplayFormModal(false)}></i>
         <form className="reviewForm" onSubmit={handleSubmit}>
           <div className="reviewRow">
             <div className="rating">Select a rating: </div>
             <div className="starContainer" >
               <input type="hidden" required></input>
-              <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars}/>
+              <StarSelector setStarRating={setStarRating} setDisplayRequireStars={setDisplayRequireStars} theme={props.theme}/>
             </div>
             {renderRatingMessage()}
             {renderRequireRating()}
@@ -143,7 +145,7 @@ const ReviewForm = props => {
               onChange={(e) => setRecommended(e.target.value)}
               required
             />
-            <label for="recommendedYes">Yes</label>
+            <label htmlFor="recommendedYes">Yes</label>
             <input
               id="recommendedNo"
               name="recommended"
@@ -152,18 +154,18 @@ const ReviewForm = props => {
               onChange={(e) => setRecommended(e.target.value)}
               required
             />
-            <label for="recommendedNo">No</label>
+            <label htmlFor="recommendedNo">No</label>
           </div>
 
           {renderCharacteristics()}
 
           <div>
-            <label for="summary" style={{'margin-right': '5px'}}>Review Summary:</label>
+            <label htmlFor="summary" style={{'marginRight': '5px'}}>Review Summary:</label>
             <input
               id="summary"
               name="summary"
               type="text"
-              maxlength="60"
+              maxLength="60"
               onChange={e => setSummary(e.target.value)}
             />
           </div>
@@ -174,7 +176,7 @@ const ReviewForm = props => {
               rows="5"
               columns="100"
               wrap="hard"
-              maxlength="1000"
+              maxLength="1000"
               placeholder="Why did you like the product or not?"
               onChange={e => setBody(e.target.value)}
               required
@@ -200,12 +202,12 @@ const ReviewForm = props => {
           </div>
 
           <div>
-            <label for="nickname">Nickname: </label>
+            <label htmlFor="nickname">Nickname: </label>
             <input
               type="text"
               id="nickname"
               name="nickname"
-              maxlength="60"
+              maxLength="60"
               onChange={e => setNickname(e.target.value)}
               placeholder="Example: jackson11!"
               required
@@ -214,12 +216,12 @@ const ReviewForm = props => {
           </div>
 
           <div>
-            <label for="email">Email: </label>
+            <label htmlFor="email">Email: </label>
             <input
               type="email"
               id="email"
               name="email"
-              maxlength="60"
+              maxLength="60"
               onChange={e => setEmail(e.target.value)}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               placeholder="Example: jackson11@email.com"
@@ -228,7 +230,7 @@ const ReviewForm = props => {
             <div>For authentication reasons, you will not be emailed</div>
           </div>
 
-          <input type="submit" className="reviewButton" />
+          <input type="submit" className={`reviewButton ${props.theme}-4 ${props.theme}-text`} />
         </form>
       </div>
     </div>

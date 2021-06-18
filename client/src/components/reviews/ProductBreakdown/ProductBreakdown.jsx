@@ -7,6 +7,7 @@ import {ReviewContext} from '../Reviews.jsx';
 
 const ProductBreakdown = props => {
   var metaData = useContext(ReviewContext).metaData[0];
+  var theme = 'dark';
 
   var roundToQuarter = rating => {
     rating = Math.floor(rating / 0.25) * 0.25;
@@ -31,7 +32,7 @@ const ProductBreakdown = props => {
     average = Math.floor(average / 0.25) * 0.25;
     return (
       <div className="reviewRow">
-        <div className="productRating">{average}</div>
+        <div className={`productRating ${props.theme}-text`}>{average}</div>
         <Stars rating={average} />
       </div>
     );
@@ -57,6 +58,7 @@ const ProductBreakdown = props => {
         stars={star}
         distribution={Math.floor((metaData.ratings[star] / total) * 100)}
         count={metaData.ratings[star]}
+        theme={props.theme}
       />;
     });
 
@@ -67,7 +69,8 @@ const ProductBreakdown = props => {
       return <CharacteristicBreakdown
         key={index}
         characteristic={characteristic}
-        rating={metaData.characteristics[characteristic].value}/>;
+        rating={metaData.characteristics[characteristic].value}
+        theme={props.theme}/>;
     });
   };
 
