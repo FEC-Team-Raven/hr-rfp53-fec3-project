@@ -1,0 +1,64 @@
+.dark-text {
+  color: white;
+}
+
+.dark-urgent-text {
+  color: #731E1E;
+}
+
+.dark-border {
+  border-color: #B2A402;
+}
+/* the numbers next to each class represent brightness on the gradient */
+.dark-1 {
+  background-color: #2D3C48;
+}
+
+.dark-2 {
+  background-color: #2C1853;
+}
+
+.dark-3 {
+  background-color: #201D60;
+}
+
+.dark-4 {
+  background-color: #3D3C60;
+}
+
+.dark-5 {
+  background-color: #858AA1;
+}
+/* -------------------------------------------------------------------------- */
+
+.light-text {
+  color: black;
+}
+
+.light-urgent-text {
+  color: red;
+}
+
+.light-border {
+  border-color: #F7E203;
+}
+
+.light-1 {
+  background-color: #25094E;
+}
+
+.light-2 {
+  background-color: #52329E;
+}
+
+.light-3 {
+  background-color: #72679D;
+}
+
+.light-4 {
+  background-color: #9E9AB6;
+}
+
+.light-5 {
+  background-color: white;
+}

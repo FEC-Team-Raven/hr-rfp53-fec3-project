@@ -1,0 +1,392 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CharacteristicBreakdown correctly 1`] = `
+<div
+  className="characteristicContainer"
+>
+  <div>
+    Fit
+  </div>
+  <div>
+    <div
+      className="characteristicBar"
+    />
+  </div>
+  <div
+    className="pointer"
+    style={
+      Object {
+        "left": "242.99999999999997px",
+      }
+    }
+  >
+    <i
+      className="fas fa-sort-up"
+    />
+  </div>
+  <div
+    className="reviewRow characteristic"
+  >
+    <div>
+      Too tight
+    </div>
+    <div>
+      Perfect
+    </div>
+    <div>
+      Too loose
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders CharacteristicInput correctly 1`] = `
+<div
+  className="characteristicInputContainer"
+>
+  <div
+    style={
+      Object {
+        "text-decoration": "underline",
+      }
+    }
+  >
+    Comfort
+  </div>
+  <div
+    className="characteristicInput"
+  >
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort1"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={1}
+        />
+        <label
+          for="Comfort1"
+        >
+          Uncomfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort2"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={2}
+        />
+        <label
+          for="Comfort2"
+        >
+          Slightly uncomfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort3"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={3}
+        />
+        <label
+          for="Comfort3"
+        >
+          Ok
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort4"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={4}
+        />
+        <label
+          for="Comfort4"
+        >
+          Comfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort5"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={5}
+        />
+        <label
+          for="Comfort5"
+        >
+          Perfect
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders ReviewTile correctly 1`] = `
+<div
+  className="reviewTile"
+>
+  <div
+    className="reviewRow between"
+  >
+    <span>
+      <div
+        className="star-rating"
+        style={
+          Object {
+            "width": "60%",
+          }
+        }
+      >
+        <span>
+          ★★★★★
+        </span>
+      </div>
+    </span>
+    <div
+      className="rating"
+    >
+      JoeCool
+      , 
+      April 19, 2021
+    </div>
+  </div>
+  <div
+    className="summary"
+  >
+    Gate keepers of hell.
+  </div>
+  <div>
+    I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
+     
+    <br />
+    <a
+      className="showMore"
+      onClick={[Function]}
+    >
+      Show More
+    </a>
+  </div>
+  <div>
+    <i
+      className="fas fa-check"
+      style={
+        Object {
+          "margin-right": "5px",
+        }
+      }
+    />
+    I recommend this product
+  </div>
+  <div
+    className="reviewRow"
+  >
+    Helpful?
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin-left": "5px",
+        }
+      }
+    >
+      Yes (
+      8
+      )
+    </button>
+    |
+    <button
+      onClick={[Function]}
+    >
+      Report
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders ReviewTile response if there is a response correctly 1`] = `
+<div
+  className="reviewTile"
+>
+  <div
+    className="reviewRow between"
+  >
+    <span>
+      <div
+        className="star-rating"
+        style={
+          Object {
+            "width": "60%",
+          }
+        }
+      >
+        <span>
+          ★★★★★
+        </span>
+      </div>
+    </span>
+    <div
+      className="rating"
+    >
+      JoeCool
+      , 
+      April 19, 2021
+    </div>
+  </div>
+  <div
+    className="summary"
+  >
+    Gate keepers of hell.
+  </div>
+  <div>
+    I hate cucumber pls dont throw it at me i see a bird i stare at it i meow at it i do a wiggle come here birdy look at dog hiiiiiisssss. Pet my belly, you know you want to; seize the hand and shred it! spend all night ensuring people don't sleep sleep...
+     
+    <br />
+    <a
+      className="showMore"
+      onClick={[Function]}
+    >
+      Show More
+    </a>
+  </div>
+  <div>
+    <i
+      className="fas fa-check"
+      style={
+        Object {
+          "margin-right": "5px",
+        }
+      }
+    />
+    I recommend this product
+  </div>
+  <div
+    className="response"
+  >
+    Response: 
+    <br />
+    TEST RESPONSE
+  </div>
+  <div
+    className="reviewRow"
+  >
+    Helpful?
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin-left": "5px",
+        }
+      }
+    >
+      Yes (
+      8
+      )
+    </button>
+    |
+    <button
+      onClick={[Function]}
+    >
+      Report
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders StarSelector correctly 1`] = `
+<div
+  className="star-selector-container"
+>
+  <div
+    className="star-selector-rating reviewRow"
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  >
+    <div>
+      ★★★★★
+    </div>
+  </div>
+  <div
+    className="starOverlay reviewRow"
+  >
+    <div
+      className="emptyStar"
+      data-star={1}
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star={2}
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star={3}
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star={4}
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+    <div
+      className="emptyStar"
+      data-star={5}
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    />
+  </div>
+  <div
+    className="star-selector-holo reviewRow"
+  >
+    <div>
+      ☆☆☆☆☆
+    </div>
+  </div>
+</div>
+`;
