@@ -87,7 +87,7 @@ const Related = ({currProductId}) => {
 
         .catch(err => {
           console.error(err);
-          // setLoading(true);
+          setLoading(true);
         });
 
       // Gets current product data
@@ -156,7 +156,9 @@ const Related = ({currProductId}) => {
       <h1>RELATED PRODUCTS</h1>
       {modal &&
         <div id="modal">
-          COMPARING
+          <div id="modal-header" className="light-3">
+            COMPARING
+          </div>
           <button id="close" className="action-btn" onClick={() => toggleModal(false)}>&#10005;</button>
           <div id="compare">
             <div className="current-product">

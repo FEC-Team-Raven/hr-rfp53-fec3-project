@@ -17,17 +17,9 @@ const OutfitActionButton = ({ product, list }) => {
     setOutfits(outfits.filter(outfit => outfit.product_id !== product.product_id));
   };
 
-  const renderButton = () => {
-    if (list === 'outfit') {
-      return <span>&#10005;</span>;
-    } else {
-      return <span>&#x2605;</span>;
-    }
-  };
-
   return (
     <div>
-      <button className="action-btn" onClick={removeOutfit}>{renderButton()}</button>
+      <button id="remove-btn" className="action-btn" onClick={removeOutfit}>&#10005;</button>
     </div>
   );
 };

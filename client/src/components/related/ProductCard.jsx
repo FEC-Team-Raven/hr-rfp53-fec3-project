@@ -72,8 +72,8 @@ const ProductCard = ({product, list}) => {
       <img className="preview" src={previewImg} width="250" height="300"></img>
       {renderActionBtn()}
       <div className="category">CATEGORY
-        <div>{product.name}</div>
-        <div>{defaultPrice}</div>
+        <div id="product-name">{product.name}</div>
+        <div id="product-price">{defaultPrice}</div>
         <div>{salePrice}</div>
         <Stars rating={rating}/>
       </div>
