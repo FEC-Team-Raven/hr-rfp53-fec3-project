@@ -20,7 +20,7 @@ const Reviews = (props) => {
   }, [props.productId]);
 
   var getMetaData = () => {
-    axios('http://localhost:3000/reviews/meta', {
+    axios('/reviews/meta', {
       params: {
         productId: props.productId
       }
