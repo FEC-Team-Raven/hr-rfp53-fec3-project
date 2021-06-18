@@ -4,8 +4,6 @@ import ProductCard from './ProductCard.jsx';
 import { RelatedContext } from './Related.jsx';
 
 const RelatedProducts = () => {
-  console.log('context:', useContext(RelatedContext));
-
   const productData = useContext(RelatedContext).relatedStyles;
   const relatedProductData = useContext(RelatedContext).relatedProductData;
   const relatedRatings = useContext(RelatedContext).relatedRatings;
@@ -32,4 +30,3 @@ const RelatedProducts = () => {
 };
 
 export default RelatedProducts;
-// hi

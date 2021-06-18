@@ -46,7 +46,6 @@ const Related = ({currProductId}) => {
       axios(`/products/${currProductId}/related`, {params: {'productId': currProductId}})
         .then(response => {
           setRelatedIds(response.data);
-          console.log('response.data:', response.data);
           return response.data;
         })
 
