@@ -152,7 +152,7 @@ const Related = ({currProductId}) => {
   };
 
   return (
-    <div>
+    <div className="module" id="related">
       <h1>RELATED PRODUCTS</h1>
       {modal &&
         <div id="modal">
