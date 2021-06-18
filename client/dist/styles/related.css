@@ -121,7 +121,7 @@
 #compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-top: 10px
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 
