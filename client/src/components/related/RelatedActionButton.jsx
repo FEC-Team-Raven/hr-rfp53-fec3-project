@@ -19,21 +19,9 @@ const RelatedActionButton = ({product, list}) => {
     }
   };
 
-  const renderButton = () => {
-    if (list === 'outfit') {
-      return <span>&#10005;</span>;
-    } else {
-      return <span>&#x2605;</span>;
-    }
-  };
-
-  // Async:
-  // (1) Set the state of the product being compared to
-  // (2) Toggle the modal window
-
   return (
     <div>
-      <button className="action-btn" onClick={handleModal}>{renderButton()}</button>
+      <button id="compare-btn" className="action-btn" onClick={handleModal}>&#x2605;</button>
     </div>
   );
 };

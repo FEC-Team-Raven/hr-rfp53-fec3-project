@@ -29,7 +29,7 @@ const Outfit = () => {
   return (
     <div className="carousel__cards">
       <div className="card addOutfit" onClick={addOutfit}>
-        <button className="addOutfit-btn">&#43;</button>
+        <h1>+</h1>
         <h2>Add to Outfit</h2>
       </div>
       {outfits.map(outfit =>
