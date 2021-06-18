@@ -9,7 +9,9 @@ const RelatedProducts = () => {
   const relatedRatings = useContext(RelatedContext).relatedRatings;
 
   // Adding product name, features, and ratings to product data object
-  if (relatedRatings.length > 0) {
+  if (productData.length > 0
+    && relatedProductData.length > 0
+    && relatedRatings.length > 0) {
     for (let i = 0; i < relatedProductData.length; i++) {
       productData[i].name = relatedProductData[i].name;
       productData[i].features = relatedProductData[i].features;
