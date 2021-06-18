@@ -1,9 +1,18 @@
+
 #app {
-  width: 80%;
-  margin: 0 auto;
+  margin: 0;
 }
 
+.main-app {
+  display: block;
+  height: auto;
+  overflow: auto;
+  margin: auto;
+}
+
+
 * {
-  transition: background-color 1s, border-color 1s, color 1s;
+  /* transition: background-color 1s, border-color 1s, color 1s; */
   font-family: 'Ubuntu', sans-serif;
+  margin: 0px;
 }

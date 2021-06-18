@@ -15,7 +15,7 @@ const AnswerList = (props) => {
   return (
     <div className='answerWhole'>
       <div className="answer">
-        {showA ? <div></div> : <div>A: </div>}
+        {showA ? <div></div> : <div id='A-title'>A: </div>}
         <div className="answerList">
           {show.map((item, index) =>
             <AnswerItem key={index} value={item} getAnswer={props.getAnswer}/>

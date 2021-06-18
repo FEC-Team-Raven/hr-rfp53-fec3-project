@@ -1,3 +1,9 @@
+#related {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 /*
   ========================================
   Custom styles
@@ -115,7 +121,7 @@
 #compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-top: 10px
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 

@@ -19,7 +19,9 @@
 }
 
 .dark-3 {
-  background-color: #201D60;
+  /* background-color: #201D60; */
+  background-color: #110923ed;
+
 }
 
 .dark-4 {
@@ -52,7 +54,9 @@
 }
 
 .light-3 {
-  background-color: #72679D;
+  background-color: #f6f5fa59;
+
+  /* background-color: #72679D; */
 }
 
 .light-4 {

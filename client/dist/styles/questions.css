@@ -1,12 +1,16 @@
-#app {
-  display: block;
+/* #app {
+  /* display: block;
   height: auto;
   width: 900px;
   overflow: auto;
-}
+} */
 
 .main-questions {
-  margin: 50px 0;
+  /* margin: 2vw 7vw 2vw 7vw; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-bottom: 50px;
 }
 
 button {
@@ -14,7 +18,8 @@ button {
 }
 
 #titleQA {
-  margin-bottom: 10px;
+  margin-bottom: 1vw;
+  font-weight: 100;
 }
 
 #yes:hover {
@@ -46,6 +51,11 @@ input:focus {
   margin-bottom: 13px;
 }
 
+.QList::-webkit-scrollbar {
+  scrollbar-color: dark;
+  /* display: none; */
+}
+
 .question {
   display: flex;
   justify-content: space-between;
@@ -60,12 +70,15 @@ input:focus {
 .question-extra {
   display: flex;
   justify-content: space-around;
-  font-size: x-small;
+  font-size: 0.65rem;
+  font-weight: 100;
   white-space: nowrap;
 }
 
 #q-text {
   display: flex;
+  font-weight: 600;
+  font-size: 1rem;
   /* align-items: center; */
 }
 #q-head {
@@ -97,6 +110,15 @@ input:focus {
   /* border: solid 1px; */
 }
 
+#A-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.answerList::-webkit-scrollbar {
+  display: none;
+}
+
 .answerList {
   max-height: 50vh;
   overflow: auto;
@@ -106,13 +128,17 @@ input:focus {
 
 #answer-text {
   padding: 1px 10px 10px 10px;
-  font-size: small;
+  font-size: 0.9rem;
+  font-weight: 100;
+  /* font-size: small; */
 }
 
 .answer-extra {
   display: flex;
   padding: 0px 10px 10px 10px;
-  font-size: x-small;
+  font-size: 0.65rem;
+  font-weight: 100;
+  /* font-size: x-small; */
 }
 
 #ans-user {
@@ -131,8 +157,9 @@ input:focus {
 button.moreAns {
   margin-left: 22px;
   padding: 5px;
-  font-size: small;
-  font-weight: bold;
+  /* font-size: small; */
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 button.moreAns:hover {
@@ -157,6 +184,7 @@ button.moreAns:hover {
   z-index: 1;
 }
 
+
 #modal-title {
   /* display: flex;
   flex-direction: row; */
@@ -164,12 +192,14 @@ button.moreAns:hover {
   margin-left: 10px;
   border-bottom: 1px solid lightgray;
   margin-right: 10px;
+  margin-top: 10px;
+
 }
 
-#modal-title h5 {
+#modal-title div {
   all: unset;
   display: block;
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
   font-weight: 500;
 }
 
@@ -209,9 +239,11 @@ button.moreAns:hover {
 
 .modal form p {
   all: unset;
-  font-size: small;
+  /* font-size: small; */
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 100;
 }
 
 .modal textarea {
@@ -256,12 +288,12 @@ button.moreAns:hover {
 
 /* buttons --> add and more */
 #AddQ {
-  font-size: smaller;
+  /* font-size: smaller; */
   font-weight: bold;
-  border: 1px solid black;
+  border: 1px solid;
   padding: 15px 15px 15px 15px;
   transition: all .5s ease;
-  color: black;
+
 }
 #AddQ p {
   all: unset;
@@ -279,13 +311,13 @@ p#plus {
 }
 
 #MoreQActive {
-  font-size: smaller;
+  /* font-size: smaller; */
   font-weight: bold;
-  border: 1px solid black;
+  border: 1px solid;
   padding: 15px 15px 15px 15px;
   margin-right: 8px;
   transition: all .5s ease;
-  color: black;
+  /* color: black; */
 
 }
 #MoreQActive:hover {
@@ -295,7 +327,7 @@ p#plus {
 }
 
 #MoreQInactive {
-  font-size: smaller;
+  /* font-size: smaller; */
 }
 
 /* SEARCH */
@@ -307,21 +339,27 @@ p#plus {
 
 }
 
+.search form input {
+  /* background-color: inherit; */
+  all: unset;
+  padding-left: 10px;
+}
+
 div#search-bar-main {
   margin-bottom: 10px;
 }
 
 .search form button {
-  border-right: 1px solid grey;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
   padding-right: 10px;
 }
 
 #searchBar {
   flex-grow: 1;
   border-right: none;
-  border-left: 1px solid grey;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  border-left: 1px solid ;
+  border-top: 1px solid ;
+  border-bottom: 1px solid;
 }

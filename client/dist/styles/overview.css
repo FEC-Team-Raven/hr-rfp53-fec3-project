@@ -1,7 +1,9 @@
 #overview {
   display: grid;
   grid-template: auto 20% / 60% 40%;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
   margin-bottom: 100px;
 }
 

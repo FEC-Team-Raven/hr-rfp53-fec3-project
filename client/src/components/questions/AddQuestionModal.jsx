@@ -47,23 +47,23 @@ const AddQuestionModal = (props) => {
 
 
   return (
-    <div className="modal">
+    <div className='modal'>
       <h3 id='modal-title'>Ask Your Question
-        <h5>About the {props.productName}</h5>
+        <div>About the {props.productName}</div>
       </h3>
       <form onSubmit={handleSubmit}>
         <label>Your Question*</label>
         <textarea
           type="text"
           name="Body"
-          maxlength='1000'
+          maxLength='1000'
           placeholder='Why did you like the product or not?'
           onChange={handleChange}></textarea>
         <label>What is your nickname?*</label>
         <input
           type="text"
           name="Name"
-          maxlength='60'
+          maxLength='60'
           placeholder='Example: jackson11!'
           onChange={handleChange}
         ></input>
@@ -73,7 +73,7 @@ const AddQuestionModal = (props) => {
           type="text"
           name="Email"
           placeholder='Example: jack@email.com'
-          maxlength='60'
+          maxLength='60'
           onChange={handleChange}></input>
         <p>For authentication reasons, you will not be emailed</p>
         <div id="form-buttons">

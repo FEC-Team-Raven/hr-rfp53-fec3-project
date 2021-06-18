@@ -36,7 +36,7 @@ const Reviews = (props) => {
 
   if (!loading) {
     return (
-      <div className={`module ${theme}-3 ${props.theme}-text`} id="reviews">
+      <div className={`module ${props.theme}-text`} id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>
