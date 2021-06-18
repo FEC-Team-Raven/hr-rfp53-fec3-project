@@ -48,7 +48,7 @@ const ReviewList = (props) => {
   };
 
   var getReviews = () => {
-    return axios('http://localhost:3000/reviews', {
+    return axios('/reviews', {
       params: {
         productId: props.productId,
         sort: sort

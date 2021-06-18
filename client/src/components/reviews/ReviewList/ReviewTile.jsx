@@ -73,7 +73,7 @@ const ReviewTile = (props) => {
     if (!voted) {
       setVoted(true);
       axios({
-        url: 'http://localhost:3000/reviews/helpful',
+        url: '/reviews/helpful',
         method: 'PUT',
         params: {
           reviewId: props.review.review_id,
@@ -90,7 +90,7 @@ const ReviewTile = (props) => {
 
   var reportReview = () => {
     axios({
-      url: 'http://localhost:3000/reviews/report',
+      url: '/reviews/report',
       method: 'PUT',
       params: {
         reviewId: props.review.review_id
