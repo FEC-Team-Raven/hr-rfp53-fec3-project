@@ -15,7 +15,7 @@ const Compare = ({ currFeats, compareFeats }) => {
     return mutual.map(feature => {
       return (
         <div className="modal-row">
-          <div>&#10003;</div>
+          <div id="check">&#10003;</div>
           <div className="feat">{feature}</div>
           <div className="compared-product">&#10003;</div>
         </div>
@@ -29,7 +29,7 @@ const Compare = ({ currFeats, compareFeats }) => {
       return currFeats.map(feature => {
         return (
           <div className="modal-row">
-            <div>&#10003;</div>
+            <div id="check">&#10003;</div>
             <div className="feat">{feature}</div>
           </div>
         );
@@ -39,7 +39,7 @@ const Compare = ({ currFeats, compareFeats }) => {
       return uniqueFeats.map(feature => {
         return (
           <div className="modal-row">
-            <div>&#10003;</div>
+            <div id="check">&#10003;</div>
             <div className="feat">{feature}</div>
           </div>
         );
@@ -54,7 +54,7 @@ const Compare = ({ currFeats, compareFeats }) => {
           <div className="modal-row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div className="compared-product">&#10003;</div>
+            <div id="check" className="compared-product">&#10003;</div>
           </div>
         );
       });
@@ -65,7 +65,7 @@ const Compare = ({ currFeats, compareFeats }) => {
           <div className="modal-row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div className="compared-product">&#10003;</div>
+            <div id="check" className="compared-product">&#10003;</div>
           </div>
         );
       });
