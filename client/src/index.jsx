@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Navbar from './components/navbar/Navbar.jsx';
@@ -34,7 +34,7 @@ const App = () => {
 
   useEffect(() => {
     if (loading) {
-      axios(`/products/${productIDtoRender}`)
+      axios(`/products/list`)
         .then(products => {
           setProductData(products.data);
           setLoading(false);
@@ -56,7 +56,7 @@ const App = () => {
     <div>
       <Navbar themeSetter={changeTheme} theme={theme}/>
       <Overview productId={productData.id} product={productData} theme={theme}/>
-      <Related productId={productData.id} theme={theme}/>
+      <Related currProductId={productData.id} theme={theme}/>
       <Questions productId={productData.id} productName={productData.name} theme={theme}/>
       <Reviews productId={productData.id} theme={theme}/>
     </div>
