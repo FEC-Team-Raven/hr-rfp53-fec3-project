@@ -28,7 +28,7 @@ const RatingBar = props => {
       copy[key] = style[key];
     }
 
-    copy['font-weight'] = copy['font-weight'] === 'normal' ? 'bold' : 'normal';
+    copy['fontWeight'] = copy['fontWeight'] === 'normal' ? 'bold' : 'normal';
     console.log(copy);
     setStyle(copy);
   };
