@@ -9,7 +9,7 @@ exports[`renders CharacteristicBreakdown correctly 1`] = `
   </div>
   <div>
     <div
-      className="characteristicBar"
+      className="characteristicBar undefined-5"
     />
   </div>
   <div
@@ -47,7 +47,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
   <div
     style={
       Object {
-        "text-decoration": "underline",
+        "textDecoration": "underline",
       }
     }
   >
@@ -69,7 +69,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
           value={1}
         />
         <label
-          for="Comfort1"
+          htmlFor="Comfort1"
         >
           Uncomfortable
         </label>
@@ -88,7 +88,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
           value={2}
         />
         <label
-          for="Comfort2"
+          htmlFor="Comfort2"
         >
           Slightly uncomfortable
         </label>
@@ -107,7 +107,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
           value={3}
         />
         <label
-          for="Comfort3"
+          htmlFor="Comfort3"
         >
           Ok
         </label>
@@ -126,7 +126,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
           value={4}
         />
         <label
-          for="Comfort4"
+          htmlFor="Comfort4"
         >
           Comfortable
         </label>
@@ -145,7 +145,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
           value={5}
         />
         <label
-          for="Comfort5"
+          htmlFor="Comfort5"
         >
           Perfect
         </label>
@@ -157,7 +157,7 @@ exports[`renders CharacteristicInput correctly 1`] = `
 
 exports[`renders ReviewTile correctly 1`] = `
 <div
-  className="reviewTile"
+  className="reviewTile undefined-border"
 >
   <div
     className="reviewRow between"
@@ -171,7 +171,9 @@ exports[`renders ReviewTile correctly 1`] = `
           }
         }
       >
-        <span>
+        <span
+          className="undefined-text"
+        >
           ★★★★★
         </span>
       </div>
@@ -205,7 +207,7 @@ exports[`renders ReviewTile correctly 1`] = `
       className="fas fa-check"
       style={
         Object {
-          "margin-right": "5px",
+          "marginRight": "5px",
         }
       }
     />
@@ -219,7 +221,7 @@ exports[`renders ReviewTile correctly 1`] = `
       onClick={[Function]}
       style={
         Object {
-          "margin-left": "5px",
+          "marginLeft": "5px",
         }
       }
     >
@@ -239,7 +241,7 @@ exports[`renders ReviewTile correctly 1`] = `
 
 exports[`renders ReviewTile response if there is a response correctly 1`] = `
 <div
-  className="reviewTile"
+  className="reviewTile undefined-border"
 >
   <div
     className="reviewRow between"
@@ -253,7 +255,9 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
           }
         }
       >
-        <span>
+        <span
+          className="undefined-text"
+        >
           ★★★★★
         </span>
       </div>
@@ -287,7 +291,7 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
       className="fas fa-check"
       style={
         Object {
-          "margin-right": "5px",
+          "marginRight": "5px",
         }
       }
     />
@@ -308,7 +312,7 @@ exports[`renders ReviewTile response if there is a response correctly 1`] = `
       onClick={[Function]}
       style={
         Object {
-          "margin-left": "5px",
+          "marginLeft": "5px",
         }
       }
     >
@@ -331,7 +335,7 @@ exports[`renders StarSelector correctly 1`] = `
   className="star-selector-container"
 >
   <div
-    className="star-selector-rating reviewRow"
+    className="star-selector-rating reviewRow undefined-text"
     style={
       Object {
         "width": "0%",
