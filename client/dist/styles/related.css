@@ -122,6 +122,7 @@
 .card {
   position: relative;
   flex: 1 1 auto;
+  height: 100%;
   width: 100%;
   border: 3px solid;
   border-radius: 5px;
