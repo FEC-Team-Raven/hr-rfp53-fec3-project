@@ -82,4 +82,3 @@ const ProductCard = ({product, list}) => {
 };
 
 export default ProductCard;
-// hi

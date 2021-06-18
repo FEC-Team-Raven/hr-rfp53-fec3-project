@@ -1,3 +1,6 @@
 // API goes here
 
-module.exports = 'INSERT AUTH KEY';
+module.exports = {
+  github: 'INSERT AUTH KEY',
+  imgbb: 'INSERT API KEY'
+};

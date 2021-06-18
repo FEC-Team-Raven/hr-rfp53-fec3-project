@@ -6,4 +6,8 @@ config.js
 bundle.js
 bundle.js.LICENSE.txt
 coverage
+<<<<<<< HEAD
 fec.pem
+=======
+fec.pem
+>>>>>>> dd02d25264fbce2db2d427073a2da6450a3197ef

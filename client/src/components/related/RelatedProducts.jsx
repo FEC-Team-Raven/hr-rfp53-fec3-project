@@ -4,15 +4,14 @@ import ProductCard from './ProductCard.jsx';
 import { RelatedContext } from './Related.jsx';
 
 const RelatedProducts = () => {
+  console.log('context:', useContext(RelatedContext));
+
   const productData = useContext(RelatedContext).relatedStyles;
   const relatedProductData = useContext(RelatedContext).relatedProductData;
   const relatedRatings = useContext(RelatedContext).relatedRatings;
 
-  // console.log('relatedProductData:', relatedProductData);
-  // console.log('ratings:', relatedRatings);
-
   // Adding product name, features, and ratings to product data object
-  if (productData.length > 0) {
+  if (relatedRatings.length > 0) {
     for (let i = 0; i < relatedProductData.length; i++) {
       productData[i].name = relatedProductData[i].name;
       productData[i].features = relatedProductData[i].features;

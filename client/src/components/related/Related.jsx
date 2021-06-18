@@ -12,7 +12,6 @@ let relatedTranslateX = 0;
 let outfitTranslateX = 0;
 
 const Related = ({currProductId}) => {
-  currProductId = '17075';
 
   // Related products IDs and data
   const [relatedIds, setRelatedIds] = useState([]);
@@ -44,9 +43,10 @@ const Related = ({currProductId}) => {
     if (loading) {
       setLoading(false);
       // Retrieves an ARRAY of related IDs of a specific product
-      axios('http://localhost:3000/products/relatedIds', {headers: {'productId': currProductId}})
+      axios(`/products/${currProductId}/related`, {params: {'productId': currProductId}})
         .then(response => {
           setRelatedIds(response.data);
+          console.log('response.data:', response.data);
           return response.data;
         })
 
@@ -57,19 +57,19 @@ const Related = ({currProductId}) => {
           let ratingPromises = [];
           for (var i = 0; i < related.length; i++) {
             stylePromises.push(
-              axios('http://localhost:3000/products/styles', {headers: {'productId': related[i]}})
+              axios(`/products/${related[i]}/styles`, {params: {'productId': related[i]}})
                 .then(response => {
                   return response.data;
                 })
             );
             relatedPromises.push(
-              axios('http://localhost:3000/products/productid', {headers: {'productId': related[i]}})
+              axios(`/products/${related[i]}`, {params: {'productId': related[i]}})
                 .then(response => {
                   return response.data;
                 })
             );
             ratingPromises.push(
-              axios('http://localhost:3000/reviews/meta', {params: {'productId': related[i]}})
+              axios('/reviews/meta', {params: {'productId': related[i]}})
                 .then(response => {
                   return response.data;
                 })
@@ -88,16 +88,16 @@ const Related = ({currProductId}) => {
 
         .catch(err => {
           console.error(err);
-          setLoading(true);
+          // setLoading(true);
         });
 
       // Gets current product data
-      axios('http://localhost:3000/products/productid', {headers: {'productId': currProductId}})
+      axios(`/products/${currProductId}`, {params: {'productId': currProductId}})
         .then(response => {
           setCurrProductData(response.data);
         });
 
-      axios('http://localhost:3000/products/styles', {headers: {'productId': currProductId}})
+      axios(`/products/${currProductId}/styles`, {params: {'productId': currProductId}})
         .then(response => {
           setCurrProductStyles(response.data);
         });
@@ -202,4 +202,3 @@ const Related = ({currProductId}) => {
 };
 
 export default Related;
-// hi
