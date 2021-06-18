@@ -27,7 +27,7 @@ const StarSelector = (props) => {
 
   return (
     <div className="star-selector-container">
-      <div className="star-selector-rating reviewRow" style={{'width': `${ratingToWidth(rating)}%`}}>
+      <div className={`star-selector-rating reviewRow ${props.theme}-text`} style={{'width': `${ratingToWidth(rating)}%`}}>
         <div>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
       </div>
       <div className="starOverlay reviewRow">

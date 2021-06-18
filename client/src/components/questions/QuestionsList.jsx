@@ -21,8 +21,8 @@ const QuestionsList = (props) => {
 
   return (
     <div className='QList'>
-      {temp.map((item) =>
-        <QuestionItem value={item} questionBody={item.question_body} productName={props.productName} id={productId} getQuestions={props.getQuestions}/>
+      {temp.map((item, index) =>
+        <QuestionItem key={index} value={item} questionBody={item.question_body} productName={props.productName} id={productId} getQuestions={props.getQuestions}/>
       )}
     </div>
   );

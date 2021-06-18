@@ -5,9 +5,9 @@ import {ReviewContext} from '../Reviews.jsx';
 const RatingBar = props => {
   const [starFilter, setStarFilter] = useContext(ReviewContext).starFilter;
   const [style, setStyle] = useState({
-    'text-decoration': 'underline',
+    'textDecoration': 'underline',
     'width': '48px',
-    'font-weight': 'normal'
+    'fontWeight': 'normal'
   });
 
   var updateStarFilter = stars => {
@@ -37,11 +37,11 @@ const RatingBar = props => {
     <div className="reviewRow">
       <div onClick={handleClick} style={style}>{props.stars} stars</div>
       <div className="table">
-        <div className="barContainer">
-          <div className="bar" style={{'width': `${props.distribution}%`}}></div>
+        <div className={`barContainer ${props.theme}-5`}>
+          <div className={`bar ${props.theme}-4`} style={{'width': `${props.distribution}%`}}></div>
         </div>
       </div>
-      <div style={{'margin-left': '5px'}}>{props.count}</div>
+      <div style={{'marginLeft': '5px'}}>{props.count}</div>
     </div>
   );
 };

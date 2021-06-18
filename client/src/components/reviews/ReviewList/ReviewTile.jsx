@@ -23,7 +23,7 @@ const ReviewTile = (props) => {
   var renderRecommend = recommend => {
     if (recommend) {
       return <div>
-        <i className="fas fa-check" style={{'margin-right': '5px'}}></i>
+        <i className="fas fa-check" style={{'marginRight': '5px'}}></i>
         I recommend this product
       </div>;
     }
@@ -73,7 +73,7 @@ const ReviewTile = (props) => {
     if (!voted) {
       setVoted(true);
       axios({
-        url: 'http://localhost:3000/reviews/helpful',
+        url: '/reviews/helpful',
         method: 'PUT',
         params: {
           reviewId: props.review.review_id,
@@ -90,7 +90,7 @@ const ReviewTile = (props) => {
 
   var reportReview = () => {
     axios({
-      url: 'http://localhost:3000/reviews/report',
+      url: '/reviews/report',
       method: 'PUT',
       params: {
         reviewId: props.review.review_id
@@ -99,22 +99,22 @@ const ReviewTile = (props) => {
   };
 
   return (
-    <div className="reviewTile">
+    <div className={`reviewTile ${props.theme}-border`}>
       <div className="reviewRow between">
-        <Stars rating={props.review.rating} />
+        <Stars rating={props.review.rating} theme={props.theme}/>
         <div className="rating">{props.review.reviewer_name}, {renderDate(props.review.date)}</div>
       </div>
       <div className="summary">{props.review.summary}</div>
       {renderBody(props.review.body)}
       {renderRecommend(props.review.recommend)}
       {renderResponse(props.review.response)}
-      {props.review.photos.map(photo => {
-        return <img className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
+      {props.review.photos.map((photo, index) => {
+        return <img key={index} className="reviewImage" src={photo.url} onClick={() => updateModal(photo.url)}></img>;
       })}
       {renderImageModal()}
       <div className="reviewRow">
         Helpful?
-        <button onClick={() => postHelpfulness()} style={{'margin-left': '5px'}}>Yes ({helpfulness})</button>
+        <button onClick={() => postHelpfulness()} style={{'marginLeft': '5px'}}>Yes ({helpfulness})</button>
         |
         <button onClick={reportReview}>Report</button>
       </div>

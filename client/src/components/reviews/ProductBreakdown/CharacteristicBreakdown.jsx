@@ -32,7 +32,7 @@ const CharacteristicBreakdown = props => {
     <div className="characteristicContainer">
       <div>{props.characteristic}</div>
       <div>
-        <div className="characteristicBar"></div>
+        <div className={`characteristicBar ${props.theme}-5`}></div>
       </div>
       <div className="pointer" style={{'left': `${left}px`}}>
         <i className="fas fa-sort-up"></i>

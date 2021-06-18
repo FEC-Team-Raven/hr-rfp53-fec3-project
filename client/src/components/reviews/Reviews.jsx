@@ -7,6 +7,7 @@ export const ReviewContext = React.createContext({});
 
 const Reviews = (props) => {
   const [loading, setLoading] = useState(true);
+  var theme = props.theme === 'dark' ? 'dark' : '';
 
   var context = {
     starFilter: useState([]),
@@ -20,7 +21,7 @@ const Reviews = (props) => {
   }, [props.productId]);
 
   var getMetaData = () => {
-    axios('http://localhost:3000/reviews/meta', {
+    axios('/reviews/meta', {
       params: {
         productId: props.productId
       }
@@ -35,12 +36,12 @@ const Reviews = (props) => {
 
   if (!loading) {
     return (
-      <div>
+      <div className={`module ${theme}-3 ${props.theme}-text`} id="reviews">
         RATINGS & REVIEWS
         <div className="ratingsReviewsContainer">
           <ReviewContext.Provider value={context}>
-            <ProductBreakdown productId={props.productId} />
-            <ReviewList productId={props.productId} />
+            <ProductBreakdown productId={props.productId} theme={props.theme}/>
+            <ReviewList productId={props.productId} theme={props.theme}/>
           </ReviewContext.Provider>
         </div>
       </div>

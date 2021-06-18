@@ -7,7 +7,6 @@
   font-size:20px;
   white-space: nowrap;
   overflow: hidden;
-  color: rgb(65, 65, 65);
 }
 
 .star-rating span:before {
