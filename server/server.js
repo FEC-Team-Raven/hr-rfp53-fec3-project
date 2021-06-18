@@ -81,10 +81,10 @@ app.get('/products/relatedIds', (req, res) => {
 });
 
 // Retrieves produdct level info about a SPECIFIC product id
-app.get('/products/productid', (req, res) => {
-  let productId = req.headers.productid;
+app.get('/products/:product_id', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}`,
     headers: {
       Authorization: config.github
     }
