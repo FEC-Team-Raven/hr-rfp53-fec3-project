@@ -21,7 +21,7 @@ const RelatedActionButton = ({product, list}) => {
 
   return (
     <div>
-      <button id="compare-btn" className="action-btn" onClick={handleModal}>&#x2605;</button>
+      <button id="compare-btn" className="action-btn light-2" onClick={handleModal}>&#x2605;</button>
     </div>
   );
 };

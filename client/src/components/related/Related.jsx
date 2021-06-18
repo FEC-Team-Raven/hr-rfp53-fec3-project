@@ -156,7 +156,7 @@ const Related = ({currProductId}) => {
       <h1 id="related-title">RELATED PRODUCTS</h1>
       {modal &&
         <div id="modal">
-          <div id="modal-header" className="light-3">
+          <div id="modal-header" className="dark-1">
             COMPARING
           </div>
           <button id="close" className="action-btn" onClick={() => toggleModal(false)}>&#10005;</button>

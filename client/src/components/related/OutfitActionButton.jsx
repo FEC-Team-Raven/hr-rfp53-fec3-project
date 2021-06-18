@@ -19,7 +19,7 @@ const OutfitActionButton = ({ product, list }) => {
 
   return (
     <div>
-      <button id="remove-btn" className="action-btn" onClick={removeOutfit}>&#10005;</button>
+      <button id="remove-btn" className="action-btn light-2" onClick={removeOutfit}>&#10005;</button>
     </div>
   );
 };
