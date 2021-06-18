@@ -44,148 +44,114 @@ exports[`renders CharacteristicInput correctly 1`] = `
 <div
   className="characteristicInputContainer"
 >
-  Comfort
-   
-  <br />
   <div
-    className="characteristicInput"
-  >
-    <div>
-      <input
-        id="Comfort1"
-        name="Comfort"
-        onChange={[Function]}
-        required={true}
-        type="radio"
-        value="1"
-      />
-      <label
-        for="Comfort1"
-      >
-        Uncomfortable
-      </label>
-    </div>
-    <div>
-      <input
-        id="Comfort2"
-        name="Comfort"
-        onChange={[Function]}
-        required={true}
-        type="radio"
-        value="2"
-      />
-      <label
-        for="Comfort2"
-      >
-        Slightly uncomfortable
-      </label>
-    </div>
-    <div>
-      <input
-        id="Comfort3"
-        name="Comfort"
-        onChange={[Function]}
-        required={true}
-        type="radio"
-        value="3"
-      />
-      <label
-        for="Comfort3"
-      >
-        Ok
-      </label>
-    </div>
-    <div>
-      <input
-        id="Comfort4"
-        name="Comfort"
-        onChange={[Function]}
-        required={true}
-        type="radio"
-        value="4"
-      />
-      <label
-        for="Comfort4"
-      >
-        Comfortable
-      </label>
-    </div>
-    <div>
-      <input
-        id="Comfort5"
-        name="Comfort"
-        onChange={[Function]}
-        required={true}
-        type="radio"
-        value="5"
-      />
-      <label
-        for="Comfort5"
-      >
-        Perfect
-      </label>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders RatingBar correctly 1`] = `
-<div
-  className="reviewRow"
->
-  <div
-    onClick={[Function]}
     style={
       Object {
-        "margin-right": "10px",
         "text-decoration": "underline",
       }
     }
   >
-    5
-     stars
+    Comfort
   </div>
   <div
-    className="table"
+    className="characteristicInput"
   >
     <div
-      className="barContainer"
+      className="grid"
     >
-      <div
-        className="bar"
-        style={
-          Object {
-            "width": "0.3%",
-          }
-        }
-      />
+      <div>
+        <input
+          id="Comfort1"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={1}
+        />
+        <label
+          for="Comfort1"
+        >
+          Uncomfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort2"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={2}
+        />
+        <label
+          for="Comfort2"
+        >
+          Slightly uncomfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort3"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={3}
+        />
+        <label
+          for="Comfort3"
+        >
+          Ok
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort4"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={4}
+        />
+        <label
+          for="Comfort4"
+        >
+          Comfortable
+        </label>
+      </div>
+    </div>
+    <div
+      className="grid"
+    >
+      <div>
+        <input
+          id="Comfort5"
+          name="Comfort"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value={5}
+        />
+        <label
+          for="Comfort5"
+        >
+          Perfect
+        </label>
+      </div>
     </div>
   </div>
-  <div
-    style={
-      Object {
-        "margin-left": "5px",
-      }
-    }
-  >
-    30
-  </div>
-</div>
-`;
-
-exports[`renders ReviewForm correctly 1`] = `
-<div
-  className="reviewFormModal"
->
-  <span
-    className="close"
-    onClick={[Function]}
-  >
-    X
-  </span>
-  <div
-    className="reviewFormContainer"
-  />
 </div>
 `;
 
@@ -373,19 +339,7 @@ exports[`renders StarSelector correctly 1`] = `
     }
   >
     <div>
-      ★
-    </div>
-    <div>
-      ★
-    </div>
-    <div>
-      ★
-    </div>
-    <div>
-      ★
-    </div>
-    <div>
-      ★
+      ★★★★★
     </div>
   </div>
   <div
@@ -393,35 +347,35 @@ exports[`renders StarSelector correctly 1`] = `
   >
     <div
       className="emptyStar"
-      data-star="1"
+      data-star={1}
       onClick={[Function]}
       onMouseLeave={[Function]}
       onMouseOver={[Function]}
     />
     <div
       className="emptyStar"
-      data-star="2"
+      data-star={2}
       onClick={[Function]}
       onMouseLeave={[Function]}
       onMouseOver={[Function]}
     />
     <div
       className="emptyStar"
-      data-star="3"
+      data-star={3}
       onClick={[Function]}
       onMouseLeave={[Function]}
       onMouseOver={[Function]}
     />
     <div
       className="emptyStar"
-      data-star="4"
+      data-star={4}
       onClick={[Function]}
       onMouseLeave={[Function]}
       onMouseOver={[Function]}
     />
     <div
       className="emptyStar"
-      data-star="5"
+      data-star={5}
       onClick={[Function]}
       onMouseLeave={[Function]}
       onMouseOver={[Function]}
@@ -431,60 +385,8 @@ exports[`renders StarSelector correctly 1`] = `
     className="star-selector-holo reviewRow"
   >
     <div>
-      ☆
-    </div>
-    <div>
-      ☆
-    </div>
-    <div>
-      ☆
-    </div>
-    <div>
-      ☆
-    </div>
-    <div>
-      ☆
+      ☆☆☆☆☆
     </div>
   </div>
-</div>
-`;
-
-exports[`renders two more reviews when clicking More Reviews 1`] = `
-<div
-  className="reviewList"
->
-  0
-   reviews, sorted by
-  <select
-    className="sortReviews"
-    onChange={[Function]}
-  >
-    <option
-      value="relevance"
-    >
-      relevance
-    </option>
-    <option
-      value="helpful"
-    >
-      helpful
-    </option>
-    <option
-      value="newest"
-    >
-      newest
-    </option>
-  </select>
-  <input
-    onChange={[Function]}
-    type="text"
-  />
-   
-  <br />
-  <button
-    onClick={[Function]}
-  >
-    Add a Review +
-  </button>
 </div>
 `;
