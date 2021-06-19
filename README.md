@@ -15,10 +15,16 @@ A brief description of what this project does and who it's for
 
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+1. Overview
+2. Related Products
+3. Questions & Answers
+4. Ratings & Reviews
+  - Displays reviews in a list
+  - Sort reviews by relevance, helpfulness, or newest
+  - Filter reviews by star rating
+  - Filter reviews by text input
+  - Display product breakdown statistical data using bar charts
+  - Post new reviews with form validation
 
 
 ## Screenshots
