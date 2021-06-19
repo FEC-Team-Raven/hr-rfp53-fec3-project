@@ -24,6 +24,9 @@ A brief description of what this project does and who it's for
     - Sort reviews by relevance, helpfulness, or newest
     - Filter reviews by star rating
     - Filter reviews by text input
+    - Mark reviews as helpful
+    - Report reviews
+    - If review body is too long then only a portion will be displayed with a Show More option available
     - Display product breakdown statistical data using bar charts
     - Post new reviews with form validation
 
