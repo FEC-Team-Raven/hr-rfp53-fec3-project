@@ -13,28 +13,35 @@ A brief description of what this project does and who it's for
 - [@wdmcculloch](https://github.com/wdmcculloch)
 - [@jackychen](https://github.com/jackychen19)
 
+
 ## Features
 
 1. Overview
 2. Related Products
 3. Questions & Answers
 4. Ratings & Reviews
-  - Displays reviews in a list
-  - Sort reviews by relevance, helpfulness, or newest
-  - Filter reviews by star rating
-  - Filter reviews by text input
-  - Display product breakdown statistical data using bar charts
-  - Post new reviews with form validation
+    - Displays reviews in a list
+    - Sort reviews by relevance, helpfulness, or newest
+    - Filter reviews by star rating
+    - Filter reviews by text input
+    - Display product breakdown statistical data using bar charts
+    - Post new reviews with form validation
 
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img width="1074" alt="Screen Shot 2021-06-19 at 9 16 18 AM" src="https://user-images.githubusercontent.com/22485685/122651118-9162df00-d0eb-11eb-950f-4fd83a924b16.png">
+<img width="1087" alt="Screen Shot 2021-06-19 at 9 16 26 AM" src="https://user-images.githubusercontent.com/22485685/122651134-a475af00-d0eb-11eb-8bbd-810e60584c3e.png">
 
   
 ## Lessons Learned
 
 What did you learn while building this project? What challenges did you face and how did you overcome them?
+- Gabriel Wright
+- Jacky Chen
+- Will McCulloch
+- Joseph Balaoing
+    - I learned ...
 
   
 ## Run Locally
