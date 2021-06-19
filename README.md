@@ -82,7 +82,7 @@ Start the server
   
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your config.js file
+To run this project, you will need to add the following environment variables to your config.js file. Place the config.js file in the server directory.
 
 `GITHUB_OAUTH`
 
