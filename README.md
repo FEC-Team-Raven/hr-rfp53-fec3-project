@@ -44,7 +44,8 @@ What did you learn while building this project? What challenges did you face and
 - Jacky Chen
 - Will McCulloch
 - Joseph Balaoing
-    - I learned ...
+    - I learned a lot about react hooks and context. Transitioning to use hooks was smooth and easy until I started to use contexts. I was having problems figuring out how to use context with state. The problem was due to manipulating the state object directly and then setting state to itself. I was able to fix this by making a copy of the state instead. Once I had a better understanding of contexts I created a context that would act as a store for all the shared state.
+    - File upload was another big challenge that I faced. I wanted to upload the images that users submit to our server but I was having trouble figuring out how to deal with files. I tried many different ways to upload the file and eventually I found FormData and multer. Using these together I was able to send the image files from the client to the server in a FormData. Then I was able to retrieve the data from the request using multer. From there I was able to host the images using the imgBB API.
 
   
 ## Run Locally
