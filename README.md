@@ -1,6 +1,6 @@
 # Front End Capstone - Project Catwalk
 
-A brief description of what this project does and who it's for
+Project Catwalk tackles the request to build a new retail portal following the [Business Requirements](https://docs.google.com/document/d/1KAqduzY8ae3DYrSoCL1i23qHe95zJRYFulqMk-sGLWY/edit?usp=sharing) .  
 
 
 
@@ -11,7 +11,7 @@ A brief description of what this project does and who it's for
 - [@BuhJoseph](https://www.github.com/BuhJoseph)
 - [@wrightgabriel0220](https://github.com/wrightgabriel0220)
 - [@wdmcculloch](https://github.com/wdmcculloch)
-- [@jackychen](https://github.com/jackychen19)
+- [@jackychen19](https://github.com/jackychen19)
 
 
 ## Features
