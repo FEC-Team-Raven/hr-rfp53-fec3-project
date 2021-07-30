@@ -1,10 +1,6 @@
-# Front End Capstone - Project Catwalk
+# Project Catwalk
 
-Project Catwalk tackles the request to build a new retail portal following the [Business Requirements](https://docs.google.com/document/d/1KAqduzY8ae3DYrSoCL1i23qHe95zJRYFulqMk-sGLWY/edit?usp=sharing) .  
-
-
-
-
+Project Catwalk tackles the request to build a new retail portal following the [Business Requirements](https://docs.google.com/document/d/1KAqduzY8ae3DYrSoCL1i23qHe95zJRYFulqMk-sGLWY/edit?usp=sharing).  
 
 ## Authors
 
