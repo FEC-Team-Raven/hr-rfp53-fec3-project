@@ -27,31 +27,31 @@ Project Catwalk tackles the request to build a new retail portal following the [
 
 ## Run Locally
 
-Clone the project
+1. Download and clone the project
 
 ```bash
   git clone https://github.com/FEC-Team-Raven/hr-rfp53-fec3-project.git
 ```
 
-Go to the project directory
+2. Go to the project directory
 
 ```bash
   cd hr-rfp53-fec3-project
 ```
 
-Install dependencies
+3. Install dependencies
 
 ```bash
   npm install
 ```
 
-Transpile JSX to Javascript
+4. Transpile JSX to Javascript
 
 ```bash
   npm run build:prod
 ```
 
-Start the server
+5. Start the server
 
 ```bash
   npm run start:prod
