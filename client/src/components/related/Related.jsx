@@ -11,7 +11,7 @@ export const OutfitContext = React.createContext([]);
 let relatedTranslateX = 0;
 let outfitTranslateX = 0;
 
-const Related = ({currProductId}) => {
+const Related = ({ currProductId }) => {
 
   // Related products IDs and data
   const [relatedIds, setRelatedIds] = useState([]);
