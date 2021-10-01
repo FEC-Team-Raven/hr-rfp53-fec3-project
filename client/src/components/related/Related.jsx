@@ -13,6 +13,8 @@ let outfitTranslateX = 0;
 
 const Related = ({ currProductId }) => {
 
+  currProductId = '17069';
+
   // Related products IDs and data
   const [relatedIds, setRelatedIds] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);

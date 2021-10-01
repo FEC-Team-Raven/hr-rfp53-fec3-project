@@ -54,11 +54,11 @@ const App = () => {
 
   return (
     <div className={`main-app ${theme}-3` }>
-      <Navbar themeSetter={changeTheme} theme={theme}/>
-      <Overview productId={productData.id} product={productData} theme={theme}/>
+      {/* <Navbar themeSetter={changeTheme} theme={theme}/>
+      <Overview productId={productData.id} product={productData} theme={theme}/> */}
       <Related currProductId={productData.id} theme={theme}/>
-      <Questions productId={productData.id} productName={productData.name} theme={theme}/>
-      <Reviews productId={productData.id} theme={theme}/>
+      {/* <Questions productId={productData.id} productName={productData.name} theme={theme}/>
+      <Reviews productId={productData.id} theme={theme}/> */}
     </div>
   );
 };
