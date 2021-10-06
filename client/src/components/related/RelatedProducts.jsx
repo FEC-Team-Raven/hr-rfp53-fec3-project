@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductCard from './ProductCard.jsx';
 
-import { RelatedContext } from './Related.jsx';
+import axios from 'axios';
 
 const RelatedProducts = ({ currProductId }) => {
-  const [ relatedIDs, setRelatedIDs ] = useState([]);
-
+  const [ relatedIds, setRelatedIds ] = useState([]);
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
@@ -15,8 +14,8 @@ const RelatedProducts = ({ currProductId }) => {
         url: `products/${currProductId}/related`
       })
         .then(res => {
-          setRelatedIDs(res.data);
-          console.log(relatedIDs);
+          setRelatedIds(res.data);
+          console.log('relatedIds:', relatedIds);
           setLoading(false);
         })
         .catch(err => {
@@ -25,6 +24,13 @@ const RelatedProducts = ({ currProductId }) => {
     }
   });
 
+  return (
+    <div>
+      {relatedIds.map(productId => {
+        <ProductCard productId={productId} list={'related'}/>;
+      })}
+    </div>
+  );
 
 };
 
