@@ -14,28 +14,49 @@ const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-i
 // Rating
 
 const ProductCard = ({ productId, list }) => {
-
-  console.log('here');
-
-  const [ productData, setProductData ] = useState([]);
-  const [ styles, setStyles ] = useState([]);
+  const [ productData, setProductData ] = useState({});
+  const [ styles, setStyles ] = useState({});
 
   const [ loading, setLoading ] = useState(true);
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     axios({
-  //       method: 'GET',
-  //       url: `products/${productId}`
-  //     })
-  //   }
-  // });
+  useEffect(() => {
+    if (loading) {
+      axios({
+        method: 'GET',
+        url: `products/${productId}`
+      })
+        .then(res => {
+          setProductData(res.data);
+        })
+        .catch(err => console.error(err));
 
-  console.log('productId:', productId);
-  // console.log('productId:', productId);
+      axios({
+        method: 'GET',
+        url: `products/${productId}/styles`
+      })
+        .then(res => {
+          setStyles(res.data);
+          setLoading(false);
+        })
+        .catch(err => console.error(err));
+
+    }
+  });
+
+  console.log('product data:', productData);
+  console.log('styles:', styles);
 
   return (
-    <div>product card</div>
+    <div className="card">
+      <div>image</div>
+      <div>button</div>
+      <div>product info
+        <div>{productData.category}</div>
+        <div>{productData.name}</div>
+        <div>price</div>
+        <div>rating</div>
+      </div>
+    </div>
   );
 
 };

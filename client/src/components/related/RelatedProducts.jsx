@@ -18,17 +18,15 @@ const RelatedProducts = ({ currProductId }) => {
           console.log('relatedIds:', relatedIds);
           setLoading(false);
         })
-        .catch(err => {
-          console.error(err);
-        });
+        .catch(err => console.error(err));
     }
   });
 
   return (
-    <div>
-      {relatedIds.map(productId => {
-        <ProductCard productId={productId} list={'related'}/>;
-      })}
+    <div className="carousel">
+      {relatedIds.map(productId =>
+        <ProductCard productId={productId} list={'related'}/>
+      )}
     </div>
   );
 
