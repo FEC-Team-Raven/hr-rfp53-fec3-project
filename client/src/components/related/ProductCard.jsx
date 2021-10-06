@@ -7,6 +7,8 @@ const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-i
 
 const ProductCard = ({product, list}) => {
 
+  console.log('product:', product);
+
   // Rating calculator helper function
   const computeRating = () => {
     let ratingObj = product.rating;
@@ -60,12 +62,6 @@ const ProductCard = ({product, list}) => {
       );
     }
   };
-
-  // Finding average rating for each product:
-  // Create total points
-  // Iterate through ratings object
-  // Add to total point according to key value pair
-  // Divide total by number of ratings to get average rating
 
   return (
     <div id={product.product_id} className="card">
