@@ -13,7 +13,7 @@ const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-i
 // Price
 // Rating
 
-const ProductCard = ({ productId, list }) => {
+const ProductCard = ({ productId, list, initial }) => {
   const [ productData, setProductData ] = useState({});
   const [ styles, setStyles ] = useState({});
 
@@ -21,6 +21,7 @@ const ProductCard = ({ productId, list }) => {
 
   useEffect(() => {
     if (loading) {
+      // Retrieves product data
       axios({
         method: 'GET',
         url: `products/${productId}`
@@ -30,6 +31,7 @@ const ProductCard = ({ productId, list }) => {
         })
         .catch(err => console.error(err));
 
+      // Retrieves product styles data
       axios({
         method: 'GET',
         url: `products/${productId}/styles`
@@ -44,24 +46,33 @@ const ProductCard = ({ productId, list }) => {
   });
 
   console.log('product data:', productData);
-  console.log('styles:', styles);
+
+  // Retrieves thumbnail url
+  let thumbnail = sampleImg;
+  if (styles.results) {
+    thumbnail = styles.results[0].photos[0].thumbnail_url;
+    console.log('thumbnail:', styles.results[0].photos[0].thumbnail_url);
+  }
 
   return (
-    <div className="card">
-      <div>image</div>
-      <div>button</div>
-      <div>product info
-        <div>{productData.category}</div>
-        <div>{productData.name}</div>
-        <div>price</div>
-        <div>rating</div>
-      </div>
-    </div>
+    <img className="carousel__photo" src={thumbnail}></img>
+
   );
 
 };
 
 export default ProductCard;
+
+// <div className="carousel__photo">
+//   <img className="carousel__photo" src={thumbnail}></img>
+//   <div>button</div>
+//   <div>product info
+//     <div>{productData.category}</div>
+//     <div>{productData.name}</div>
+//     <div>price</div>
+//     <div>rating</div>
+//   </div>
+// </div>
 
 // // Rating calculator helper function
 // const computeRating = () => {
