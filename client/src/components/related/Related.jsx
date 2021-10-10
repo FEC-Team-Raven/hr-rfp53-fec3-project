@@ -6,7 +6,10 @@ import axios from 'axios';
 const Related = ({ currProductId }) => {
 
   return (
-    <RelatedProducts currProductId={currProductId}/>
+    <div>
+      <h1 id="related-title">RELATED PRODUCTS</h1>
+      <RelatedProducts currProductId={currProductId}/>
+    </div>
   );
 };
 

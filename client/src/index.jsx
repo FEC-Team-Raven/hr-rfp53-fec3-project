@@ -9,7 +9,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 
 const App = () => {
   const [ productData, setProductData ] = useState(0);
-  const [ productIDtoRender, setProductIDtoRender ] = useState('40344');
+  const [ productIDtoRender, setProductIDtoRender ] = useState('40348');
   const [ theme, setTheme ] = useState('light');
   const [ loading, setLoading ] = useState(true);
 
@@ -37,7 +37,7 @@ const App = () => {
     if (loading) {
       axios('/products') // DELETE LATER. This is just so we can actually see what are the valid product id's
         .then(products => {
-          console.log(product.data);
+          console.log(products.data);
         })
         .catch(err => {
           console.log(err);
@@ -63,11 +63,11 @@ const App = () => {
 
   return (
     <div className={`main-app ${theme}-3` }>
-      <Navbar themeSetter={changeTheme} theme={theme}/>
-      <Overview productId={productData.id} product={productData} theme={theme}/>
+      {/* <Navbar themeSetter={changeTheme} theme={theme}/>
+      <Overview productId={productData.id} product={productData} theme={theme}/> */}
       <Related currProductId={productData.id} theme={theme}/>
-      <Questions productId={productData.id} productName={productData.name} theme={theme}/>
-      <Reviews productId={productData.id} theme={theme}/>
+      {/* <Questions productId={productData.id} productName={productData.name} theme={theme}/>
+      <Reviews productId={productData.id} theme={theme}/> */}
     </div>
   );
 };

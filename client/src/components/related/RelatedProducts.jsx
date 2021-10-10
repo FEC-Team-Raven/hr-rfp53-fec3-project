@@ -19,7 +19,7 @@ const RelatedProducts = ({ currProductId }) => {
         })
         .catch(err => console.error(err));
     }
-  });
+  }, []);
 
   // Carousel functionality
 

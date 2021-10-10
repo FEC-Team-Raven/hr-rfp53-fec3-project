@@ -65,7 +65,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
           console.error(err);
         });
     }
-  });
+  }, []);
 
   // console.log('product data:', productData);
   // console.log('styles data:', stylesData);
