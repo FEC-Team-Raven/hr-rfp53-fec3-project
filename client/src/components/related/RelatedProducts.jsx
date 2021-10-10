@@ -6,7 +6,6 @@ import axios from 'axios';
 const RelatedProducts = ({ currProductId }) => {
   const [ relatedIds, setRelatedIds ] = useState([]);
   const [ loading, setLoading ] = useState(true);
-  const [ initial, setInitial] = useState(true);
 
   useEffect(() => {
     if (loading) {
@@ -23,16 +22,26 @@ const RelatedProducts = ({ currProductId }) => {
     }
   });
 
+  // Carousel functionality
+
+
   return (
-    <div className="carousel-wrapper">
+
+    <div className="related">
+      <div className="carousel__button prev">&#x2190;</div>
+
       <div className="carousel">
-        {relatedIds.map(productId =>
-          <ProductCard productId={productId} list={'related'}/>
-        )}
-        <div class="carousel__button--next"></div>
-        <div class="carousel__button--prev"></div>
+        <div className="carousel__images">
+          {relatedIds.map(productId =>
+            <ProductCard productId={productId} list={'related'} initial={true}/>
+          )}
+        </div>
       </div>
+
+      <div className="carousel__button next">&#x2192;</div>
+
     </div>
+
   );
 
 };

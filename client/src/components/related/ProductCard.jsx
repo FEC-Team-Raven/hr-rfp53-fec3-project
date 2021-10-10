@@ -5,7 +5,10 @@ import OutfitActionButton from './OutfitActionButton.jsx';
 
 import axios from 'axios';
 
-const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png';
+import product from './sampleData.js';
+import styles from './sampleData.js';
+
+const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
 // Product Card Components:
 // Category
@@ -13,9 +16,10 @@ const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-i
 // Price
 // Rating
 
-const ProductCard = ({ productId, list, initial }) => {
-  const [ productData, setProductData ] = useState({});
-  const [ styles, setStyles ] = useState({});
+const ProductCard = ({ productId, list }) => {
+  const [ productData, setProductData ] = useState(product.product);
+  const [ stylesData, setStyles ] = useState(styles.styles);
+  const [ averageRating, setAverageRating ] = useState(0);
 
   const [ loading, setLoading ] = useState(true);
 
@@ -42,21 +46,59 @@ const ProductCard = ({ productId, list, initial }) => {
         })
         .catch(err => console.error(err));
 
+
+      // Retrieves product rating data
+      axios({
+        method: 'GET',
+        url: `/reviews/meta/${productId}`
+      })
+        .then (res => {
+          console.log('results:', res.data);
+          let totalRatings = Object.values(res.data.ratings).reduce((a, b) => Number(a) + Number(b));
+          let totalStarCount = Object.keys(res.data.ratings).map(starCount => starCount * res.data.ratings[starCount]).reduce((a, b) => a + b);
+          setAverageRating(totalStarCount / totalRatings);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   });
 
   console.log('product data:', productData);
+  console.log('styles data:', stylesData);
 
   // Retrieves thumbnail url
   let thumbnail = sampleImg;
-  if (styles.results) {
-    thumbnail = styles.results[0].photos[0].thumbnail_url;
-    console.log('thumbnail:', styles.results[0].photos[0].thumbnail_url);
+  if (stylesData.results) {
+    thumbnail = stylesData.results[0].photos[0].thumbnail_url;
   }
 
-  return (
-    <img className="carousel__photo" src={thumbnail}></img>
+  // Renders action button depending on list type
+  const actionButton = (list) => {
+    if (list === 'related') {
+      return (
+        <button className="action_button">&#x2605;</button>
+      );
+    } else {
+      return (
+        <button className="action_button">&#x0353;</button>
+      );
+    }
+  };
 
+  return (
+    <div className="card">
+      <img className="thumbnail" src={thumbnail}/>
+      {actionButton(list)}
+      <div className="product_info">
+        <div className="category">{productData.category}</div>
+        <div className="product_name">{productData.name}</div>
+        <div className="product_price">{'$' + productData.default_price}</div>
+        <div className="product_rating">
+          <Stars rating={averageRating}/>
+        </div>
+      </div>
+    </div>
   );
 
 };
