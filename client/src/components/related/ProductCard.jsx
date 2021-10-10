@@ -1,30 +1,35 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Stars from '../Stars.jsx';
-import RelatedActionButton from './RelatedActionButton.jsx';
-import OutfitActionButton from './OutfitActionButton.jsx';
+import CompareModal from './CompareModal.jsx';
 
 import axios from 'axios';
 
-import product from './sampleData.js';
-import styles from './sampleData.js';
-
 const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
-// Product Card Components:
-// Category
-// Name
-// Price
-// Rating
+export const ModalContext = React.createContext([]);
 
-const ProductCard = ({ productId, list }) => {
-  const [ productData, setProductData ] = useState(product.product);
-  const [ stylesData, setStyles ] = useState(styles.styles);
+const ProductCard = ({ currProductId, productId, list }) => {
+  const [ currProductData, setCurrProductData] = useState({});
+  const [ productData, setProductData ] = useState({});
+  const [ stylesData, setStyles ] = useState({});
   const [ averageRating, setAverageRating ] = useState(0);
+  const [ showModal, setShowModal] = useState(false);
 
   const [ loading, setLoading ] = useState(true);
 
+
   useEffect(() => {
     if (loading) {
+      // Retrieves CURRENT product data
+      axios({
+        method: 'GET',
+        url: `products/${currProductId}`
+      })
+        .then(res => {
+          setCurrProductData(res.data);
+        })
+        .catch(err => console.error(err));
+
       // Retrieves product data
       axios({
         method: 'GET',
@@ -46,14 +51,12 @@ const ProductCard = ({ productId, list }) => {
         })
         .catch(err => console.error(err));
 
-
       // Retrieves product rating data
       axios({
         method: 'GET',
         url: `/reviews/meta/${productId}`
       })
         .then (res => {
-          console.log('results:', res.data);
           let totalRatings = Object.values(res.data.ratings).reduce((a, b) => Number(a) + Number(b));
           let totalStarCount = Object.keys(res.data.ratings).map(starCount => starCount * res.data.ratings[starCount]).reduce((a, b) => a + b);
           setAverageRating(totalStarCount / totalRatings);
@@ -64,8 +67,10 @@ const ProductCard = ({ productId, list }) => {
     }
   });
 
-  console.log('product data:', productData);
-  console.log('styles data:', stylesData);
+  // console.log('product data:', productData);
+  // console.log('styles data:', stylesData);
+  // console.log('currProductData:', currProductData);
+  // console.log('comparedProductData:', comparedProductData);
 
   // Retrieves thumbnail url
   let thumbnail = sampleImg;
@@ -77,7 +82,7 @@ const ProductCard = ({ productId, list }) => {
   const actionButton = (list) => {
     if (list === 'related') {
       return (
-        <button className="action_button">&#x2605;</button>
+        <button className="action_button" onClick={() => setShowModal(true)}>&#x2605;</button>
       );
     } else {
       return (
@@ -86,8 +91,20 @@ const ProductCard = ({ productId, list }) => {
     }
   };
 
+  const modalVals = {
+    showModal,
+    setShowModal
+  };
+
   return (
     <div className="card">
+      {showModal &&
+        <ModalContext.Provider value={modalVals}>
+          <CompareModal
+            currProductData={currProductData}
+            comparedProductData={productData}/>
+        </ModalContext.Provider>
+      }
       <img className="thumbnail" src={thumbnail}/>
       {actionButton(list)}
       <div className="product_info">

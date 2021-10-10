@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Compare = ({ currFeats, compareFeats }) => {
+const CompareHelper = ({ currFeats, compareFeats }) => {
   // Converts to arrays containing only features
   currFeats = currFeats.map(feat => {
     return feat.feature;
@@ -17,7 +17,7 @@ const Compare = ({ currFeats, compareFeats }) => {
         <div className="modal-row">
           <div id="check">&#10003;</div>
           <div className="feat">{feature}</div>
-          <div className="compared-product">&#10003;</div>
+          <div id="check" className="compared-product">&#10003;</div>
         </div>
       );
     });
@@ -81,4 +81,4 @@ const Compare = ({ currFeats, compareFeats }) => {
   );
 };
 
-export default Compare;
+export default CompareHelper;

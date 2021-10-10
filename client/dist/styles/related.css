@@ -71,26 +71,24 @@
 */
 
 #modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: scroll;
-  width: 700px;
-  max-width: 100%;
-  height: 500px;
-  max-height: 100%;
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+  /* overflow: scroll; */
+  width: 500px;
+  /* max-width: 100%; */
+  height: 300px;
+  /* max-height: 100%; */
   background: rgb(255, 255, 255);
   border: 3px solid;
   border-radius: 5px;
-  z-index: 3;
+  z-index: 1000;
 }
 
 #modal-header {
+  color: white;
   padding: 20px;
-  font-weight: bold;
   font-size: 1.3rem;
-  border-bottom: 1px solid;
+  justify-content: center;
 }
 
 /******* SCROLL BAR *******/
@@ -109,22 +107,23 @@
 
 #close {
   position: absolute;
-  top: 0;
-  right: 3px;
-  padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 1px solid;
-  border-radius: 5px;
-  background-color: gray;
+  top: 15px;
+  right: 15px;
   opacity: .75;
+  font-weight: bold;
+  color: white;
 }
 
 #close:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 /******* MODAL CONTENT *******/
+#compare_container {
+  margin: 10px;
+}
+
 #compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -142,6 +141,7 @@
 .compared-product {
   float: right;
   text-align: right;
+  right: 5px;
   padding: 3px;
 }
 
@@ -149,8 +149,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
 }
 
 .feat {
@@ -161,6 +159,7 @@
 
 #check {
   padding: 3px;
+  text-align: center;
 }
 
 #remove-btn,
@@ -251,7 +250,7 @@
   height: 500px;
   width: 230px;
   border-radius: 5px;
-  border: 3px solid;
+  border: 2px solid;
   margin: 10px 5px 10px 5px;
   padding: 5px;
 }
@@ -276,7 +275,6 @@
 
 .action_button:hover {
   opacity: 1;
-  background: black;
-  color: yellow;
+  background: rgb(77, 77, 77);
   cursor: pointer;
 }

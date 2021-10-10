@@ -15,7 +15,6 @@ const RelatedProducts = ({ currProductId }) => {
       })
         .then(res => {
           setRelatedIds(res.data);
-          console.log('relatedIds:', relatedIds);
           setLoading(false);
         })
         .catch(err => console.error(err));
@@ -23,7 +22,6 @@ const RelatedProducts = ({ currProductId }) => {
   });
 
   // Carousel functionality
-
 
   return (
 
@@ -33,8 +31,15 @@ const RelatedProducts = ({ currProductId }) => {
       <div className="carousel">
         <div className="carousel__images">
           {relatedIds.map(productId =>
-            <ProductCard productId={productId} list={'related'} initial={true}/>
+            <ProductCard
+              currProductId={currProductId}
+              productId={productId}
+              list={'related'}/>
           )}
+          {/* <ProductCard
+            currProductId={currProductId}
+            productId={relatedIds[0]}
+            list={'related'}/> */}
         </div>
       </div>
 
