@@ -8,17 +8,17 @@ const CompareModal = ({ currProductData, comparedProductData }) => {
   const toggleModal = useContext(ModalContext).setShowModal;
 
   return (
-    <div id="modal">
-      <div id="modal-header" className="dark-1">
+    <div id="compare_modal">
+      <div id="modal_header" className="dark-1">
         COMPARING
       </div>
       <button id="close" className="action-btn" onClick={() => toggleModal(false)}>&#10005;</button>
       <div className="compare_container">
         <div id="compare">
-          <div className="current-product">
+          <div className="current_product">
             {currProductData.name}
           </div>
-          <div className="compared-product">
+          <div className="compared_product">
             {comparedProductData.name}
           </div>
         </div>

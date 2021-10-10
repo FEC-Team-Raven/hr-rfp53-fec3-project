@@ -1,25 +1,20 @@
 import React, { useState, useEffect, useContext} from 'react';
 
-import Compare from './Compare.jsx';
-import { OutfitContext } from './Related.jsx';
+import { OutfitContext } from './Outfit.jsx';
 
-const OutfitActionButton = ({ product, list }) => {
-  const currProductId = useContext(OutfitContext).currProductData.id;
-  const outfits = useContext(OutfitContext).outfits;
+const OutfitActionButton = ({ productId }) => {
+  const currProductId = useContext(OutfitContext).currProductId;
   const outfitIds = useContext(OutfitContext).outfitIds;
   const setOutfitIds = useContext(OutfitContext).setOutfitIds;
-  const setOutfits = useContext(OutfitContext).setOutfits;
 
   const removeOutfit = () => {
     // Remove productid from outfidIds
-    setOutfitIds(outfitIds.filter(outfitId => outfitId !== product.product_id));
-    // Remove productid from outfits
-    setOutfits(outfits.filter(outfit => outfit.product_id !== product.product_id));
+    setOutfitIds(outfitIds.filter(outfitId => outfitId !== productId));
   };
 
   return (
     <div>
-      <button id="remove-btn" className="action-btn light-2" onClick={removeOutfit}>&#10005;</button>
+      <button className="remove_button" onClick={removeOutfit}>&#10005;</button>
     </div>
   );
 };

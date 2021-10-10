@@ -4,7 +4,7 @@
   ========================================
 */
 
-#related-title {
+#title {
   text-align: center;
 }
 
@@ -21,15 +21,17 @@
   grid-gap: 10px;
 }
 
-.addOutfit {
-  text-align: center;
-  padding: 195px;
-  padding-left: 50px;
-  padding-right: 50px;
+#outfit {
+  display: flex
 }
 
-.addOutfit-btn {
+#add_outfit_button {
+  line-height: 150px;
   text-align: center;
+}
+
+#add_outfit_button:hover {
+  cursor: pointer;
 }
 
 .category {
@@ -71,38 +73,24 @@
 */
 
 
-#modal {
+#compare_modal {
   position:  fixed;
   background-color: white;
   width: 600px;
-  top: 40px;
-  left: calc(50% - 500px);
-  bottom: 40px;
-  z-index: 100;
   height: 300px;
-  border-radius: 5px;
+  top: 10%;
+  left: 10%;
+  bottom: 40px;
+  z-index: 1000;
+  border-radius: 3px;
   border: 3px solid;
 }
 
-#modal-header {
+#modal_header {
   color: white;
   padding: 20px;
   font-size: 1.3rem;
   justify-content: center;
-}
-
-/******* SCROLL BAR *******/
-#modal::-webkit-scrollbar {
-  width: 1em;
-}
-
-#modal::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-#modal::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
 }
 
 #close {
@@ -131,21 +119,21 @@
   padding-bottom: 10px;
 }
 
-.current-product,
+.current_product,
 .compared-product {
   padding-top: 5px;
   padding-bottom: 5px;
   font-weight: bold;
 }
 
-.compared-product {
+.compared_product {
   float: right;
   text-align: right;
   right: 5px;
   padding: 3px;
 }
 
-.modal-row {
+.modal_row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1;
@@ -160,24 +148,6 @@
 #check {
   padding: 3px;
   text-align: center;
-}
-
-#remove-btn,
-#compare-btn {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  padding: 3px;
-  padding-left: 7px;
-  padding-right: 7px;
-  border: 2px solid;
-  border-radius: 5px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-#remove-btn:hover,
-#compare-btn:hover {
-  background-color: #f6f5fa59;
 }
 
 /*
@@ -262,7 +232,8 @@
   border-radius: 5px;
 }
 
-.action_button {
+.action_button,
+.remove_button {
   position: absolute;
   opacity: .9;
   background-color: gray;
@@ -274,7 +245,8 @@
   transition: .25s;
 }
 
-.action_button:hover {
+.action_button:hover,
+.remove_button:hover {
   opacity: 1;
   background: rgb(77, 77, 77);
   cursor: pointer;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Stars from '../Stars.jsx';
 import CompareModal from './CompareModal.jsx';
+import OutfitActionButton from './OutfitActionButton.jsx';
 
 import axios from 'axios';
 
@@ -14,7 +15,6 @@ const ProductCard = ({ currProductId, productId, list }) => {
   const [ stylesData, setStyles ] = useState({});
   const [ averageRating, setAverageRating ] = useState(0);
   const [ showModal, setShowModal] = useState(false);
-
   const [ loading, setLoading ] = useState(true);
 
 
@@ -81,7 +81,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
       );
     } else {
       return (
-        <button className="action_button">&#x0353;</button>
+        <OutfitActionButton productId={productId}/>
       );
     }
   };
