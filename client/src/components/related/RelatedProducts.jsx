@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const RelatedProducts = ({ currProductId }) => {
   const [ relatedIds, setRelatedIds ] = useState([]);
-  // const [ relatedImgIndex, setRelatedImgIndex] = useState(1);
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
@@ -35,21 +34,16 @@ const RelatedProducts = ({ currProductId }) => {
       // Previous button
       if (event.target.id === 'prev') {
         if (relatedImgIndex !== 1) {
-          // setRelatedImgIndex(relatedImgIndex + 1);
           relatedImgIndex--;
           translateX += 258.7;
         }
       // Next button
       } else {
         if (relatedImgIndex < (numberOfImages - 3)) {
-          // setRelatedImgIndex(relatedImgIndex - 1);
           relatedImgIndex++;
           translateX -= 258.7;
         }
       }
-
-      console.log(relatedImgIndex);
-
       carouselImages.forEach(image => {
         image.style.transform = `translateX(${translateX}px)`;
       });
