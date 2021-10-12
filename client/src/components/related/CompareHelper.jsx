@@ -1,6 +1,9 @@
 import React from 'react';
 
+// This helper function filters out irrelevant product data so that we only use the product's features for this comparison modal window
+
 const CompareHelper = ({ currFeats, compareFeats }) => {
+
   // Converts to arrays containing only features
   currFeats = currFeats.map(feat => {
     return feat.feature;
@@ -14,10 +17,10 @@ const CompareHelper = ({ currFeats, compareFeats }) => {
   const renderMutual = () => {
     return mutual.map(feature => {
       return (
-        <div className="modal-row">
+        <div className="modal_row">
           <div id="check">&#10003;</div>
           <div className="feat">{feature}</div>
-          <div id="check" className="compared-product">&#10003;</div>
+          <div id="check" className="compared_product">&#10003;</div>
         </div>
       );
     });
@@ -28,7 +31,7 @@ const CompareHelper = ({ currFeats, compareFeats }) => {
     if (mutual.length === 0) {
       return currFeats.map(feature => {
         return (
-          <div className="modal-row">
+          <div className="modal_row">
             <div id="check">&#10003;</div>
             <div className="feat">{feature}</div>
           </div>
@@ -38,7 +41,7 @@ const CompareHelper = ({ currFeats, compareFeats }) => {
       let uniqueFeats = currFeats.filter(feat => mutual.indexOf(feat) === -1);
       return uniqueFeats.map(feature => {
         return (
-          <div className="modal-row">
+          <div className="modal_row">
             <div id="check">&#10003;</div>
             <div className="feat">{feature}</div>
           </div>
@@ -51,10 +54,10 @@ const CompareHelper = ({ currFeats, compareFeats }) => {
     if (mutual.length === 0) {
       return compareFeats.map(feature => {
         return (
-          <div className="modal-row">
+          <div className="modal_row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div id="check" className="compared-product">&#10003;</div>
+            <div id="check" className="compared_product">&#10003;</div>
           </div>
         );
       });
@@ -62,10 +65,10 @@ const CompareHelper = ({ currFeats, compareFeats }) => {
       let uniqueFeats = compareFeats.filter(feat => mutual.indexOf(feat) === -1);
       return uniqueFeats.map(feature => {
         return (
-          <div className="modal-row">
+          <div className="modal_row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div id="check" className="compared-product">&#10003;</div>
+            <div id="check" className="compared_product">&#10003;</div>
           </div>
         );
       });

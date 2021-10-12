@@ -1,44 +1,85 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductCard from './ProductCard.jsx';
 
 import axios from 'axios';
 
-import { OutfitContext } from './Related.jsx';
+export const OutfitContext = React.createContext({});
 
-const Outfit = () => {
-  const currProductData = useContext(OutfitContext).currProductData;
-  const currProductStyles = useContext(OutfitContext).currProductStyles;
+const Outfit = ({ currProductId }) => {
+  const [ outfitIds, setOutfitIds ] = useState([]); // contains user's saved outfits IDs
+  const [ loading, setLoading ] = useState(true);
 
-  // Adds product name to current product styles
-  currProductStyles.name = currProductData.name;
-
-  const outfitIds = useContext(OutfitContext).outfitIds;
-  const setOutfitIds = useContext(OutfitContext).setOutfitIds;
-  const outfits = useContext(OutfitContext).outfits;
-  const setOutfits = useContext(OutfitContext).setOutfits;
+  const outfitVals = {
+    currProductId,
+    outfitIds,
+    setOutfitIds
+  };
 
   const addOutfit = () => {
     // Prevents duplicate outfits
-    let unique = !outfitIds.includes(currProductStyles.product_id);
+    let unique = true;
     if (unique) {
-      setOutfitIds([...outfitIds, currProductStyles.product_id]);
-      setOutfits([...outfits, currProductStyles]);
+      setOutfitIds([...outfitIds, currProductId]);
+      console.log(allOutfitData);
+    } else {
+      console.log('Outfit already added!');
     }
   };
 
-  return (
-    <div className="carousel__cards">
-      <div className="card addOutfit" onClick={addOutfit}>
-        <h1>+</h1>
-        <h2>Add to Outfit</h2>
-      </div>
-      {outfits.map(outfit =>
-        <ProductCard
-          product={outfit}
-          list={'outfit'}
-          key={outfit.product_id}/>)
+  // Carousel
+  const carouselImages = document.querySelectorAll('.card');
+  const carouselButtons = document.querySelectorAll('.carousel__button');
+  const numberOfImages = carouselImages.length;
+  let relatedImgIndex = 1;
+  let translateX = 0;
+
+  // Carousel navigation
+  carouselButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      // Previous button
+      if (event.target.id === 'prev') {
+        if (relatedImgIndex !== 1) {
+          relatedImgIndex--;
+          translateX += 258.7;
+        }
+      // Next button
+      } else {
+        if (relatedImgIndex < (numberOfImages - 3)) {
+          relatedImgIndex++;
+          translateX -= 258.7;
+        }
       }
+
+      carouselImages.forEach(image => {
+        image.style.transform = `translateX(${translateX}px)`;
+      });
+    });
+  });
+
+  return (
+    <div id="outfit">
+      <div id="prev" className="carousel__button">&#x2190;</div>
+      <div className="carousel">
+
+        <div className="carousel__images">
+          <div id="add_outfit_button" className="card" onClick={addOutfit}>
+            <h1>+</h1>
+            <h2>Add to Outfit</h2>
+          </div>
+          <OutfitContext.Provider value={outfitVals}>
+            {outfitIds.map(outfitId =>
+              <ProductCard
+                productId={outfitId}
+                list={'outfit'}
+                key={currProductId}/>)
+            }
+          </OutfitContext.Provider>
+        </div>
+      </div>
+
+      <div id="next" className="carousel__button">&#x2192;</div>
     </div>
+
   );
 };
 
