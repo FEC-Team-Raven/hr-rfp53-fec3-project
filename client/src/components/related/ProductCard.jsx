@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { ModalContext } from './RelatedProducts.jsx';
 import Stars from '../Stars.jsx';
 import CompareModal from './CompareModal.jsx';
 import OutfitActionButton from './OutfitActionButton.jsx';
@@ -7,29 +8,17 @@ import axios from 'axios';
 
 const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
-export const ModalContext = React.createContext([]);
-
 const ProductCard = ({ currProductId, productId, list }) => {
-  const [ currProductData, setCurrProductData] = useState({});
   const [ productData, setProductData ] = useState({});
   const [ stylesData, setStyles ] = useState({});
   const [ averageRating, setAverageRating ] = useState(0);
   const [ showModal, setShowModal] = useState(false);
   const [ loading, setLoading ] = useState(true);
-
+  const comparedProductData = useContext(ModalContext).comparedProductData;
+  const setComparedProductData = useContext(ModalContext).setComparedProductData;
 
   useEffect(() => {
     if (loading) {
-      // Retrieves CURRENT product data
-      axios({
-        method: 'GET',
-        url: `products/${currProductId}`
-      })
-        .then(res => {
-          setCurrProductData(res.data);
-        })
-        .catch(err => console.error(err));
-
       // Retrieves product data
       axios({
         method: 'GET',
@@ -37,6 +26,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
       })
         .then(res => {
           setProductData(res.data);
+          setComparedProductData(res.data);
         })
         .catch(err => console.error(err));
 
@@ -47,7 +37,6 @@ const ProductCard = ({ currProductId, productId, list }) => {
       })
         .then(res => {
           setStyles(res.data);
-          setLoading(false);
         })
         .catch(err => console.error(err));
 
@@ -60,6 +49,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
           let totalRatings = Object.values(res.data.ratings).reduce((a, b) => Number(a) + Number(b));
           let totalStarCount = Object.keys(res.data.ratings).map(starCount => starCount * res.data.ratings[starCount]).reduce((a, b) => a + b);
           setAverageRating(totalStarCount / totalRatings);
+          setLoading(false);
         })
         .catch(err => {
           console.error(err);
@@ -77,7 +67,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
   const actionButton = (list) => {
     if (list === 'related') {
       return (
-        <button className="action_button" onClick={() => setShowModal(true)}>&#x2605;</button>
+        <button id="open-compare-modal" className="action_button">&#x2605;</button>
       );
     } else {
       return (
@@ -86,20 +76,14 @@ const ProductCard = ({ currProductId, productId, list }) => {
     }
   };
 
-  const modalVals = {
-    showModal,
-    setShowModal
-  };
+
 
   return (
     <div className="card">
-      {showModal &&
-        <ModalContext.Provider value={modalVals}>
-          <CompareModal
-            currProductData={currProductData}
-            comparedProductData={productData}/>
-        </ModalContext.Provider>
-      }
+      <CompareModal
+        currProductData={currProductData}
+        comparedProductData={productData}/>
+
       <img className="thumbnail" src={thumbnail}/>
       {actionButton(list)}
       <div className="product_info">

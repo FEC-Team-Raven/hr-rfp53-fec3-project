@@ -1,6 +1,9 @@
 import React from 'react';
 
+// This helper function filters out irrelevant product data so that we only use the product's features for this comparison modal window
+
 const CompareHelper = ({ currFeats, compareFeats }) => {
+
   // Converts to arrays containing only features
   currFeats = currFeats.map(feat => {
     return feat.feature;

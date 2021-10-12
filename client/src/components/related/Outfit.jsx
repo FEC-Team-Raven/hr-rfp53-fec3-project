@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductCard from './ProductCard.jsx';
 
 import axios from 'axios';
@@ -15,20 +15,6 @@ const Outfit = ({ currProductId }) => {
     setOutfitIds
   };
 
-  useEffect(() => {
-    if (loading) {
-      axios({
-        method: 'GET',
-        url: `products/${currProductId}`
-      })
-        .then(res => {
-          setAllOutfitData(res.data);
-          setLoading(false);
-        })
-        .catch(err => console.error(err));
-    }
-  }, []);
-
   const addOutfit = () => {
     // Prevents duplicate outfits
     let unique = true;
@@ -39,6 +25,36 @@ const Outfit = ({ currProductId }) => {
       console.log('Outfit already added!');
     }
   };
+
+  // Carousel
+  const carouselImages = document.querySelectorAll('.card');
+  const carouselButtons = document.querySelectorAll('.carousel__button');
+  const numberOfImages = carouselImages.length;
+  let relatedImgIndex = 1;
+  let translateX = 0;
+
+  // Carousel navigation
+  carouselButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      // Previous button
+      if (event.target.id === 'prev') {
+        if (relatedImgIndex !== 1) {
+          relatedImgIndex--;
+          translateX += 258.7;
+        }
+      // Next button
+      } else {
+        if (relatedImgIndex < (numberOfImages - 3)) {
+          relatedImgIndex++;
+          translateX -= 258.7;
+        }
+      }
+
+      carouselImages.forEach(image => {
+        image.style.transform = `translateX(${translateX}px)`;
+      });
+    });
+  });
 
   return (
     <div id="outfit">
