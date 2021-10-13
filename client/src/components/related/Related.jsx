@@ -58,7 +58,7 @@ const Related = ({ currProductId }) => {
           </div>
 
           <div className="compare-container">
-            <div id="compare">
+            <div id="compare-product">
               <div className="current-product">
                 {currProductData.name}
               </div>
@@ -66,10 +66,12 @@ const Related = ({ currProductId }) => {
                 {comparedProductData.name}
               </div>
 
-              <CompareHelper
-                currFeats={currProductData.features}
-                compareFeats={comparedProductData.features}/>
             </div>
+
+            <CompareHelper
+              currFeats={currProductData.features}
+              compareFeats={comparedProductData.features}/>
+
           </div>
         </div>
       </div>

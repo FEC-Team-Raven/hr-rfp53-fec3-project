@@ -85,7 +85,11 @@ const ProductCard = ({ productId, list }) => {
   };
 
   if (loading) {
-    return (<div className="card">Loading product...</div>);
+    return (
+      <div id="loader" className="card">
+        <div className="loader-animation"></div>
+      </div>
+    );
   }
 
   return (

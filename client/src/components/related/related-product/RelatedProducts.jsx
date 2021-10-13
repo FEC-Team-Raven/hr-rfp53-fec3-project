@@ -38,7 +38,7 @@ const RelatedProducts = ({ currProductId }) => {
         }
       // Next Button
       } else {
-        if (relatedImgIndex < (numberOfImages - 3)) {
+        if (relatedImgIndex < (numberOfImages - 4)) {
           relatedImgIndex++;
           translateX -= 258.7;
         }
