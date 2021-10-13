@@ -76,5 +76,3 @@ To run this project, you will need to add the following environment variables to
 `GITHUB_OAUTH`
 
 `imgBB_API_KEY`
-
-  
