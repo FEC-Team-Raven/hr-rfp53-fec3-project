@@ -9,7 +9,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 
 const App = () => {
   const [ productData, setProductData ] = useState(0);
-  const [ productIDtoRender, setProductIDtoRender ] = useState('40348');
+  const [ productIDtoRender, setProductIDtoRender ] = useState('40347');
   const [ theme, setTheme ] = useState('light');
   const [ loading, setLoading ] = useState(true);
 
