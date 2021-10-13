@@ -13,21 +13,28 @@ Project Catwalk tackles the request to build a new retail portal following the [
 
 ## Features
 
-#### 1. Overview
+#### 1. Overview (Gabriel W.)
 - The overview guides the customer through selecting a specific style and size to add to their cart. As such, portions of the Overview module, such as the image gallery and cart selection, will be specific to a SKU chosen as opposed to the overarching product.
 
-#### 2. Related Products
+<img src="/demo/overview-demo.gif?raw=true" width="700px">
+
+#### 2. Related Products (Jacky C.)
 - The Related Items & Comparison module will display two sets of related products.  The first set will be a list of products, determined internally, that are related to the product currently being viewed.  The second set will be a list, custom created by the user, of products which the user has grouped with the current product into an ‘outfit’.
 
-![Demo](http://g.recordit.co/tRVFfIisUq.gif)
+<img src="/demo/related-products-demo.gif?raw=true" width="700px">
+*Note: The "Pumped Up Kicks" appears twice because it is included twice in the Related Products API endpoint
 
 
-
-#### 3. Questions & Answers
+#### 3. Questions & Answers (Will M.)
 - The Questions & Answers module allows users to ask and answer questions for the product selected.
 
-#### 4. Ratings & Reviews
+<img src="/demo/questions-demo.gif?raw=true" width="700px">
+
+#### 4. Ratings & Reviews (Joseph B.)
 - The Ratings & Reviews module allows users to view and submit reviews for the product selected.
+
+<img src="/demo/reviews-demo.gif?raw=true" width="700px">
+
 
 ## Run Locally
 
