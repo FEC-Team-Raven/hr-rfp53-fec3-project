@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ProductCard from './ProductCard.jsx';
+import ProductCard from '../ProductCard.jsx';
 
 import axios from 'axios';
 

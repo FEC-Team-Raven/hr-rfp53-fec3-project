@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Stars from '../Stars.jsx';
-import OutfitActionButton from './OutfitActionButton.jsx';
+import OutfitActionButton from './your-outfits/OutfitActionButton.jsx';
 import axios from 'axios';
 
 import { ModalContext } from './Related.jsx';

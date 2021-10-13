@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductCard from './ProductCard.jsx';
+import ProductCard from '../ProductCard.jsx';
 import axios from 'axios';
 
 const RelatedProducts = ({ currProductId }) => {
