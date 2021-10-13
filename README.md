@@ -21,7 +21,6 @@ Project Catwalk tackles the request to build a new retail portal following the [
 #### 2. Related Products (Jacky C.)
 - The Related Items & Comparison module will display two sets of related products.  The first set will be a list of products, determined internally, that are related to the product currently being viewed.  The second set will be a list, custom created by the user, of products which the user has grouped with the current product into an ‘outfit’.
 
-<img src="/demo/related-products-demo.gif?raw=true" width="700px">
 *Note: The "Pumped Up Kicks" appears twice because it is included twice in the Related Products API endpoint
 
 
