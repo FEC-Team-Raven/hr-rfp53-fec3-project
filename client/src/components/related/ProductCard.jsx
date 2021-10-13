@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Stars from '../Stars.jsx';
-import CompareModal from './CompareModal.jsx';
 import OutfitActionButton from './OutfitActionButton.jsx';
 import axios from 'axios';
 
@@ -8,18 +7,15 @@ import { ModalContext } from './Related.jsx';
 
 const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
-const ProductCard = ({ currProductId, productId, list }) => {
+const ProductCard = ({ productId, list }) => {
   const [ productData, setProductData ] = useState({});
   const [ stylesData, setStyles ] = useState({});
   const [ averageRating, setAverageRating ] = useState(0);
-  const [ showModal, setShowModal] = useState(false);
   const [ loading, setLoading ] = useState(true);
 
-  console.log('context:', useContext(ModalContext));
-
-  // const showModal = useContext(ModalContext).showModal;
-  // const comparedProductData = useContext(ModalContext).comparedProductData;
-  // const setComparedProductData = useContext(ModalContext).setComparedProductData;
+  // Modal Window component
+  const openModal = useContext(ModalContext).openModal;
+  const setComparedProductData = useContext(ModalContext).setComparedProductData;
 
   useEffect(() => {
     if (loading) {
@@ -39,9 +35,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
         method: 'GET',
         url: `products/${productId}/styles`
       })
-        .then(res => {
-          setStyles(res.data);
-        })
+        .then(res => setStyles(res.data))
         .catch(err => console.error(err));
 
       // Retrieves product rating data
@@ -55,9 +49,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
           setAverageRating(totalStarCount / totalRatings);
           setLoading(false);
         })
-        .catch(err => {
-          console.error(err);
-        });
+        .catch(err => console.error(err));
     }
   }, []);
 
@@ -67,27 +59,37 @@ const ProductCard = ({ currProductId, productId, list }) => {
     thumbnail = stylesData.results[0].photos[0].thumbnail_url;
   }
 
+  // Modal Window action button
+  const modalFunction = (event) => {
+    setComparedProductData(productData);
+    openModal(event);
+  };
+
   // Renders action button depending on list type
   const actionButton = (list) => {
+    // Renders button that opens modal window
     if (list === 'related') {
       return (
-        <button id="open-compare-modal" className="action_button">&#x2605;</button>
+        <button
+          id="open-compare-modal"
+          className="action_button"
+          onClick={modalFunction}
+        >&#x2605;</button>
       );
     } else {
+      // Renders button that removes an outfit from user's saved outfits
       return (
         <OutfitActionButton productId={productId}/>
       );
     }
   };
 
+  if (loading) {
+    return (<div className="card">Loading product...</div>);
+  }
+
   return (
     <div className="card">
-      {showModal &&
-        <CompareModal
-          currProductData={currProductData}
-          comparedProductData={productData}/>
-      }
-
       <img className="thumbnail" src={thumbnail}/>
       {actionButton(list)}
       <div className="product_info">
@@ -98,6 +100,7 @@ const ProductCard = ({ currProductId, productId, list }) => {
           <Stars rating={averageRating}/>
         </div>
       </div>
+
     </div>
   );
 

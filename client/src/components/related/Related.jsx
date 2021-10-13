@@ -1,27 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RelatedProducts from './RelatedProducts.jsx';
+import CompareHelper from './CompareHelper.jsx';
 import Outfit from './Outfit.jsx';
 import axios from 'axios';
 
 export const ModalContext = React.createContext([]);
 
 const Related = ({ currProductId }) => {
-
   // Modal Window state
   const [ currProductData, setCurrProductData ] = useState({});
   const [ comparedProductData, setComparedProductData] = useState({});
-  const [ showModal, setShowModal ] = useState(false);
+  const [ loading, setLoading ] = useState(true);
 
-  // Modal Context values
-  const modalVals = {
-    showModal,
-    setShowModal,
-    comparedProductData,
-    setComparedProductData
-  };
+  useState(() => {
+    if (loading) {
+
+      // Retrieves current product data
+      axios({
+        method: 'GET',
+        url: `products/${currProductId}`
+      })
+        .then(res => setCurrProductData(res.data))
+        .catch(err => console.error(err));
+    }
+  });
 
   // When user clicks on star button, opens modal window
-  const modalFunction = (event) => {
+  const openModal = (event) => {
     let modal = document.getElementById('compare-modal');
     if (event.target.id === 'open-compare-modal') {
       modal.style.display = 'block';
@@ -36,22 +41,44 @@ const Related = ({ currProductId }) => {
     if (event.target === modal) modal.style.display = 'none';
   };
 
+  // Modal Context values
+  const modalVals = {
+    comparedProductData,
+    setComparedProductData,
+    openModal
+  };
+
   return (
     <div>
-      <button id="open-compare-modal" className="action_button" onClick={modalFunction}>&#x2605;</button>
-
       <div id="compare-modal">
-
         <div className="compare-modal-content">
           <div id="modal-header" className="dark-1">
             COMPARING
-            <span id="close-compare-modal" className="action-btn" onClick={modalFunction}>&#10005;</span>
+            <span id="close-compare-modal" className="action-btn" onClick={openModal}>&#10005;</span>
+          </div>
+
+          <div className="compare-container">
+            <div id="compare">
+              <div className="current-product">
+                {currProductData.name}
+              </div>
+              <div className="compared-product">
+                {comparedProductData.name}
+              </div>
+
+              <CompareHelper
+                currFeats={currProductData.features}
+                compareFeats={comparedProductData.features}/>
+            </div>
           </div>
         </div>
       </div>
 
-      <h1 id="title">RELATED PRODUCTS</h1>
-      <RelatedProducts currProductId={currProductId}/>
+      <ModalContext.Provider value={modalVals}>
+        <h1 id="title">RELATED PRODUCTS</h1>
+        <RelatedProducts currProductId={currProductId}/>
+      </ModalContext.Provider>
+
       <h1 id="title">YOUR OUTFITS</h1>
       <Outfit currProductId={currProductId}/>
     </div>

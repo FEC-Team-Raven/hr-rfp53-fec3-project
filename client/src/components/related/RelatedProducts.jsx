@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
-import CompareModal from './CompareModal.jsx';
-
 import axios from 'axios';
 
 const RelatedProducts = ({ currProductId }) => {
@@ -22,23 +20,23 @@ const RelatedProducts = ({ currProductId }) => {
     }
   }, []);
 
-  // Carousel
+  // Carousel Component
   const carouselImages = document.querySelectorAll('.card');
   const carouselButtons = document.querySelectorAll('.carousel__button');
   const numberOfImages = carouselImages.length;
   let relatedImgIndex = 1;
   let translateX = 0;
 
-  // Carousel navigation
+  // Carousel Navigation Functinoality
   carouselButtons.forEach(button => {
     button.addEventListener('click', event => {
-      // Previous button
+      // Previous Button
       if (event.target.id === 'prev') {
         if (relatedImgIndex !== 1) {
           relatedImgIndex--;
           translateX += 258.7;
         }
-      // Next button
+      // Next Button
       } else {
         if (relatedImgIndex < (numberOfImages - 3)) {
           relatedImgIndex++;
@@ -61,13 +59,13 @@ const RelatedProducts = ({ currProductId }) => {
             <ProductCard
               currProductId={currProductId}
               productId={productId}
-              list={'related'}/>
+              list={'related'}
+              key={productId}/>
           )}
         </div>
       </div>
 
       <div id="next" className="carousel__button">&#x2192;</div>
-
     </div>
 
   );
