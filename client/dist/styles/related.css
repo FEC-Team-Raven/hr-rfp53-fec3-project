@@ -75,7 +75,7 @@
 /* The Modal (background) */
 #compare-modal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position: absolute; /* Stay in place */
   z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
@@ -84,6 +84,9 @@
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border: 2px solid grey;
+  border-radius: 5px;
+  transition: 0.5s;
 }
 
 .compare-modal-content {
@@ -101,16 +104,14 @@
   justify-content: center;
 }
 
-#close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+#close-compare-modal {
+  float: right;
   opacity: .75;
   font-weight: bold;
   color: white;
 }
 
-#close:hover {
+#close-compare-modal:hover {
   opacity: 1;
   cursor: pointer;
 }
@@ -227,11 +228,12 @@
   position: relative;
   height: 500px;
   width: 230px;
+  border: 2px solid grey;
   border-radius: 5px;
-  border: 2px solid;
   margin: 10px 5.5px 10px 5.5px;
   padding: 5px;
-  transition: 0.5s
+  transition: 0.5s;
+  box-shadow: 3px 2px 2px rgb(131, 131, 131);
 }
 
 .thumbnail {

@@ -4,21 +4,9 @@ import CompareModal from './CompareModal.jsx';
 
 import axios from 'axios';
 
-export const ModalContext = React.createContext([]);
-
 const RelatedProducts = ({ currProductId }) => {
   const [ relatedIds, setRelatedIds ] = useState([]);
   const [ loading, setLoading ] = useState(true);
-
-  // Modal window state
-  const [ currProductData, setCurrProductData ] = useState({});
-  const [ comparedProductData, setComparedProductData] = useState({});
-  const [ showModal, setShowModal ] = useState(false);
-
-  const modalVals = {
-    comparedProductData,
-    setComparedProductData
-  };
 
   useEffect(() => {
     if (loading) {
@@ -67,22 +55,14 @@ const RelatedProducts = ({ currProductId }) => {
     <div className="related">
       <div id="prev" className="carousel__button">&#x2190;</div>
 
-      {showModal &&
-      <CompareModal
-        currProductData={currProductData}
-        comparedProductData={comparedProductData}/>
-      }
-
       <div className="carousel">
         <div className="carousel__images">
-          <ModalContext.Provider>
-            {relatedIds.map(productId =>
-              <ProductCard
-                currProductId={currProductId}
-                productId={productId}
-                list={'related'}/>
-            )}
-          </ModalContext.Provider>
+          {relatedIds.map(productId =>
+            <ProductCard
+              currProductId={currProductId}
+              productId={productId}
+              list={'related'}/>
+          )}
         </div>
       </div>
 

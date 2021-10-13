@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ModalContext } from './RelatedProducts.jsx';
 import Stars from '../Stars.jsx';
 import CompareModal from './CompareModal.jsx';
 import OutfitActionButton from './OutfitActionButton.jsx';
-
 import axios from 'axios';
+
+import { ModalContext } from './Related.jsx';
 
 const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
@@ -14,12 +14,16 @@ const ProductCard = ({ currProductId, productId, list }) => {
   const [ averageRating, setAverageRating ] = useState(0);
   const [ showModal, setShowModal] = useState(false);
   const [ loading, setLoading ] = useState(true);
-  const comparedProductData = useContext(ModalContext).comparedProductData;
-  const setComparedProductData = useContext(ModalContext).setComparedProductData;
+
+  console.log('context:', useContext(ModalContext));
+
+  // const showModal = useContext(ModalContext).showModal;
+  // const comparedProductData = useContext(ModalContext).comparedProductData;
+  // const setComparedProductData = useContext(ModalContext).setComparedProductData;
 
   useEffect(() => {
     if (loading) {
-      // Retrieves product data
+      // Retrieves product data and updates compared product data
       axios({
         method: 'GET',
         url: `products/${productId}`
@@ -76,13 +80,13 @@ const ProductCard = ({ currProductId, productId, list }) => {
     }
   };
 
-
-
   return (
     <div className="card">
-      <CompareModal
-        currProductData={currProductData}
-        comparedProductData={productData}/>
+      {showModal &&
+        <CompareModal
+          currProductData={currProductData}
+          comparedProductData={productData}/>
+      }
 
       <img className="thumbnail" src={thumbnail}/>
       {actionButton(list)}
