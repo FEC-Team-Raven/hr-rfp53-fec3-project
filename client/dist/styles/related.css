@@ -48,12 +48,12 @@
   display: flex
 }
 
-#add_outfit_button {
+#add-outfit-button {
   line-height: 150px;
   text-align: center;
 }
 
-#add_outfit_button:hover {
+#add-outfit-button:hover {
   cursor: pointer;
 }
 
@@ -98,7 +98,7 @@
 /* The Modal (background) */
 #compare-modal {
   display: none; /* Hidden by default */
-  position: absolute; /* Stay in place */
+  position: fixed; /* Stay in place */
   z-index: 2; /* Sit on top */
   left: 0;
   top: 0;

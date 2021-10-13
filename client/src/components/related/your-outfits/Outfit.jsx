@@ -27,7 +27,7 @@ const Outfit = ({ currProductId }) => {
   };
 
   // Carousel
-  const carouselImages = document.querySelectorAll('.card');
+  const carouselImages = document.querySelectorAll('[id=outfit-card]');
   const carouselButtons = document.querySelectorAll('.carousel__button');
   const numberOfImages = carouselImages.length;
   let relatedImgIndex = 1;
@@ -58,11 +58,11 @@ const Outfit = ({ currProductId }) => {
 
   return (
     <div id="outfit">
-      <div id="prev" className="carousel__button">&#x2190;</div>
+      {/* <div id="prev" className="carousel__button">&#x2190;</div> */}
       <div className="carousel">
 
         <div className="carousel__images">
-          <div id="add_outfit_button" className="card" onClick={addOutfit}>
+          <div id="add-outfit-button" className="card" onClick={addOutfit}>
             <h1>+</h1>
             <h2>Add to Outfit</h2>
           </div>
@@ -77,7 +77,7 @@ const Outfit = ({ currProductId }) => {
         </div>
       </div>
 
-      <div id="next" className="carousel__button">&#x2192;</div>
+      {/* <div id="next" className="carousel__button">&#x2192;</div> */}
     </div>
 
   );

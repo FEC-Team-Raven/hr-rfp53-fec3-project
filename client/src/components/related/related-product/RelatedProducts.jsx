@@ -21,13 +21,13 @@ const RelatedProducts = ({ currProductId }) => {
   }, []);
 
   // Carousel Component
-  const carouselImages = document.querySelectorAll('.card');
+  let carouselImages = document.querySelectorAll('[id=related-card]');
   const carouselButtons = document.querySelectorAll('.carousel__button');
   const numberOfImages = carouselImages.length;
   let relatedImgIndex = 1;
   let translateX = 0;
 
-  // Carousel Navigation Functinoality
+  // Carousel Navigation Functionality
   carouselButtons.forEach(button => {
     button.addEventListener('click', event => {
       // Previous Button
@@ -38,9 +38,11 @@ const RelatedProducts = ({ currProductId }) => {
         }
       // Next Button
       } else {
-        if (relatedImgIndex < (numberOfImages - 4)) {
+        if (relatedImgIndex <= (numberOfImages - 4)) {
           relatedImgIndex++;
           translateX -= 258.7;
+          console.log('number of images:', numberOfImages);
+          console.log('index:', relatedImgIndex);
         }
       }
       carouselImages.forEach(image => {

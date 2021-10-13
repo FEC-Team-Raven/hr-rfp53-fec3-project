@@ -84,6 +84,7 @@ const ProductCard = ({ productId, list }) => {
     }
   };
 
+  // Loading card...
   if (loading) {
     return (
       <div id="loader" className="card">
@@ -92,22 +93,37 @@ const ProductCard = ({ productId, list }) => {
     );
   }
 
-  return (
-    <div className="card">
-      <img className="thumbnail" src={thumbnail}/>
-      {actionButton(list)}
-      <div className="product_info">
-        <div className="category">{productData.category}</div>
-        <div className="product_name">{productData.name}</div>
-        <div className="product_price">{'$' + productData.default_price}</div>
-        <div className="product_rating">
-          <Stars rating={averageRating}/>
+  if (list === 'related') {
+    return (
+      <div id="related-card" className="card">
+        <img className="thumbnail" src={thumbnail}/>
+        {actionButton(list)}
+        <div className="product_info">
+          <div className="category">{productData.category}</div>
+          <div className="product_name">{productData.name}</div>
+          <div className="product_price">{'$' + productData.default_price}</div>
+          <div className="product_rating">
+            <Stars rating={averageRating}/>
+          </div>
         </div>
       </div>
-
-    </div>
-  );
-
+    );
+  } else {
+    return (
+      <div id="outfit-card" className="card">
+        <img className="thumbnail" src={thumbnail}/>
+        {actionButton(list)}
+        <div className="product_info">
+          <div className="category">{productData.category}</div>
+          <div className="product_name">{productData.name}</div>
+          <div className="product_price">{'$' + productData.default_price}</div>
+          <div className="product_rating">
+            <Stars rating={averageRating}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default ProductCard;
