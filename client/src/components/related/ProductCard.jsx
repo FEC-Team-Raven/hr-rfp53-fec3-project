@@ -1,84 +1,132 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Stars from '../Stars.jsx';
-import RelatedActionButton from './RelatedActionButton.jsx';
-import OutfitActionButton from './OutfitActionButton.jsx';
+import OutfitActionButton from './your-outfits/OutfitActionButton.jsx';
+import axios from 'axios';
 
-const sampleImg = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png';
+import { ModalContext } from './Related.jsx';
 
-const ProductCard = ({product, list}) => {
+const missingImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
-  // Rating calculator helper function
-  const computeRating = () => {
-    let ratingObj = product.rating;
-    let totalRatings = 0;
-    let numberOfRatings = 0;
-    for (var score in ratingObj) {
-      totalRatings += (Number(score) * Number(ratingObj[score]));
-      numberOfRatings += Number(ratingObj[score]);
+const ProductCard = ({ productId, list }) => {
+  const [ productData, setProductData ] = useState({});
+  const [ stylesData, setStyles ] = useState({});
+  const [ averageRating, setAverageRating ] = useState(0);
+  const [ loading, setLoading ] = useState(true);
+
+  // Modal Window component
+  const openModal = useContext(ModalContext).openModal;
+  const setComparedProductData = useContext(ModalContext).setComparedProductData;
+
+  useEffect(() => {
+    if (loading) {
+      // Retrieves product data and updates compared product data
+      axios({
+        method: 'GET',
+        url: `products/${productId}`
+      })
+        .then(res => {
+          setProductData(res.data);
+          setComparedProductData(res.data);
+        })
+        .catch(err => console.error(err));
+
+      // Retrieves product styles data
+      axios({
+        method: 'GET',
+        url: `products/${productId}/styles`
+      })
+        .then(res => setStyles(res.data))
+        .catch(err => console.error(err));
+
+      // Retrieves product rating data
+      axios({
+        method: 'GET',
+        url: `/reviews/meta/${productId}`
+      })
+        .then (res => {
+          let totalRatings = Object.values(res.data.ratings).reduce((a, b) => Number(a) + Number(b));
+          let totalStarCount = Object.keys(res.data.ratings).map(starCount => starCount * res.data.ratings[starCount]).reduce((a, b) => a + b);
+          setAverageRating(totalStarCount / totalRatings);
+          setLoading(false);
+        })
+        .catch(err => console.error(err));
     }
-    return totalRatings / numberOfRatings;
+  }, []);
 
-  };
-  let rating = computeRating();
-
-  let styles = product.results;
-  let previewImg, defaultPrice, salePrice;
-
-  // Renders product price and default image
-  const renderProductInfo = () => {
-    for (let i = 0; i < styles.length; i++) {
-      if (styles[i]['default?']) {
-        previewImg = styles[i].photos[0].url;
-        defaultPrice = '$' + styles[i].original_price;
-        if (salePrice) {
-          defaultPrice = '<del>' + defaultPrice + '</del>';
-        }
-        break;
-      } else if (!styles[styles.length - 1]['default?']) {
-        defaultPrice = 'N/A';
-      }
-    }
-  };
-  renderProductInfo();
-
-  // If missing image, then use placeholder image
-  if (!previewImg) {
-    previewImg = sampleImg;
+  // Retrieves thumbnail url. By default, thumbnail the missing picture png
+  let thumbnail = missingImg;
+  if (stylesData.results) {
+    thumbnail = stylesData.results[0].photos[0].thumbnail_url;
   }
 
-  // Renders action button, depending on which list the button appears within
-  const renderActionBtn = () => {
+  // Modal Window action button
+  const modalFunction = (event) => {
+    setComparedProductData(productData);
+    openModal(event);
+  };
+
+  // Renders action button depending on list type
+  const actionButton = (list) => {
+    // Renders button that opens modal window
     if (list === 'related') {
       return (
-        <RelatedActionButton
-          product={product} list={list}/>
+        <button
+          id="open-compare-modal"
+          className="action_button"
+          onClick={modalFunction}
+        >&#x2605;</button>
       );
     } else {
+      // Renders button that removes an outfit from user's saved outfits
       return (
-        <OutfitActionButton
-          product={product} list={list}/>
+        <OutfitActionButton productId={productId}/>
       );
     }
   };
 
-  // Finding average rating for each product:
-  // Create total points
-  // Iterate through ratings object
-  // Add to total point according to key value pair
-  // Divide total by number of ratings to get average rating
-
-  return (
-    <div id={product.product_id} className="card">
-      <img className="preview" src={previewImg} width="250" height="300"></img>
-      {renderActionBtn()}
-      <div className="category">CATEGORY
-        <div id="product-name">{product.name}</div>
-        <div id="product-price">{defaultPrice}</div>
-        <div>{salePrice}</div>
-        <Stars rating={rating}/>
+  // Loading card...
+  if (loading) {
+    return (
+      <div id="loader" className="card">
+        <div className="loader-animation"></div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // Renders cards for RELATED PRODUCTS component
+  if (list === 'related') {
+    return (
+      <div id="related-card" className="card">
+        <img className="thumbnail" src={thumbnail}/>
+        {actionButton(list)}
+        <div className="product_info">
+          <div className="category">{productData.category}</div>
+          <div className="product_name">{productData.name}</div>
+          <div className="product_price">{'$' + productData.default_price}</div>
+          <div className="product_rating">
+            <Stars rating={averageRating}/>
+          </div>
+        </div>
+      </div>
+    );
+
+  // Renders cards for YOUR OUTFIT component
+  } else {
+    return (
+      <div id="outfit-card" className="card">
+        <img className="thumbnail" src={thumbnail}/>
+        {actionButton(list)}
+        <div className="product_info">
+          <div className="category">{productData.category}</div>
+          <div className="product_name">{productData.name}</div>
+          <div className="product_price">{'$' + productData.default_price}</div>
+          <div className="product_rating">
+            <Stars rating={averageRating}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default ProductCard;

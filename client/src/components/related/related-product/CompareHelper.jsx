@@ -1,6 +1,12 @@
 import React from 'react';
 
-const Compare = ({ currFeats, compareFeats }) => {
+// This helper function filters out irrelevant product data so that we only use the product's features for this comparison modal window
+const CompareHelper = ({ currFeats, compareFeats }) => {
+  // If user hasn't clicked on the compare button, then don't render just yet...
+  if (!compareFeats) {
+    return <div>Loading...</div>;
+  }
+
   // Converts to arrays containing only features
   currFeats = currFeats.map(feat => {
     return feat.feature;
@@ -15,9 +21,9 @@ const Compare = ({ currFeats, compareFeats }) => {
     return mutual.map(feature => {
       return (
         <div className="modal-row">
-          <div id="check">&#10003;</div>
+          <i id="check" className="fas fa-check"></i>
           <div className="feat">{feature}</div>
-          <div className="compared-product">&#10003;</div>
+          <i id="check" className="fas fa-check compared-product"></i>
         </div>
       );
     });
@@ -29,7 +35,7 @@ const Compare = ({ currFeats, compareFeats }) => {
       return currFeats.map(feature => {
         return (
           <div className="modal-row">
-            <div id="check">&#10003;</div>
+            <i id="check" className="fas fa-check"></i>
             <div className="feat">{feature}</div>
           </div>
         );
@@ -39,7 +45,7 @@ const Compare = ({ currFeats, compareFeats }) => {
       return uniqueFeats.map(feature => {
         return (
           <div className="modal-row">
-            <div id="check">&#10003;</div>
+            <i id="check" className="fas fa-check"></i>
             <div className="feat">{feature}</div>
           </div>
         );
@@ -54,7 +60,7 @@ const Compare = ({ currFeats, compareFeats }) => {
           <div className="modal-row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div id="check" className="compared-product">&#10003;</div>
+            <i id="check" className="fas fa-check compared-product"></i>
           </div>
         );
       });
@@ -65,7 +71,7 @@ const Compare = ({ currFeats, compareFeats }) => {
           <div className="modal-row">
             <div>{null}</div>
             <div className="feat">{feature}</div>
-            <div id="check" className="compared-product">&#10003;</div>
+            <i id="check" className="fas fa-check compared-product"></i>
           </div>
         );
       });
@@ -81,4 +87,4 @@ const Compare = ({ currFeats, compareFeats }) => {
   );
 };
 
-export default Compare;
+export default CompareHelper;

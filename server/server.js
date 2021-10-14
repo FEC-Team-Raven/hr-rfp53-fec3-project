@@ -42,6 +42,27 @@ app.post('/clickAnalytics', (req, res) => {
     });
 });
 
+/****************************
+   PRODUCTS ENDPOINTS
+*****************************/
+
+app.get('/products', (req, res) => {
+  console.log(`SERVING GET REQUEST AT ${req.url}`);
+  axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
+    headers: {
+      Authorization: config.github
+    }
+  })
+    .then(result => {
+      res.end(JSON.stringify(result.data));
+    })
+    .catch(err => {
+      console.log(err);
+      res.end();
+    });
+});
+
 app.get('/products/:product_id', (req, res) => {
   console.log(`SERVING GET REQUEST AT ${req.url}`);
   axios({
@@ -425,4 +446,3 @@ app.post('/report/question', (req, res) => {
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
-
