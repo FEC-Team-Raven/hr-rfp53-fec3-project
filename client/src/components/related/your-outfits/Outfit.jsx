@@ -17,10 +17,9 @@ const Outfit = ({ currProductId }) => {
 
   const addOutfit = () => {
     // Prevents duplicate outfits
-    // let unique = true; // Temporarily allows duplicate outfits to be saved for testing purposes
+    let unique = true; // Set to true - temporarily allows duplicate outfits to be saved for testing purposes
     if (unique) {
       setOutfitIds([...outfitIds, currProductId]);
-      console.log(allOutfitData);
     } else {
       console.log('Outfit already added!');
     }
