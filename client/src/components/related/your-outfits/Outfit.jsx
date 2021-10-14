@@ -6,7 +6,7 @@ import axios from 'axios';
 export const OutfitContext = React.createContext({});
 
 const Outfit = ({ currProductId }) => {
-  const [ outfitIds, setOutfitIds ] = useState([]); // contains user's saved outfits IDs
+  const [ outfitIds, setOutfitIds ] = useState([]); // Contains user's saved outfits IDs
   const [ loading, setLoading ] = useState(true);
 
   const outfitVals = {
@@ -17,10 +17,9 @@ const Outfit = ({ currProductId }) => {
 
   const addOutfit = () => {
     // Prevents duplicate outfits
-    let unique = true; // FOR TESTING: Allows duplicate outfits
+    let unique = true; // Set to true - temporarily allows duplicate outfits to be saved for testing purposes
     if (unique) {
       setOutfitIds([...outfitIds, currProductId]);
-      console.log(allOutfitData);
     } else {
       console.log('Outfit already added!');
     }
@@ -33,7 +32,7 @@ const Outfit = ({ currProductId }) => {
   let relatedImgIndex = 1;
   let translateX = 0;
 
-  // Carousel navigation
+  // Carousel Navigation
   carouselButtons.forEach(button => {
     button.addEventListener('click', event => {
       // Previous button
@@ -44,12 +43,11 @@ const Outfit = ({ currProductId }) => {
         }
       // Next button
       } else {
-        if (relatedImgIndex < (numberOfImages - 3)) {
+        if (relatedImgIndex < (numberOfImages - 4)) {
           relatedImgIndex++;
           translateX -= 258.7;
         }
       }
-
       carouselImages.forEach(image => {
         image.style.transform = `translateX(${translateX}px)`;
       });
@@ -79,7 +77,6 @@ const Outfit = ({ currProductId }) => {
 
       {/* <div id="next" className="carousel__button">&#x2192;</div> */}
     </div>
-
   );
 };
 
