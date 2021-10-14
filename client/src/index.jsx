@@ -9,7 +9,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 
 const App = () => {
   const [ productData, setProductData ] = useState(0);
-  const [ productIDtoRender, setProductIDtoRender ] = useState('40345');
+  const [ productIDtoRender, setProductIDtoRender ] = useState('40348');
   const [ theme, setTheme ] = useState('light');
   const [ loading, setLoading ] = useState(true);
 
@@ -35,13 +35,13 @@ const App = () => {
 
   useEffect(() => {
     if (loading) {
-      axios('/products') // DELETE LATER. This is just so we can actually see what are the valid product id's
-        .then(products => {
-          console.log(products.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // axios('/products') // Retrieves VALID product id's
+      //   .then(products => {
+      //     console.log(products.data);
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
 
       axios(`/products/${productIDtoRender}`)
         .then(products => {

@@ -7,6 +7,7 @@ const RelatedProducts = ({ currProductId }) => {
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
+    // Retrieves related id's of currently displayed product
     if (loading) {
       axios({
         method: 'GET',
@@ -41,8 +42,6 @@ const RelatedProducts = ({ currProductId }) => {
         if (relatedImgIndex <= (numberOfImages - 4)) {
           relatedImgIndex++;
           translateX -= 258.7;
-          console.log('number of images:', numberOfImages);
-          console.log('index:', relatedImgIndex);
         }
       }
       carouselImages.forEach(image => {

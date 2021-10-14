@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { ModalContext } from './Related.jsx';
 
-const sampleImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
+const missingImg = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg';
 
 const ProductCard = ({ productId, list }) => {
   const [ productData, setProductData ] = useState({});
@@ -54,7 +54,7 @@ const ProductCard = ({ productId, list }) => {
   }, []);
 
   // Retrieves thumbnail url. By default, thumbnail the missing picture png
-  let thumbnail = sampleImg;
+  let thumbnail = missingImg;
   if (stylesData.results) {
     thumbnail = stylesData.results[0].photos[0].thumbnail_url;
   }
@@ -93,6 +93,7 @@ const ProductCard = ({ productId, list }) => {
     );
   }
 
+  // Renders cards for RELATED PRODUCTS component
   if (list === 'related') {
     return (
       <div id="related-card" className="card">
@@ -108,6 +109,8 @@ const ProductCard = ({ productId, list }) => {
         </div>
       </div>
     );
+
+  // Renders cards for YOUR OUTFIT component
   } else {
     return (
       <div id="outfit-card" className="card">

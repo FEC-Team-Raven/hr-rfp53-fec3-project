@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { OutfitContext } from './Outfit.jsx';
 
 const OutfitActionButton = ({ productId }) => {
@@ -6,8 +6,8 @@ const OutfitActionButton = ({ productId }) => {
   const outfitIds = useContext(OutfitContext).outfitIds;
   const setOutfitIds = useContext(OutfitContext).setOutfitIds;
 
+  // Remove productid from outfidIds
   const removeOutfit = () => {
-    // Remove productid from outfidIds
     setOutfitIds(outfitIds.filter(outfitId => outfitId !== productId));
   };
 
