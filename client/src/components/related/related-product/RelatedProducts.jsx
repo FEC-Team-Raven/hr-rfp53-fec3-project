@@ -14,7 +14,8 @@ const RelatedProducts = ({ currProductId }) => {
         url: `products/${currProductId}/related`
       })
         .then(res => {
-          setRelatedIds(res.data);
+          let result = [...new Set(res.data)]; // Filters out duplicate id's
+          setRelatedIds(result);
           setLoading(false);
         })
         .catch(err => console.error(err));

@@ -10,19 +10,16 @@ const Related = ({ currProductId }) => {
   // Modal Window state
   const [ currProductData, setCurrProductData ] = useState({});
   const [ comparedProductData, setComparedProductData] = useState({});
-  const [ loading, setLoading ] = useState(true);
 
   useState(() => {
-    if (loading) {
+    // Retrieves current product data
+    axios({
+      method: 'GET',
+      url: `products/${currProductId}`
+    })
+      .then(res => setCurrProductData(res.data))
+      .catch(err => console.error(err));
 
-      // Retrieves current product data
-      axios({
-        method: 'GET',
-        url: `products/${currProductId}`
-      })
-        .then(res => setCurrProductData(res.data))
-        .catch(err => console.error(err));
-    }
   });
 
   // When user clicks on star button, opens modal window
